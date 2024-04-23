@@ -40,28 +40,28 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.p
                         <div class="field-container">
                             <label for="last_name">Nom</label>
                             <input type="text" id="last_name" name="last_name" minlength="3" maxlength="25"
-                                value="<?php echo $_SESSION['client']['last_name']; ?>">
+                                value="<?php echo $_SESSION['client']['general']['last_name']; ?>">
                         </div>
                         <div class="field-container">
                             <label for="first_name">Prénom</label>
                             <input type="text" id="first_name" name="first_name" autofocus minlength="3" maxlength="25"
-                                value="<?php echo $_SESSION['client']['first_name']; ?>">
+                                value="<?php echo $_SESSION['client']['general']['first_name']; ?>">
                         </div>
                         <div class="field-container">
                             <label for="birthdate">Date de naissance</label>
                             <input type="date" id="birthdate" name="birthdate" min="1950-01-01" max="2006-12-31"
-                                value="<?php echo $_SESSION['client']['birthdate']; ?>">
+                                value="<?php echo $_SESSION['client']['general']['birthdate']; ?>">
                         </div>
 
                         <div class="field-container">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" maxlength="100"
-                                value="<?php echo $_SESSION['client']['mail']; ?>">
+                                value="<?php echo $_SESSION['client']['identifier']['mail']; ?>">
                         </div>
                         <div class="field-container">
                             <label for="username">Nom d'utilisateur</label>
                             <input type="text" id="username" name="username" minlength="5" maxlength="20"
-                                value="<?php echo $_SESSION['client']['username']; ?>">
+                                value="<?php echo $_SESSION['client']['identifier']['username']; ?>">
                         </div>
                         <div class="field-container">
                             <label for="password">Mot de passe</label>

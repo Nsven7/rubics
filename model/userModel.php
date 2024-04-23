@@ -167,10 +167,10 @@ function login($mail, $pwd)
 
     // Retrieve client with identifiers
     $sqlClient = "SELECT * FROM `client` join identifier where client.id_identifier = identifier.id AND mail = :mail AND pwd = :pwd";
-
     $stmtClient = $bdd->prepare($sqlClient);
     $stmtClient->bindParam(":mail", $mail);
     $stmtClient->bindParam(":pwd", $pwd);
+
 
     // Execute SQL request
     try {
@@ -182,9 +182,36 @@ function login($mail, $pwd)
 
     // Retrieves client data from the database in an array
     $client = $stmtClient->fetch(PDO::FETCH_ASSOC);
+    // $_SESSION['client'] = $client;
 
-    // Stocks this array in session
-    $_SESSION['client'] = $client;
+    $sqlClientId = "SELECT id FROM client WHERE id_identifier = :id_identifier";
+    $stmtClientId = $bdd->prepare($sqlClientId);
+    $stmtClientId->bindParam(":id_identifier", $client['id_identifier']);
+    $stmtClientId->execute();
+    $clientId = $stmtClientId->fetchColumn();
+
+    // Stocks data in session
+    $_SESSION['client'] = [
+        'general' => [
+            'id' =>  $clientId,
+            'first_name' => $client['first_name'],
+            'last_name' => $client['last_name'],
+            'birthdate' => $client['birthdate'],
+            'created_at' => $client['created_at'],
+            'last_connection' => $client['last_connection'],
+            'actif' => $client['actif'],
+            'id_identifier' => $client['id_identifier'],
+
+        ],
+        'identifier' => [
+            'id' => $client['id'],
+            'username' => $client['username'],
+            'mail' => $client['mail'],
+            'pwd' => $client['pwd'],
+            'secret_question' => $client['secret_question'],
+            'secret_answer' => $client['secret_answer'],
+        ]
+    ];
 }
 
 

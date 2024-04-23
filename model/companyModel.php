@@ -9,7 +9,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
  * It then retrieves the last inserted id and returns it.
  */
 
-function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $street, $number, $comment, $identifier)
+function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $street, $number, $comment)
 {
     // Check datas received
     $errors = [];
@@ -38,58 +38,60 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $stre
     // Retrieve db connection
     global $bdd;
 
-    // Retrieve last record
-    $id = $identifier[0];
+    // Retrieve id of current client
+    $idClient = $_SESSION['client']['general']['id'];
 
+    // Check if company already exists
+    $querySqlCompany = "SELECT id FROM company WHERE id_client = :id_client";
+    $stmtCompanyCheck = $bdd->prepare($querySqlCompany);
+    $stmtCompanyCheck->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+    $stmtCompanyCheck->execute();
+    
+    $companyId = $stmtCompanyCheck->fetchColumn();
 
-    $querySqlIdentifier = "SELECT id FROM client WHERE id = :id";
-    $stmtIdentifierCheck = $bdd->prepare($querySqlIdentifier);
-    $stmtIdentifierCheck->bindParam(":id", $id);
-    $stmtIdentifierCheck->execute();
-    $clientId = $stmtIdentifierCheck->fetchColumn();
+    if ($companyId) {
+        // Update existing company
+        $query = ("UPDATE company SET name = :name, country = :country, locality = :locality, zip_code = :zip_code, street = :street, number = :number, comment = :comment, vat = :vat WHERE id_client = :id_client");
+        $stmt = $bdd->prepare($query);
 
-    // $querySqlClient = "SELECT id FROM client WHERE id_identifier = :id_identifier";
-    // $stmtClientCheck = $bdd->prepare($querySqlClient);
-    // $stmtClientCheck->bindParam(":id_identifier", $identifierId);
-    // $stmtClientCheck->execute();
-    // $clientId = $stmtClientCheck->fetchColumn();
-
-    // Insert user's data
-    $query = "INSERT INTO company (name, vat, country, locality, zip_code, street, number, comment, id_client) VALUES (:name, :vat, :country, :locality, :zip_code, :street, :number, :comment, :id_client)";
-
-    // Prepare SQL request
-    $stmtClientInsert = $bdd->prepare($query);
-
-    // BindParam
-    // Bind the values to the placeholders
-    $stmtClientInsert->bindParam(':name', $name);
-    $stmtClientInsert->bindParam(':vat', $vat);
-    $stmtClientInsert->bindParam(':country', $country);
-    $stmtClientInsert->bindParam(':locality', $locality);
-    $stmtClientInsert->bindParam(':zip_code', $zipcode);
-    $stmtClientInsert->bindParam(':street', $street);
-    $stmtClientInsert->bindParam(':number', $number);
-    $stmtClientInsert->bindParam(':comment', $comment);
-    $stmtClientInsert->bindParam(':id_client', $clientId, PDO::PARAM_INT);
-
-
-    // Execute SQL request
-    try {
-        $stmtClientInsert->execute();
-
-        $_SESSION['client']['company'] = [
-            'name' => $name,
-            'vat' => $vat,
-            'country' => $country,
-            'locality' => $locality,
-            'zipcode' => $zipcode,
-            'street' => $street,
-            'number' => $number,
-            'comment' => $comment,
-            'identifier' => $identifier
-        ];
-    } catch (PDOException $e) {
-        $message = "Une erreur s'est produite lors de l'insertion des données client";
-        $errors[] = $message;
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":country", $country);
+        $stmt->bindParam(":locality", $locality);
+        $stmt->bindParam(":zip_code", $zipcode);
+        $stmt->bindParam(":street", $street);
+        $stmt->bindParam(":number", $number);
+        $stmt->bindParam(":comment", $comment);
+        $stmt->bindParam(":vat", $vat);
+        $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+        $stmt->execute();
+        
+    } else {
+        // Insert new company
+        $query = "INSERT INTO company (name, vat, country, locality, zip_code, street, number, comment, id_client) VALUES (:name, :vat, :country, :locality, :zip_code, :street, :number, :comment, :id_client)";
+        $bdd->prepare($query);
+       
+        $stmt = $bdd->prepare($query);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":vat", $vat);
+        $stmt->bindParam(":country", $country);
+        $stmt->bindParam(":locality", $locality);
+        $stmt->bindParam(":zip_code", $zipcode);
+        $stmt->bindParam(":street", $street);
+        $stmt->bindParam(":number", $number);
+        $stmt->bindParam(":comment", $comment);
+        $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+        $stmt->execute();
     }
+
+    $query = "SELECT * FROM company WHERE id_client = :id_client";
+    $stmt = $bdd->prepare($query);
+    $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $company = ['company' => $stmt->fetch(PDO::FETCH_ASSOC)];
+
+    $_SESSION['client'] += $company;
+
+    //die(var_dump($_SESSION['client']));
+
 }

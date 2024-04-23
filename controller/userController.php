@@ -67,6 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $error = login($mail, $pwd);
 
+            // die(var_dump($_SESSION['client']));
+
             if (isset($error)) {
                 //Redirection with error message
                 $message = "error";

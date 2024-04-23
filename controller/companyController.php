@@ -16,8 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $comment = htmlspecialchars(trim(ucfirst($_POST['comment'])));
 
     if (isset($_SESSION['client'])) {
-        $identifier = $_SESSION['client'];
-        $error = insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $street, $number, $comment, $identifier);
+        $error = insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $street, $number, $comment);
 
         if (isset($error)) {
             //Redirection with error message
@@ -27,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $message = "success";
             var_dump($_SESSION['client']);
-            header("Location: ../view/view-home.php?message=" . $message);
+            header("Location: ../view/view-user-admin-home.php?message=" . $message);
             exit;
         }
     } else {
