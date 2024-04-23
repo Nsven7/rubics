@@ -181,7 +181,7 @@ function login($mail, $pwd)
     }
 
     // Retrieves client data from the database in an array
-    $client = $stmtClient->fetch();
+    $client = $stmtClient->fetch(PDO::FETCH_ASSOC);
 
     // Stocks this array in session
     $_SESSION['client'] = $client;
