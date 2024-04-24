@@ -8,14 +8,14 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
  * If there are no errors, it inserts the data into the `request` table.
  */
 
-function insertRequest($name, $request, $budget)
+function insertRequest($name, $description, $budget, $category)
 {
     // Check datas received
     $errors = [];
     if (empty($name)) {
         $errors[] = "Nom requis.";
     }
-    if (empty($request)) {
+    if (empty($description)) {
         $errors[] = "Description requise";
     }
     if (empty($budget)) {
@@ -40,12 +40,12 @@ function insertRequest($name, $request, $budget)
     $idCategory = $stmtCategoryCheck->fetchColumn();
 
     // Insert new request
-    $query = "INSERT INTO request (name, request, budget, id_client, id_category) VALUES (:name, :request, :budget, :id_client, :id_category)";
+    $query = "INSERT INTO request (name, description, budget, id_client, id_category) VALUES (:name, :description, :budget, :id_client, :id_category)";
     $bdd->prepare($query);
 
     $stmt = $bdd->prepare($query);
     $stmt->bindParam(":name", $name);
-    $stmt->bindParam(":request", $request);
+    $stmt->bindParam(":description", $description);
     $stmt->bindParam(":budget", $budget);
     $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
     $stmt->bindParam(":id_category", $idCategory, PDO::PARAM_INT);

@@ -10,15 +10,7 @@ function category()
     $stmt = $bdd->prepare($query);
     $stmt->execute();
 
-    $categories = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    //$_SESSION['data'] = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // $_SESSION['categories'] = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // $category = ['categories' => $stmt->fetch(PDO::FETCH_ASSOC)];
-
-    // return $_SESSION['categories'];
-
+    return $categories;
 }

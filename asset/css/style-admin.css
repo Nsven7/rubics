@@ -90,18 +90,22 @@ header {
     margin-right: auto;
 }
 
-.field-container input {
+input, select {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.25rem;
 }
 
-input[type="text"], input[type="date"] , input[type="password"] {
+input[type="text"], input[type="date"], input[type="password"], select {
     max-width: 100%;
     border: 1px solid #ccc;
     display: inline-block;
     border-radius: 0.25rem;
     margin-left: 3rem;
+  }
+
+  select option {
+    background-color: white;
   }
 
 .btn {
@@ -135,4 +139,8 @@ input[type="text"], input[type="date"] , input[type="password"] {
 .btn-red:hover {
     background: none;
     color: red;
+}
+
+.actif-link {
+    color: #525CEB;
 }

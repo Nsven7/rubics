@@ -5,19 +5,32 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.p
 
 <div class="container-items">
     <div class="container-content">
-        <div class="sidenav">
+    <div class="sidenav">
             <div class="accordionItem">
                 <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
                 <div class="accordionContent">
-                    <a href="#">Modifier mes informations</a><br>
-                    <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-project.php">Project en cours</a>
+                    <ul>
+                        <li class="actif-link">Modifier mes informations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordionItem">
+                <h2 class="accordionTitle">Projet<span class="accordionIcon"></span></h2>
+                <div class="accordionContent">
+                    <ul>
+                        <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-request.php">Nouveau projet</a></li>
+                        <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-project.php">Projet(s) en cours</a></li>
+                    </ul>
                 </div>
             </div>
 
             <div class="accordionItem">
                 <h2 class="accordionTitle">Entreprise<span class="accordionIcon"></span></h2>
                 <div class="accordionContent">
-                <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-company.php">Informations liées à mon entreprise</a>
+                    <ul>
+                        <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-company.php">Informations liées à mon entreprise</a></li>
+                    </ul>
                 </div>
             </div>
 
