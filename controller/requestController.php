@@ -5,12 +5,17 @@ session_start();
 require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/requestModel.php");
 require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dataModel.php");
 
+$dataFromSQL = array("Option 1", "Option 2", "Option 3");
+
 $categories = category();
 
-$_SESSION['data'] += $categories;
 
+// Assuming you have already retrieved data from SQL
+// For example:
+$_SESSION['test'] = $categories;
+
+// Handle form submission
 if (isset($_POST['submit']) && isset($_SESSION['client'])) {
-
     $name = htmlspecialchars(trim(ucfirst($_POST['name'])));
     $description = htmlspecialchars($_POST['description']);
     $budget = htmlspecialchars(trim(ucfirst($_POST['budget'])));
@@ -19,17 +24,16 @@ if (isset($_POST['submit']) && isset($_SESSION['client'])) {
     $error = insertRequest($name, $description, $budget, $category);
 
     if (isset($error)) {
-        //Redirection with error message
+        // Redirection with error message
         $message = implode(" - ", $error);
         header("Location: ../view/view-user-admin-request.php?message=" . $message);
         exit;
     } else {
         $message = "success";
-        header("Location: ../view/view-user-admin-request.php?message=" . $message);
+        header("Location: ../view/view-user-admin-request.php");
         exit;
     }
 } else {
-    $_SESSION['data'];
-    header("Location: ../view/view-home.php");
+    header("Location: ../view/view-user-admin-request.php");
     exit;
 }
