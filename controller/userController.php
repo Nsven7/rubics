@@ -14,8 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (isset($_SESSION['client'])) {
                 $terms = 1;
-            }
-            else {
+            } else {
                 $terms = htmlspecialchars($_POST['terms']);
             }
 
@@ -28,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $confirmPassword = htmlspecialchars(trim($_POST['confirm_password']));
             $secretQuestion = htmlspecialchars($_POST['secret_question']);
             $answer = htmlspecialchars(trim($_POST['answer']));
-            
+
 
             $error = insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username, $pwd, $confirmPassword, $secretQuestion, $answer, $terms);
 
@@ -36,10 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //Redirection with error message
                 $message = implode(" - ", $error);
                 if (!isset($_SESSION['client'])) {
-                    header("Location: ../view/view-user-admin-home?message=" . $message);
+                    header("Location: ../view/view-user-admin-home.php?message=" . $message);
                     exit;
                 } else {
-                    header("Location: ../view/view-user-registrationphp?message=" . $message);
+                    header("Location: ../view/view-user-registration.php?message=" . $message);
                     exit;
                 }
             } else {
@@ -49,9 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     exit;
                 } else {
                     session_destroy();
-                    // On démarre une session 
+                    // Starts a new session
                     session_start();
-                    // On récupère les données de l'utilisateur grâce a la fonction login (qui permet de créer une session avec les données utilisateur)
+                    // Retrieve user's data from login function
                     login($mail, $password);
                     $message = "success";
                     header("Location: ../view/view-user-admin-home?message=" . $message);
@@ -66,8 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pwd = md5(htmlspecialchars(trim($_POST['password'])));
 
             $error = login($mail, $pwd);
-
-            // die(var_dump($_SESSION['client']));
 
             if (isset($error)) {
                 //Redirection with error message

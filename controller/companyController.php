@@ -25,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         } else {
             $message = "success";
-            var_dump($_SESSION['client']);
             header("Location: ../view/view-user-admin-home.php?message=" . $message);
             exit;
         }

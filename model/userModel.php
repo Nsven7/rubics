@@ -182,7 +182,6 @@ function login($mail, $pwd)
 
     // Retrieves client data from the database in an array
     $client = $stmtClient->fetch(PDO::FETCH_ASSOC);
-    // $_SESSION['client'] = $client;
 
     $sqlClientId = "SELECT id FROM client WHERE id_identifier = :id_identifier";
     $stmtClientId = $bdd->prepare($sqlClientId);
@@ -190,7 +189,7 @@ function login($mail, $pwd)
     $stmtClientId->execute();
     $clientId = $stmtClientId->fetchColumn();
 
-    // Stocks data in session
+    // Stocks datas in session 'client'
     $_SESSION['client'] = [
         'general' => [
             'id' =>  $clientId,

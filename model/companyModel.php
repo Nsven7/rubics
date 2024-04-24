@@ -5,8 +5,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
  * This function inserts company data into the database.
  * It first checks if the required fields are not empty.
  * If there are any errors, it returns an array of error messages.
- * If there are no errors, it inserts the user data into the `identifier` and `client` tables.
- * It then retrieves the last inserted id and returns it.
+ * If there are no errors, it inserts the user data into the `company` table.
  */
 
 function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $street, $number, $comment)
@@ -91,7 +90,4 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $stre
     $company = ['company' => $stmt->fetch(PDO::FETCH_ASSOC)];
 
     $_SESSION['client'] += $company;
-
-    //die(var_dump($_SESSION['client']));
-
 }
