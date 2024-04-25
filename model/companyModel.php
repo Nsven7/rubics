@@ -45,8 +45,9 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $stre
     $stmtCompanyCheck = $bdd->prepare($querySqlCompany);
     $stmtCompanyCheck->bindParam(":id_client", $idClient, PDO::PARAM_INT);
     $stmtCompanyCheck->execute();
-    
+
     $companyId = $stmtCompanyCheck->fetchColumn();
+
 
     if ($companyId) {
         // Update existing company
@@ -63,12 +64,23 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $stre
         $stmt->bindParam(":vat", $vat);
         $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
         $stmt->execute();
+
+        $_SESSION['client']['company'] = [
+            'name' => $name,
+            'country' => $country,
+            'locality' => $locality,
+            'zip_code' => $zipcode,
+            'street' => $street,
+            'number' => $number,
+            'comment' => $comment,
+            'vat' => $vat
+        ];
         
     } else {
         // Insert new company
         $query = "INSERT INTO company (name, vat, country, locality, zip_code, street, number, comment, id_client) VALUES (:name, :vat, :country, :locality, :zip_code, :street, :number, :comment, :id_client)";
         $bdd->prepare($query);
-       
+
         $stmt = $bdd->prepare($query);
         $stmt->bindParam(":name", $name);
         $stmt->bindParam(":vat", $vat);
@@ -80,15 +92,14 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $stre
         $stmt->bindParam(":comment", $comment);
         $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
         $stmt->execute();
+
+        $query = "SELECT * FROM company WHERE id_client = :id_client";
+        $stmt = $bdd->prepare($query);
+        $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $company = ['company' => $stmt->fetch(PDO::FETCH_ASSOC)];
+
+        $_SESSION['client'] += $company;
     }
-
-    $query = "SELECT * FROM company WHERE id_client = :id_client";
-    $stmt = $bdd->prepare($query);
-    $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $company = ['company' => $stmt->fetch(PDO::FETCH_ASSOC)];
-
-
-    $_SESSION['client'] += $company;
 }

@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_SESSION['client'])) {
         $error = insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $street, $number, $comment);
 
+
         if (isset($error)) {
             //Redirection with error message
             $message = implode(" - ", $error);

@@ -1,6 +1,13 @@
 <?php
 $title = "Admin - Projet";
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dataModel.php");
+
+// Check if session data exists
+if (!isset($_SESSION['client']['company'])) {
+    retrieveCompany();
+}
+
 ?>
 
 <div class="container-items">
@@ -16,7 +23,7 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.p
             </div>
 
             <div class="accordionItem">
-                <h2 class="accordionTitle">Projet<span class="accordionIcon"></span></h2>
+                <h2 class="accordionTitle">Projet(s)<span class="accordionIcon"></span></h2>
                 <div class="accordionContent">
                     <ul>
                         <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-request.php">Nouveau projet</a></li>
@@ -43,7 +50,8 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.p
         </div>
 
         <div class="main">
-            <h1>Mes entreprise</h1>
+            <h1>Ma société</h1>
+
 
 
             <div class="main-conent">
@@ -54,49 +62,49 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.p
                         <div class="field-container">
                             <label for="name">Nom</label>
                             <input type="text" id="name" name="name" minlength="3" maxlength="25" 
-                                value="<?php if (isset($_SESSION['client']['company'])) { echo $_SESSION['client']['company']['name']; } ?>">
+                                value="<?php if (isset($_SESSION['client']['company']['name'])) { echo $_SESSION['client']['company']['name']; } ?>">
                         </div>
                         
                         <div class="field-container">
                             <label for="vat">TVA</label>
                             <input type="text" id="vat" name="vat" autofocus minlength="3" maxlength="25" 
-                                value="<?php if (isset($_SESSION['client']['company'])) { echo $_SESSION['client']['company']['vat']; } ?>">
+                                value="<?php if (isset($_SESSION['client']['company']['vat'])) { echo $_SESSION['client']['company']['vat']; } ?>">
                         </div>
 
                         <div class="field-container">
                             <label for="country">Country</label>
                             <input type="text" id="country" name="country" autofocus minlength="3" maxlength="25" 
-                                value="<?php if (isset($_SESSION['client']['company'])) { echo $_SESSION['client']['company']['country']; } ?>">
+                                value="<?php if (isset($_SESSION['client']['company']['country'])) { echo $_SESSION['client']['company']['country']; } ?>">
                         </div>
 
                         <div class="field-container">
                             <label for="locality">Localité</label>
                             <input type="text" id="locality" name="locality" 
-                                value="<?php if (isset($_SESSION['client']['company'])) { echo $_SESSION['client']['company']['locality']; } ?>">
+                                value="<?php if (isset($_SESSION['client']['company']['locality'])) { echo $_SESSION['client']['company']['locality']; } ?>">
                         </div>
 
                         <div class="field-container">
                             <label for="zipCode">Code Postal</label>
                             <input type="text" id="zipCode" name="zipCode" minlength="5" maxlength="20" 
-                                value="<?php if (isset($_SESSION['client']['company'])) { echo $_SESSION['client']['company']['zip_code']; } ?>">
+                                value="<?php if (isset($_SESSION['client']['company']['zip_code'])) { echo $_SESSION['client']['company']['zip_code']; } ?>">
                         </div>
 
                         <div class="field-container">
                             <label for="street">Rue</label>
                             <input type="text" id="street" name="street" minlength="8" maxlength="20" 
-                                value="<?php if (isset($_SESSION['client']['company'])) { echo $_SESSION['client']['company']['street']; } ?>">
+                                value="<?php if (isset($_SESSION['client']['company']['street'])) { echo $_SESSION['client']['company']['street']; } ?>">
                         </div>
 
                         <div class="field-container">
                             <label for="number">Numéro</label>
                             <input type="number" id="number" name="number" minlength="8" 
-                                value="<?php if (isset($_SESSION['client']['company'])) { echo $_SESSION['client']['company']['number']; } ?>">
+                                value="<?php if (isset($_SESSION['client']['company']['number'])) { echo $_SESSION['client']['company']['number']; } ?>">
                         </div>
 
                         <div class="field-container">
                             <label for="comment">Commmentaire</label>
                             <input type="text" id="comment" name="comment" minlength="8" maxlength="20" 
-                                value="<?php if (isset($_SESSION['client']['company'])) { echo $_SESSION['client']['company']['comment']; } ?>">
+                                value="<?php if (isset($_SESSION['client']['company']['comment'])) { echo $_SESSION['client']['company']['comment']; } ?>">
                         </div>
                         
                         <input class="btn" type="submit" name="submit" value="Enregistrer" />
