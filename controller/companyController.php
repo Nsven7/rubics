@@ -4,7 +4,8 @@ session_start();
 // Include the model file
 require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/companyModel.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Handle form submission
+if (isset($_POST['submit']) && isset($_SESSION['client'])) {
 
     $name = htmlspecialchars(trim(ucfirst($_POST['name'])));
     $vat = htmlspecialchars($_POST['vat']);
@@ -15,22 +16,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $number = htmlspecialchars(trim(ucfirst($_POST['number'])));
     $comment = htmlspecialchars(trim(ucfirst($_POST['comment'])));
 
-    if (isset($_SESSION['client'])) {
-        $error = insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $street, $number, $comment);
+    // Call to the function inside the model file
+    $error = insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $street, $number, $comment);
 
-
-        if (isset($error)) {
-            //Redirection with error message
-            $message = implode(" - ", $error);
-            header("Location: ../view/view-user-admin-home.php?message=" . $message);
-            exit;
-        } else {
-            $message = "success";
-            header("Location: ../view/view-user-admin-home.php?message=" . $message);
-            exit;
-        }
+    if (isset($error)) {
+        // Redirection with error message
+        $message = implode(" - ", $error);
+        header("Location: ../view/view-user-admin-home.php?message=" . $message);
+        exit;
+        // Redirection with success message
     } else {
-        header("Location: ../view/view-home.php");
+        $message = "success";
+        header("Location: ../view/view-user-admin-home.php?message=" . $message);
         exit;
     }
+} else {
+    header("Location: ../view/view-home.php");
+    exit;
 }

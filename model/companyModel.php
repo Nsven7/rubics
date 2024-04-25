@@ -98,6 +98,7 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $stre
         $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
         $stmt->execute();
 
+        // Add company to session
         $company = ['company' => $stmt->fetch(PDO::FETCH_ASSOC)];
 
         $_SESSION['client'] += $company;

@@ -1,6 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
+// Retrieve all categories
 function category()
 {
     // Retrieve db connection
@@ -15,12 +16,13 @@ function category()
     return $categories;
 }
 
+// Retrieve all requests of a client by its id
 function requests($id)
 {
     // Retrieve db connection
     global $bdd;
 
-    // SQL request to retrieve all requests of a client by its id and the corresponding category name
+    // SQL request to retrieve all requests of a client by its id
     $query = "SELECT request.*, category.name AS category_name
  FROM request
  INNER JOIN category ON request.id_category = category.id
@@ -44,10 +46,10 @@ function requests($id)
         unset($request['category_name']);
     }
 
-
     return $requests;
 }
 
+// Retrieve the company of the current client
 function retrieveCompany()
 {
     // Retrieve db connection

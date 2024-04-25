@@ -8,7 +8,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
  * If there are no errors, it inserts the user data into the `identifier` and `client` tables.
  * It then retrieves the last inserted id and returns it.
  */
-
 function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username, $pwd, $confirmPassword, $secretQuestion, $answer, $terms)
 {
     // Check datas received

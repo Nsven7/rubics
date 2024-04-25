@@ -7,7 +7,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
  * If there are any errors, it returns an array of error messages.
  * If there are no errors, it inserts the data into the `request` table.
  */
-
 function insertRequest($name, $description, $budget, $category)
 {
     // Check datas received
@@ -63,6 +62,7 @@ function insertRequest($name, $description, $budget, $category)
     $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
     $stmt->execute();
 
+    // Retrieve request
     $request = ['request' => $stmt->fetch(PDO::FETCH_ASSOC)];
 
     $_SESSION['client'] += $request;
