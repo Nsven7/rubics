@@ -1,11 +1,11 @@
 <?php
 $title = "Admin - Home";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
 ?>
 
 <div class="container-items">
     <div class="container-content">
-    <div class="sidenav">
+        <div class="sidenav">
             <div class="accordionItem">
                 <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
                 <div class="accordionContent">
@@ -48,33 +48,27 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.p
             <div class="main-conent">
                 <div class="data-card">
                     <h3>Général</h3>
-                    <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php"
-                        method="POST">
+                    <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
                         <div class="field-container">
                             <label for="last_name">Nom</label>
-                            <input type="text" id="last_name" name="last_name" minlength="3" maxlength="25"
-                                value="<?php echo $_SESSION['client']['general']['last_name']; ?>">
+                            <input type="text" id="last_name" name="last_name" minlength="3" maxlength="25" value="<?php echo $_SESSION['client']['general']['last_name']; ?>">
                         </div>
                         <div class="field-container">
                             <label for="first_name">Prénom</label>
-                            <input type="text" id="first_name" name="first_name" autofocus minlength="3" maxlength="25"
-                                value="<?php echo $_SESSION['client']['general']['first_name']; ?>">
+                            <input type="text" id="first_name" name="first_name" autofocus minlength="3" maxlength="25" value="<?php echo $_SESSION['client']['general']['first_name']; ?>">
                         </div>
                         <div class="field-container">
                             <label for="birthdate">Date de naissance</label>
-                            <input type="date" id="birthdate" name="birthdate" min="1950-01-01" max="2006-12-31"
-                                value="<?php echo $_SESSION['client']['general']['birthdate']; ?>">
+                            <input type="date" id="birthdate" name="birthdate" min="1950-01-01" max="2006-12-31" value="<?php echo $_SESSION['client']['general']['birthdate']; ?>">
                         </div>
 
                         <div class="field-container">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" maxlength="100"
-                                value="<?php echo $_SESSION['client']['identifier']['mail']; ?>">
+                            <input type="email" id="email" name="email" maxlength="100" value="<?php echo $_SESSION['client']['identifier']['mail']; ?>">
                         </div>
                         <div class="field-container">
                             <label for="username">Nom d'utilisateur</label>
-                            <input type="text" id="username" name="username" minlength="5" maxlength="20"
-                                value="<?php echo $_SESSION['client']['identifier']['username']; ?>">
+                            <input type="text" id="username" name="username" minlength="5" maxlength="20" value="<?php echo $_SESSION['client']['identifier']['username']; ?>">
                         </div>
                         <div class="field-container">
                             <label for="password">Mot de passe</label>
@@ -82,9 +76,28 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.p
                         </div>
                         <div class="field-container">
                             <label for="confirm_password">Répétez le mot de passe</label>
-                            <input type="password" id="confirm_password" name="confirm_password" minlength="8"
-                                maxlength="20">
+                            <input type="password" id="confirm_password" name="confirm_password" minlength="8" maxlength="20">
                         </div>
+
+                        <div>
+                            <label for="secret_question">Secret Question:</label>
+                            <select id="secret_question" name="secret_question">
+                                <?php if ($_SESSION['client']['identifier']['secret_question'] == "pet") {
+                                    echo "<option value=\"pet\">What is the name of your first pet?</option>";
+                                } ?>
+                                <?php if ($_SESSION['client']['identifier']['secret_question'] == "city") {
+                                    echo "<option value=\"city\">What city were you born in?</option>";
+                                } ?>
+                                <?php if ($_SESSION['client']['identifier']['secret_question'] == "school") {
+                                    echo "<option value=\"school\">What is the name of your first school?</option>";
+                                } ?>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="answer">Answer:</label>
+                            <input type="text" id="answer" name="answer" minlength="5" maxlength="100" value="<?php echo $_SESSION['client']['identifier']['secret_answer']; ?>">
+                        </div>
+
                         <input class="btn" type="submit" name="submit" value="S'enregistrer" />
                     </form>
                 </div>

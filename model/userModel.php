@@ -12,46 +12,59 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
 {
     // Check datas received
     $errors = [];
-    if (empty($lastName)) {
-        $errors[] = "Nom requis";
+    if (isset($_SESSION['client']['identifier'])) {
+        if (empty($pwd) && empty($confirmPassword)) {
+            $pwd = $_SESSION['client']['identifier']['pwd'];
+            $pwd = md5($pwd);
+        }
+        if (empty($secretQuestion)) {
+            $secretQuestion = $_SESSION['client']['identifier']['secret_question'];
+        }
+        if (empty($answer)) {
+            $answer = $_SESSION['client']['identifier']['secret_answer'];
+        }
+    } else {
+        if (empty($lastName)) {
+            $errors[] = "Nom requis";
+        }
+        if (empty($firstName)) {
+            $errors[] = "Prénom requis";
+        }
+        if (empty($birthdate)) {
+            $errors[] = "Date de naissance requise";
+        }
+        if (empty($mail)) {
+            $errors[] = "Email requis";
+        } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "Format email invalide.";
+        }
+        if (empty($username)) {
+            $errors[] = "Nom d'utilisateur requis";
+        }
+        
+        if (empty($pwd)) {
+            $errors[] = "Mot de passe requis";
+        } elseif (strlen($pwd) < 8) {
+            $errors[] = "Mot de passe doit contenir au moins 8 caractères";
+        } elseif ($pwd !== $confirmPassword) {
+            $errors[] = "Les mots de passe ne correspondent pas";
+        } elseif (empty($confirmPassword)) {
+            $errors[] = "Veuillez confirmer votre mot de passe";
+        } elseif ($pwd > 8 and $pwd === $confirmPassword) {
+            $pwd = md5($pwd);
+        }
+
+        if (empty($secretQuestion)) {
+            $errors[] = "Choisissez une question secrète";
+        }
+        if (empty($answer)) {
+            $errors[] = "Réponse à la question secrète requise";
+        }
+        if (empty($terms)) {
+            $errors[] = "Vous devez accepter les termes et conditions";
+        }
     }
-    if (empty($firstName)) {
-        $errors[] = "Prénom requis";
-    }
-    if (empty($birthdate)) {
-        $errors[] = "Date de naissance requise";
-    }
-    if (empty($mail)) {
-        $errors[] = "Email requis";
-    } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Format email invalide.";
-    }
-    if (empty($username)) {
-        $errors[] = "Nom d'utilisateur requis";
-    }
-    if (empty($pwd)) {
-        $errors[] = "Mot de passe requis";
-    } elseif (strlen($pwd) < 8) {
-        $errors[] = "Mot de passe doit contenir au moins 8 caractères";
-    }
-    if (empty($confirmPassword) && empty($_SESSION['client'])) {
-        $errors[] = "Veuillez confirmer votre mot de passe";
-    } elseif ($pwd !== $confirmPassword) {
-        $errors[] = "Les mots de passe ne correspondent pas";
-    } elseif ($pwd > 8 and $pwd === $confirmPassword) {
-        $pwd = md5($pwd);
-    } elseif (empty($pwd) && isset($_SESSION['client'])) {
-        $pwd = $_SESSION['client']['pwd'];
-    }
-    if (empty($secretQuestion)) {
-        $errors[] = "Choisissez une question secrète";
-    }
-    if (empty($answer)) {
-        $errors[] = "Réponse à la question secrète requise";
-    }
-    if (empty($terms)) {
-        $errors[] = "Vous devez accepter les termes et conditions";
-    }
+
 
     // Retrieve db connection
     global $bdd;
@@ -81,8 +94,10 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
             $errors[] = $message;
         }
 
-        if(!empty($errors)){return $errors;}
-
+        if (!empty($errors)) {
+            return $errors;
+        }
+        
         // Update user's data
         $querysqlUpdateClient = "UPDATE client SET first_name = :first_name, last_name = :last_name, birthdate = :birthdate, last_connection = :last_connection, actif = :actif WHERE id_identifier = :id_identifier";
         $stmtUpdateClient = $bdd->prepare($querysqlUpdateClient);
@@ -99,8 +114,9 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
             $message = "Une erreur s'est produite lors de la mise à jour des données client";
             $errors[] = $message;
         }
-        if(!empty($errors)){return $errors;}
-
+        if (!empty($errors)) {
+            return $errors;
+        }
     } else {
         // Insert user's identifiers
         $querysql = "INSERT INTO identifier (username, mail, pwd, secret_question, secret_answer) VALUES (:username, :mail, :pwd, :secret_question, :secret_answer)";
@@ -123,7 +139,9 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
             $errors[] = $message;
         }
 
-        if(!empty($errors)){return $errors;}
+        if (!empty($errors)) {
+            return $errors;
+        }
 
         // Retrieve last record
         $sqlLastUser = "SELECT id FROM identifier ORDER BY id DESC LIMIT 1";
@@ -155,7 +173,9 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
             $message = "Une erreur s'est produite lors de l'insertion des données client";
             $errors[] = $message;
         }
-        if(!empty($errors)){return $errors;}
+        if (!empty($errors)) {
+            return $errors;
+        }
     }
 }
 
@@ -182,14 +202,17 @@ function login($mail, $pwd)
     try {
         $stmtClient->execute();
     } catch (PDOException $e) {
-        // echo "Exception caught: " . $e->getMessage();
+        //echo "Exception caught: " . $e->getMessage();
         $message = "Adresse mail ou mot de passe incorect";
     }
 
-    if(!empty($message)){return $message;}
-
     // Retrieves client data from the database in an array
     $client = $stmtClient->fetch(PDO::FETCH_ASSOC);
+
+    if($client === false) {
+        $message = "Adresse mail ou mot de passe incorect";
+        return $message;
+    }
 
     $sqlClientId = "SELECT id FROM client WHERE id_identifier = :id_identifier";
     $stmtClientId = $bdd->prepare($sqlClientId);

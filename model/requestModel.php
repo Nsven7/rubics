@@ -12,16 +12,20 @@ function insertRequest($name, $description, $budget, $category)
     // Check datas received
     $errors = [];
     if (empty($name)) {
-        $errors[] = "Nom requis.";
+        $errors[] = "Nom requis";
     }
     if (empty($description)) {
         $errors[] = "Description requise";
     }
     if (empty($budget)) {
-        $errors[] = "Budget requis.";
+        $errors[] = "Budget requis";
     }
     if (empty($category)) {
-        $errors[] = "Catégorie requise.";
+        $errors[] = "Catégorie requise";
+    }
+
+    if (!empty($errors)) {
+        return $errors;
     }
 
     // Retrieve db connection
@@ -54,7 +58,7 @@ function insertRequest($name, $description, $budget, $category)
         $stmt->execute();
     } catch (PDOException $e) {
         // echo "Exception caught: " . $e->getMessage();
-        $message = "Une erreur s'est produite lors de l'insertion de votre demande'";
+        $message = "Une erreur s'est produite lors de l'insertion de votre demande";
     }
 
     $query = "SELECT * FROM request WHERE id_client = :id_client";

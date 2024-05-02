@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Retrieve user's data from login function
                     login($mail, $password);
                     $message = "success";
-                    header("Location: ../view/view-user-admin-home?message=" . $message);
+                    header("Location: ../view/view-user-admin-home.php?message=" . $message);
                     exit;
                 }
             }
@@ -68,11 +68,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (isset($error)) {
                 //Redirection with error message
-                $message = "error";
-                header("Location: ../view/view-user-registrationphp?message=" . $message);
+                $message = "bad-creditential";
+                header("Location: ../view/view-login.php?message=" . $message);
                 exit;
             } else {
-                $message = "success";
+                $message = "success-register";
                 header("Location: ../view/view-user-admin-home.php?message=" . $message);
                 exit;
             }

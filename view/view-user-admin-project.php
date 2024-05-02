@@ -1,6 +1,6 @@
 <?php
 $title = "Admin - Projet(s)";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
 require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dataModel.php");
 
 $id = $_SESSION['client']['general']['id'];
@@ -10,7 +10,7 @@ $projects = requests($id);
 
 <div class="container-items">
     <div class="container-content">
-    <div class="sidenav">
+        <div class="sidenav">
             <div class="accordionItem">
                 <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
                 <div class="accordionContent">
@@ -29,7 +29,7 @@ $projects = requests($id);
                     </ul>
                 </div>
             </div>
-            
+
             <div class="accordionItem">
                 <h2 class="accordionTitle">Entreprise<span class="accordionIcon"></span></h2>
                 <div class="accordionContent">
@@ -48,6 +48,11 @@ $projects = requests($id);
         </div>
 
         <div class="main">
+
+            <?php if (isset($_GET['message']) && $_GET['message'] == 'success-request-added') {
+                echo "<p class='alert alert-success'>Demande enregistrée avec succés</p>";
+            }  ?>
+
             <h1>Demande(s) de projet</h1>
 
 
@@ -71,19 +76,19 @@ $projects = requests($id);
                             // Loop through the project data and display each row in the table
                             foreach ($projects as $project) {
                                 echo "<tr>";
-                                echo "<td>". $project['id']. "</td>";
-                                echo "<td>". $project['name']. "</td>";
-                                echo "<td>". $project['description']. "</td>";
-                                echo "<td>". $project['budget']. "</td>";
-                                echo "<td>". $project['id_category']. "</td>";
+                                echo "<td>" . $project['id'] . "</td>";
+                                echo "<td>" . $project['name'] . "</td>";
+                                echo "<td>" . $project['description'] . "</td>";
+                                echo "<td>" . $project['budget'] . "</td>";
+                                echo "<td>" . $project['id_category'] . "</td>";
                                 echo "</tr>";
                             }
-                           ?>
+                            ?>
                         </tbody>
                     </table>
 
 
-                    
+
                 </div>
             </div>
         </div>

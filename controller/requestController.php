@@ -32,8 +32,8 @@ if (isset($_POST['submit']) && isset($_SESSION['client'])) {
         exit;
     } else {
         // Redirection with success message
-        $message = "success";
-        header("Location: ../view/view-user-admin-request.php?message=" . $message);
+        $message = "success-request-added";
+        header("Location: ../view/view-user-admin-project.php?message=" . $message);
         exit;
     }
 } else {
