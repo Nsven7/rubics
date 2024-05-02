@@ -20,10 +20,17 @@
             <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
                 <input class="btn" type="submit" value="Déconnexion" name="submit">
             </form>
-            <?php
-        } else {
-            header("Location: ../view/view-home.php");
+        <?php
+        } elseif (isset($_GET['message']) && strpos($_GET['message'], 'requis')) {
+            $message = $_GET['message'];
+            header("Location: ../view/view-user-registration.php?message=" . $message);
             exit;
-        }
-        ; ?>
+        } elseif (isset($_GET['message']) && strpos($_GET['message'], 'success')) {
+            $message = $_GET['message'];
+            header("Location: ../view/view-login.php?message=" . $message);
+            exit;
+        } else {
+            header("Location: ../view/view-login.php");
+            exit;
+        }; ?>
     </header>

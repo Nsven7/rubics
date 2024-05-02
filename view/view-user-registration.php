@@ -8,6 +8,8 @@ include($_SERVER['DOCUMENT_ROOT']."/Rubics/view/component/header.php");
   <h2>Registration Form</h2>
 
   <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
+  <?php if(isset($_GET['message'])){ echo "<p class='alert alert-danger'>". $_GET['message'] . "</p>";}  ?>
+  
 
     <div>
       <label for="first_name">First Name:</label>
