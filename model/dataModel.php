@@ -63,7 +63,7 @@ function retrieveCompany()
     $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
     $stmt->execute();
 
-    if ($stmt === false) {
+    if ($stmt == false) {
         $_SESSION['client']['company'] = [
             'name' => "",
             'country' => "",

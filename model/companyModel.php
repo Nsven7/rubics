@@ -8,30 +8,34 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
  * If there are no errors, it inserts the user data into the `company` table.
  */
 
-function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $street, $number, $comment)
+function insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $street, $number, $comment)
 {
     // Check datas received
     $errors = [];
     if (empty($name)) {
-        $errors[] = "Nom requis.";
+        $errors[] = "Nom requis";
     }
     if (empty($vat)) {
-        $errors[] = "N° TVA requis.";
+        $errors[] = "N° TVA requis";
     }
     if (empty($country)) {
-        $errors[] = "Pays requis.";
+        $errors[] = "Pays requis";
     }
     if (empty($locality)) {
-        $errors[] = "Localité requise.";
+        $errors[] = "Localité requise";
     }
     if (empty($zipCode)) {
-        $errors[] = "Code postal requis.";
+        $errors[] = "Code postal requis";
     }
     if (empty($street)) {
-        $errors[] = "Nom de rue requis.";
+        $errors[] = "Nom de rue requis";
     }
     if (empty($number)) {
-        $errors[] = "Numéro requis.";
+        $errors[] = "Numéro requis";
+    }
+
+    if (!empty($errors)) {
+        return $errors;
     }
 
     // Retrieve db connection
@@ -57,7 +61,7 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $stre
         $stmt->bindParam(":name", $name);
         $stmt->bindParam(":country", $country);
         $stmt->bindParam(":locality", $locality);
-        $stmt->bindParam(":zip_code", $zipcode);
+        $stmt->bindParam(":zip_code", $zipCode);
         $stmt->bindParam(":street", $street);
         $stmt->bindParam(":number", $number);
         $stmt->bindParam(":comment", $comment);
@@ -69,7 +73,7 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $stre
             'name' => $name,
             'country' => $country,
             'locality' => $locality,
-            'zip_code' => $zipcode,
+            'zip_code' => $zipCode,
             'street' => $street,
             'number' => $number,
             'comment' => $comment,
@@ -86,7 +90,7 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $stre
         $stmt->bindParam(":vat", $vat);
         $stmt->bindParam(":country", $country);
         $stmt->bindParam(":locality", $locality);
-        $stmt->bindParam(":zip_code", $zipcode);
+        $stmt->bindParam(":zip_code", $zipCode);
         $stmt->bindParam(":street", $street);
         $stmt->bindParam(":number", $number);
         $stmt->bindParam(":comment", $comment);
@@ -100,7 +104,6 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipcode, $stre
 
         // Add company to session
         $company = ['company' => $stmt->fetch(PDO::FETCH_ASSOC)];
-
-        $_SESSION['client'] += $company;
+        $_SESSION['client'] += $company;        
     }
 }

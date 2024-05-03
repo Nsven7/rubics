@@ -22,12 +22,12 @@ if (isset($_POST['submit']) && isset($_SESSION['client'])) {
     if (isset($error)) {
         // Redirection with error message
         $message = implode(" - ", $error);
-        header("Location: ../view/view-user-admin-home.php?message=" . $message);
+        header("Location: ../view/view-user-admin-company.php?message=" . $message);
         exit;
         // Redirection with success message
     } else {
-        $message = "success";
-        header("Location: ../view/view-user-admin-home.php?message=" . $message);
+        $message = "success-company-added";
+        header("Location: ../view/view-user-admin-company.php?message=" . $message);
         exit;
     }
 } else {

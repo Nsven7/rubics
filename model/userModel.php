@@ -15,7 +15,6 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
     if (isset($_SESSION['client']['identifier'])) {
         if (empty($pwd) && empty($confirmPassword)) {
             $pwd = $_SESSION['client']['identifier']['pwd'];
-            $pwd = md5($pwd);
         }
         if (empty($secretQuestion)) {
             $secretQuestion = $_SESSION['client']['identifier']['secret_question'];
