@@ -8,7 +8,6 @@ if (!isset($_SESSION['skills'])) {
     header("Location: ../controller/skillController.php");
     exit;
 }
-$skill = $_SESSION['skills'];
 
 die(var_dump($_SESSION['skills']));
 ?>

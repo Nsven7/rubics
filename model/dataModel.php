@@ -107,7 +107,12 @@ function getSkills($employeeId)
     $stmt->execute();
 
     // Fetch all records as associative arrays
-    $skills = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $arraySkills = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($arraySkills as $key => $value) {
+        // Extract the skill name from each sub-array and add it to the transformed array
+        $skills[$key] = $value["skill_name"];
+    }
 
     return $skills;
 
