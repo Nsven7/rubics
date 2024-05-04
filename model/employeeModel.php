@@ -61,6 +61,15 @@ function updateData($firstName, $lastName, $birthdate, $biography, $avatar)
     $stmtEmployee->bindParam(":biography", $biography);
     $stmtEmployee->bindParam(":avatar", $avatar);
     $stmtEmployee->execute();
+
+    $_SESSION['employee'] = [
+    'general' => [
+        'first_name' => $firstName,
+        'last_name' => $lastName,
+        'birthdate' => $birthdate,
+        'biography' => $biography,
+        'avatar' => $avatar
+    ]];
 }
 
 /**

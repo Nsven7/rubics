@@ -84,3 +84,32 @@ function retrieveCompany()
         exit;
     }
 }
+
+function getSkills($employeeId)
+{
+    // Retrieve db connection
+    global $bdd;
+
+    // Prepare SQL query
+    $query = "SELECT s.name AS skill_name 
+              FROM characterize c 
+              INNER JOIN skill s ON c.id_skill = s.id 
+              WHERE c.id_employee = :id_employee";
+
+
+    // Prepare statement
+    $stmt = $bdd->prepare($query);
+
+    // Bind parameters
+    $stmt->bindParam(":id_employee", $employeeId, PDO::PARAM_INT);
+
+    // Execute statement
+    $stmt->execute();
+
+    // Fetch all records as associative arrays
+    $skills = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $skills;
+
+    
+}
