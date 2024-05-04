@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
 /**
  * This function inserts user data into the database.
@@ -81,7 +81,6 @@ function login($firstName, $lastName, $pwd)
         $stmt->execute([$firstName, $lastName]);
         $employee = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
         if ($employee) {
             // Retrieve all information about the employee, their team, and their role
             $stmt = $bdd->prepare("SELECT employee.*, team.*, role.* FROM employee
@@ -93,50 +92,45 @@ function login($firstName, $lastName, $pwd)
 
             // Verify the password
             if ($employeeDetails['pwd'] === $pwd) {
-                // Add everything to the session
-                session_start();
-                $_SESSION['employee'] = $employeeDetails;
-                echo "Employee information retrieved and added to session successfully.";
+                $_SESSION['employee'] = [
+                    'general' => [
+                        'id' => $employeeDetails['id'],
+                        'first_name' => $employeeDetails['first_name'],
+                        'last_name' => $employeeDetails['last_name'],
+                        'birthdate' => $employeeDetails['birthdate'],
+                        'biography' => $employeeDetails['biography'],
+                        'avatar' => $employeeDetails['avatar'],
+                        'created_at' => $employeeDetails['created_at'],
+                        'actif' => $employeeDetails['actif'],
+                        'id_team' => $employeeDetails['id_team'],
+                        'id_role' => $employeeDetails['id_role'],
+                    ],
+                    'role' => [
+                        'id' => $employeeDetails['id'],
+                        'priority' => $employeeDetails['priority'],
+                        'pwd' => $employeeDetails['pwd'],
+                        'created_at' => $employeeDetails['created_at'],
+                        'actif' => $employeeDetails['actif'],
+                    ],
+                    'team' => [
+                        'id' => $employeeDetails['id'],
+                        'name' => $employeeDetails['name'],
+                        'actif' => $employeeDetails['actif'],
+                    ]
+                ];
             } else {
-                echo "Invalid password.";
+                $message = "Mot de passe incorrect";
+                $errors[] = $message;
             }
         } else {
-            echo "Employee not found.";
+            $message = "Employé non existant";
+            $errors[] = $message;
         }
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        $message = "Une erreur s'est produite, veuillez réessayer";
+        $errors[] = $message;
     }
-
-    // Stocks datas in session 'employee'
-    // $_SESSION['employee'] = [
-    //     'general' => [
-    //         'id' => $employee['id'],
-    //         'first_name' => $employee['first_name'],
-    //         'last_name' => $employee['last_name'],
-    //         'birthdate' => $employee['birthdate'],
-    //         'biography' => $employee['biography'],
-    //         'avatar' => $employee['avatar'],
-    //         'created_at' => $employee['created_at'],
-    //         'actif' => $employee['actif'],
-    //         'id_team' => $employee['id_team'],
-    //         'id_role' => $employee['id_role'],
-    //     ],
-    //     'team' => [
-    //         'id' => $employee['id'],
-    //         'name' => $employee['name'],
-    //         'actif' => $employee['actif'],
-    //     ],
-    //     'role' => [
-    //         'id' => $employee['id'],
-    //         'priority' => $employee['priority'],
-    //         'created_at' => $employee['created_at'],
-    //         'actif' => $employee['actif'],
-    //     ]
-    // ];
-
-    die(var_dump($_SESSION['employee']));
 }
-
 
 /**
  * This function 
