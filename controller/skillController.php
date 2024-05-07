@@ -10,16 +10,10 @@ if (!isset($_SESSION['skills'])) {
     $skills = getSkills($_SESSION['employee']['general']['id']);
 }
 
-die(var_dump($skills));
-
+//We store the categories in the session
 foreach ($skills as $skill) {
-    print_r($skill);
+    $_SESSION['skills'][] = $skill;
 }
-
-// We store the categories in the session
-// foreach ($skills as $skill) {
-//     $_SESSION['skills'][] = $skill;
-// }
 
 header("Location: ../view/view-employee-admin-skill.php");
 exit;
