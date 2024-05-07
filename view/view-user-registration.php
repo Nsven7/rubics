@@ -1,7 +1,14 @@
 <?php
 $title = "S'enregistrer";
 include($_SERVER['DOCUMENT_ROOT']."/Rubics/view/component/header.php");
-?>
+
+if (isset($_SESSION['client']) && !isset($_SESSION['employee'])) {
+  header("Location: ../view/view-user-admin-home.php");
+  exit;
+} elseif (isset($_SESSION['employee'])) {
+  header("Location: ../view/view-employee-admin-home.php");
+  exit;
+} else { ?>
 
 <body>
 
@@ -65,4 +72,4 @@ include($_SERVER['DOCUMENT_ROOT']."/Rubics/view/component/header.php");
 
 </html>
 
-<?php ?>
+<?php } ?>

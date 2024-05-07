@@ -1,7 +1,17 @@
 <?php
 $title = "Admin - Home";
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
-?>
+
+if (!isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
+    header("Location: ../view/view-admin-login.php");
+    exit;
+} elseif (isset($_SESSION['admin'])) {
+    header("Location: ../view/view-admin-home.php");
+    exit;
+} elseif (isset($_SESSION['client'])) {
+    header("Location: ../view/view-user-admin-home.php");
+    exit;
+} else { ?>
 
 <div class="container-items">
     <div class="container-content">
@@ -92,3 +102,5 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.ph
     </body>
 
     </html>
+
+<?php } ?>

@@ -7,12 +7,9 @@ function getOnGoingProject($employeeId)
     global $bdd;
 
     // Prepare SQL query
-
-
     $query = "SELECT p.* FROM project p 
     INNER JOIN realize r ON r.project_id = p.id 
     WHERE r.employee_id = :employee_id";
-
 
     // Prepare statement
     $stmt = $bdd->prepare($query);
@@ -22,7 +19,7 @@ function getOnGoingProject($employeeId)
     $stmt->execute();
 
     $projects = array();
-    while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $projects[] = $row;
     }
 

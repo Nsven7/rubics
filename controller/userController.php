@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $answer = htmlspecialchars(trim($_POST['answer']));
 
 
+
             $error = insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username, $pwd, $confirmPassword, $secretQuestion, $answer, $terms);
 
             if (isset($error)) {
