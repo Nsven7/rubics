@@ -43,15 +43,15 @@ function insertRequest($name, $description, $budget, $category)
     $idCategory = $stmtCategoryCheck->fetchColumn();
 
     // Insert new request
-    $query = "INSERT INTO request (name, description, budget, id_client, id_category) VALUES (:name, :description, :budget, :id_client, :id_category)";
+    $query = "INSERT INTO request (name, description, budget, client_id, category_id) VALUES (:name, :description, :budget, :client_id, :category_id)";
     $bdd->prepare($query);
 
     $stmt = $bdd->prepare($query);
     $stmt->bindParam(":name", $name);
     $stmt->bindParam(":description", $description);
     $stmt->bindParam(":budget", $budget);
-    $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
-    $stmt->bindParam(":id_category", $idCategory, PDO::PARAM_INT);
+    $stmt->bindParam(":client_id", $idClient, PDO::PARAM_INT);
+    $stmt->bindParam(":category_id", $idCategory, PDO::PARAM_INT);
 
     // Execute SQL request
     try {
@@ -61,9 +61,9 @@ function insertRequest($name, $description, $budget, $category)
         $message = "Une erreur s'est produite lors de l'insertion de votre demande";
     }
 
-    $query = "SELECT * FROM request WHERE id_client = :id_client";
+    $query = "SELECT * FROM request WHERE client_id = :client_id";
     $stmt = $bdd->prepare($query);
-    $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+    $stmt->bindParam(":client_id", $idClient, PDO::PARAM_INT);
     $stmt->execute();
 
     // Retrieve request

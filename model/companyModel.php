@@ -45,9 +45,9 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $stre
     $idClient = $_SESSION['client']['general']['id'];
 
     // Check if company already exists
-    $querySqlCompany = "SELECT id FROM company WHERE id_client = :id_client";
+    $querySqlCompany = "SELECT id FROM company WHERE client_id = :client_id";
     $stmtCompanyCheck = $bdd->prepare($querySqlCompany);
-    $stmtCompanyCheck->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+    $stmtCompanyCheck->bindParam(":client_id", $idClient, PDO::PARAM_INT);
     $stmtCompanyCheck->execute();
 
     $companyId = $stmtCompanyCheck->fetchColumn();
@@ -55,7 +55,7 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $stre
 
     if ($companyId) {
         // Update existing company
-        $query = ("UPDATE company SET name = :name, country = :country, locality = :locality, zip_code = :zip_code, street = :street, number = :number, comment = :comment, vat = :vat WHERE id_client = :id_client");
+        $query = ("UPDATE company SET name = :name, country = :country, locality = :locality, zip_code = :zip_code, street = :street, number = :number, comment = :comment, vat = :vat WHERE client_id = :client_id");
         $stmt = $bdd->prepare($query);
 
         $stmt->bindParam(":name", $name);
@@ -66,7 +66,7 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $stre
         $stmt->bindParam(":number", $number);
         $stmt->bindParam(":comment", $comment);
         $stmt->bindParam(":vat", $vat);
-        $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+        $stmt->bindParam(":client_id", $idClient, PDO::PARAM_INT);
         $stmt->execute();
 
         $_SESSION['client']['company'] = [
@@ -82,7 +82,7 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $stre
         
     } else {
         // Insert new company
-        $query = "INSERT INTO company (name, vat, country, locality, zip_code, street, number, comment, id_client) VALUES (:name, :vat, :country, :locality, :zip_code, :street, :number, :comment, :id_client)";
+        $query = "INSERT INTO company (name, vat, country, locality, zip_code, street, number, comment, client_id) VALUES (:name, :vat, :country, :locality, :zip_code, :street, :number, :comment, :client_id)";
         $bdd->prepare($query);
 
         $stmt = $bdd->prepare($query);
@@ -94,12 +94,12 @@ function insertOrUpdateCompany($name, $vat, $country, $locality, $zipCode, $stre
         $stmt->bindParam(":street", $street);
         $stmt->bindParam(":number", $number);
         $stmt->bindParam(":comment", $comment);
-        $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+        $stmt->bindParam(":client_id", $idClient, PDO::PARAM_INT);
         $stmt->execute();
 
-        $query = "SELECT * FROM company WHERE id_client = :id_client";
+        $query = "SELECT * FROM company WHERE client_id = :client_id";
         $stmt = $bdd->prepare($query);
-        $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+        $stmt->bindParam(":client_id", $idClient, PDO::PARAM_INT);
         $stmt->execute();
 
         // Add company to session

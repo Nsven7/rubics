@@ -98,14 +98,14 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
         }
         
         // Update user's data
-        $querysqlUpdateClient = "UPDATE client SET first_name = :first_name, last_name = :last_name, birthdate = :birthdate, last_connection = :last_connection, actif = :actif WHERE id_identifier = :id_identifier";
+        $querysqlUpdateClient = "UPDATE client SET first_name = :first_name, last_name = :last_name, birthdate = :birthdate, last_connection = :last_connection, actif = :actif WHERE identifier_id = :identifier_id";
         $stmtUpdateClient = $bdd->prepare($querysqlUpdateClient);
         $stmtUpdateClient->bindParam(":first_name", $firstName);
         $stmtUpdateClient->bindParam(":last_name", $lastName);
         $stmtUpdateClient->bindParam(":birthdate", $birthdate);
         $stmtUpdateClient->bindValue(":last_connection", date("Y/m/d"));
         $stmtUpdateClient->bindValue(":actif", 1);
-        $stmtUpdateClient->bindParam(":id_identifier", $userExists, PDO::PARAM_INT);
+        $stmtUpdateClient->bindParam(":identifier_id", $userExists, PDO::PARAM_INT);
 
         try {
             $stmtUpdateClient->execute();
@@ -151,7 +151,7 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
         $identifierId = $stmtUser->fetchColumn();
 
         // Insert user's data
-        $querysqlData = "INSERT INTO client (first_name, last_name, birthdate, created_at, last_connection, actif, id_identifier) VALUES (:first_name, :last_name, :birthdate, :created_at, :last_connection, :actif,  :id_identifier)";
+        $querysqlData = "INSERT INTO client (first_name, last_name, birthdate, created_at, last_connection, actif, identifier_id) VALUES (:first_name, :last_name, :birthdate, :created_at, :last_connection, :actif,  :identifier_id)";
 
         // Prepare SQL request
         $stmtClientInsert = $bdd->prepare($querysqlData);
@@ -163,7 +163,7 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
         $stmtClientInsert->bindValue(":created_at", date("Y/m/d"));
         $stmtClientInsert->bindValue(":last_connection", date("Y/m/d"));
         $stmtClientInsert->bindValue(":actif", 1);
-        $stmtClientInsert->bindParam(":id_identifier", $identifierId);
+        $stmtClientInsert->bindParam(":identifier_id", $identifierId);
 
         // Execute SQL request
         try {
@@ -191,7 +191,7 @@ function login($mail, $pwd)
     global $bdd;
 
     // Retrieve client with identifiers
-    $sqlClient = "SELECT * FROM `client` join identifier where client.id_identifier = identifier.id AND mail = :mail AND pwd = :pwd";
+    $sqlClient = "SELECT * FROM `client` join identifier where client.identifier_id = identifier.id AND mail = :mail AND pwd = :pwd";
     $stmtClient = $bdd->prepare($sqlClient);
     $stmtClient->bindParam(":mail", $mail);
     $stmtClient->bindParam(":pwd", $pwd);
@@ -213,9 +213,9 @@ function login($mail, $pwd)
         return $message;
     }
 
-    $sqlClientId = "SELECT id FROM client WHERE id_identifier = :id_identifier";
+    $sqlClientId = "SELECT id FROM client WHERE identifier_id = :identifier_id";
     $stmtClientId = $bdd->prepare($sqlClientId);
-    $stmtClientId->bindParam(":id_identifier", $client['id_identifier']);
+    $stmtClientId->bindParam(":identifier_id", $client['identifier_id']);
     $stmtClientId->execute();
     $clientId = $stmtClientId->fetchColumn();
 
@@ -229,7 +229,7 @@ function login($mail, $pwd)
             'created_at' => $client['created_at'],
             'last_connection' => $client['last_connection'],
             'actif' => $client['actif'],
-            'id_identifier' => $client['id_identifier'],
+            'identifier_id' => $client['identifier_id'],
 
         ],
         'identifier' => [

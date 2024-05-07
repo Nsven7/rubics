@@ -25,8 +25,8 @@ function requests($id)
     // SQL request to retrieve all requests of a client by its id
     $query = "SELECT request.*, category.name AS category_name
  FROM request
- INNER JOIN category ON request.id_category = category.id
- WHERE request.id_client = :id";
+ INNER JOIN category ON request.category_id = category.id
+ WHERE request.client_id = :id";
 
     // Prepare the statement
     $stmt = $bdd->prepare($query);
@@ -40,9 +40,9 @@ function requests($id)
     // Fetch all requests as associative arrays
     $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Replace id_category with category_name in each request
+    // Replace category_id with category_name in each request
     foreach ($requests as &$request) {
-        $request['id_category'] = $request['category_name'];
+        $request['category_id'] = $request['category_name'];
         unset($request['category_name']);
     }
 
@@ -58,9 +58,9 @@ function retrieveCompany()
     // Retrieve id of current client
     $idClient = $_SESSION['client']['general']['id'];
 
-    $query = "SELECT * FROM company WHERE id_client = :id_client";
+    $query = "SELECT * FROM company WHERE client_id = :client_id";
     $stmt = $bdd->prepare($query);
-    $stmt->bindParam(":id_client", $idClient, PDO::PARAM_INT);
+    $stmt->bindParam(":client_id", $idClient, PDO::PARAM_INT);
     $stmt->execute();
 
     if ($stmt == false) {
@@ -93,15 +93,15 @@ function getSkills($employeeId)
     // Prepare SQL query
     $query = "SELECT s.name AS skill_name 
               FROM characterize c 
-              INNER JOIN skill s ON c.id_skill = s.id 
-              WHERE c.id_employee = :id_employee";
+              INNER JOIN skill s ON c.skill_id = s.id 
+              WHERE c.employee_id = :employee_id";
 
 
     // Prepare statement
     $stmt = $bdd->prepare($query);
 
     // Bind parameters
-    $stmt->bindParam(":id_employee", $employeeId, PDO::PARAM_INT);
+    $stmt->bindParam(":employee_id", $employeeId, PDO::PARAM_INT);
 
     // Execute statement
     $stmt->execute();

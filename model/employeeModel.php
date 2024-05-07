@@ -93,8 +93,8 @@ function login($firstName, $lastName, $pwd)
         if ($employee) {
             // Retrieve all information about the employee, their team, and their role
             $stmt = $bdd->prepare("SELECT employee.*, team.*, role.* FROM employee
-                                JOIN team ON employee.id_team = team.id
-                                JOIN role ON employee.id_role = role.id
+                                JOIN team ON employee.team_id = team.id
+                                JOIN role ON employee.role_id = role.id
                                 WHERE employee.first_name = ? AND employee.last_name = ?");
             $stmt->execute([$firstName, $lastName]);
             $employeeDetails = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -111,8 +111,8 @@ function login($firstName, $lastName, $pwd)
                         'avatar' => $employeeDetails['avatar'],
                         'created_at' => $employeeDetails['created_at'],
                         'actif' => $employeeDetails['actif'],
-                        'id_team' => $employeeDetails['id_team'],
-                        'id_role' => $employeeDetails['id_role'],
+                        'team_id' => $employeeDetails['team_id'],
+                        'role_id' => $employeeDetails['role_id'],
                     ],
                     'role' => [
                         'id' => $employeeDetails['id'],

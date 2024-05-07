@@ -7,28 +7,24 @@ function getOnGoingProject($employeeId)
     global $bdd;
 
     // Prepare SQL query
-    $query = "SELECT s.name AS skill_name 
-        FROM characterize c 
-        INNER JOIN skill s ON c.id_skill = s.id 
-        WHERE c.id_employee = :id_employee";
+
+
+    $query = "SELECT p.* FROM project p 
+    INNER JOIN realize r ON r.project_id = p.id 
+    WHERE r.employee_id = :employee_id";
 
 
     // Prepare statement
     $stmt = $bdd->prepare($query);
 
-    // Bind parameters
-    $stmt->bindParam(":id_employee", $employeeId, PDO::PARAM_INT);
+    $stmt->bindParam(":employee_id", $employeeId, PDO::PARAM_INT);
 
-    // Execute statement
     $stmt->execute();
 
-    // Fetch all records as associative arrays
-    $arraySkills = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($arraySkills as $key => $value) {
-        // Extract the skill name from each sub-array and add it to the transformed array
-        $skills[$key] = $value["skill_name"];
+    $projects = array();
+    while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+        $projects[] = $row;
     }
 
-    return $skills;
+    return $projects;
 }
