@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Action 'Connexion' from login page    
         case 'Connexion':
             $mail = htmlspecialchars(trim($_POST['email']));
-            $pwd = md5(htmlspecialchars(trim($_POST['password'])));
+            $pwd = (htmlspecialchars(trim($_POST['password'])));
 
             $error = login($mail, $pwd);
 

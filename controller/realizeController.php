@@ -4,12 +4,8 @@ session_start();
 // Include the model file
 require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/realizeModel.php");
 
+// Retrieve employee's projects
 $realisations = getOnGoingProject($_SESSION['employee']['general']['id']);
-
-// We store the categories in the session
-foreach ($categories as $category) {
-    $_SESSION['categories'][] = $category;
-}
 
 // Handle form submission
 if (isset($_POST['submit']) && isset($_SESSION['client'])) {
