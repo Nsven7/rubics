@@ -64,11 +64,11 @@ function updateData($firstName, $lastName, $birthdate, $biography, $avatar)
 
     $_SESSION['employee'] = [
     'general' => [
-        'first_name' => $firstName,
-        'last_name' => $lastName,
+        'avatar' => $avatar,
+        'firstName' => $firstName,
+        'lastName' => $lastName,
         'birthdate' => $birthdate,
         'biography' => $biography,
-        'avatar' => $avatar
     ]];
 }
 
@@ -104,21 +104,21 @@ function login($firstName, $lastName, $pwd)
                 $_SESSION['employee'] = [
                     'general' => [
                         'id' => $employeeDetails['id'],
-                        'first_name' => $employeeDetails['first_name'],
-                        'last_name' => $employeeDetails['last_name'],
+                        'avatar' => $employeeDetails['avatar'],
+                        'firstName' => $employeeDetails['first_name'],
+                        'lastName' => $employeeDetails['last_name'],
                         'birthdate' => $employeeDetails['birthdate'],
                         'biography' => $employeeDetails['biography'],
-                        'avatar' => $employeeDetails['avatar'],
-                        'created_at' => $employeeDetails['created_at'],
+                        'createdAt' => $employeeDetails['createdAt'],
                         'actif' => $employeeDetails['actif'],
-                        'team_id' => $employeeDetails['team_id'],
-                        'role_id' => $employeeDetails['role_id'],
+                        'teamId' => $employeeDetails['teamId'],
+                        'roleId' => $employeeDetails['roleId'],
                     ],
                     'role' => [
                         'id' => $employeeDetails['id'],
                         'priority' => $employeeDetails['priority'],
                         'pwd' => $employeeDetails['pwd'],
-                        'created_at' => $employeeDetails['created_at'],
+                        'createdAt' => $employeeDetails['createdAt'],
                         'actif' => $employeeDetails['actif'],
                     ],
                     'team' => [

@@ -81,6 +81,13 @@ header {
     margin-bottom: 1rem;
 }
 
+.avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin-right: 1rem;
+}
+
 .field-container {
     display: flex;
     align-items: center;

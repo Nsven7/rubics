@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
 // Retrieve all categories
 function category()
@@ -82,5 +82,45 @@ function retrieveCompany()
         $_SESSION['client'] += $company;
         header("Location: ../view/view-user-admin-company.php?");
         exit;
+    }
+}
+
+function uploadFile($path, $name)
+{
+    $originalFileName = basename($_FILES["fileToUpload"]["name"]); // Original file name
+    $targetFile = $path . $name . "." . pathinfo($originalFileName, PATHINFO_EXTENSION); // Path to store the uploaded file with a custom name
+
+    // Initialize $uploadOk
+    $uploadOk = 1;
+
+    // Create directory if it doesn't exist
+    if (!file_exists($path)) {
+        if (!mkdir($path, 0777, true)) {
+            return "Failed to create directory.";
+        }
+    }
+
+    // Check if file has been uploaded
+    if (isset($_POST["submit"])) {
+        $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+        // Check file size (You can adjust this according to your needs)
+        if ($_FILES["fileToUpload"]["size"] > 500000) {
+            return "Sorry, your file is too large.";
+        }
+
+        // Allow only certain file formats (You can adjust this according to your needs)
+        if (
+            $fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
+        ) {
+            return "Sorry, only JPG, JPEG, PNG files are allowed.";
+        }
+
+        // If everything is ok, try to upload file with custom name
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
+            return "The file " . $originalFileName . " has been uploaded with custom name.";
+        } else {
+            return "Sorry, there was an error uploading your file.";
+        }
     }
 }

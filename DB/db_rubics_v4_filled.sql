@@ -201,6 +201,7 @@ INSERT INTO `company` (`id`, `name`, `vat`, `country`, `locality`, `zip_code`, `
 
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL,
+  `avatar` varchar(100) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `birthdate` date NOT NULL,
@@ -215,17 +216,17 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `first_name`, `last_name`, `birthdate`, `biography`, `created_at`, `actif`, `team_id`, `role_id`) VALUES
-(1, 'Alice', 'Doe', '1990-05-15', 'Passionnée de design visuel, j\'apporte créativité et innovation à chaque projet.', '2024-05-07 22:00:00', 1, 1, 2),
-(2, 'Bob', 'Smith', '1985-09-20', 'Vidéaste talentueux, j\'excelle à capturer des moments mémorables et à créer des récits captivants.', '2024-05-07 22:00:00', 1, 2, 2),
-(3, 'Charlie', 'Johnson', '1988-03-10', 'Développeur backend talentueux, j\'aime construire des applications web robustes et efficaces.', '2024-05-07 22:00:00', 1, 3, 2),
-(4, 'Diana', 'Brown', '1992-11-25', 'Développeuse frontend passionnée, je transforme les concepts de design en interfaces web interactives.', '2024-05-07 22:00:00', 1, 4, 2),
-(5, 'Emily', 'Williams', '1987-07-08', 'Créatrice de sites web conviviaux, j\'aime expérimenter avec les nouvelles tendances de design.', '2024-05-07 22:00:00', 1, 5, 2),
-(6, 'Frank', 'Anderson', '1984-12-18', 'Artiste 3D passionné, j\'aime créer des environnements immersifs et des effets visuels époustouflants.', '2024-05-07 22:00:00', 1, 6, 2),
-(7, 'Grace', 'Thomas', '1991-02-28', 'Experte audiovisuelle polyvalente, j\'excelle dans la création d\'expériences multimédias captivantes.', '2024-05-07 22:00:00', 1, 7, 2),
-(8, 'Henry', 'Jackson', '1986-06-12', 'Expert en marketing digital, j\'explore constamment de nouvelles stratégies pour toucher les audiences.', '2024-05-07 22:00:00', 1, 8, 2),
-(9, 'Ivy', 'Miller', '1993-04-05', 'Passionnée de création de contenu, j\'excelle dans la création de récits captivants sur différentes plateformes.', '2024-05-07 22:00:00', 1, 9, 2),
-(10, 'Jack', 'Moore', '1989-08-30', 'Expert en branding, j\'aime créer des expériences de marque cohérentes qui résonnent avec les audiences.', '2024-05-07 22:00:00', 1, 10, 2);
+INSERT INTO `employee` (`id`, `avatar`, `first_name`, `last_name`, `birthdate`, `biography`, `created_at`, `actif`, `team_id`, `role_id`) VALUES
+(1, '/Rubics/public/uploads/employees/AliceDoe/AliceDoe.jpg', 'Alice', 'Doe', '1990-05-15', 'Passionnée de design visuel, j\'apporte créativité et innovation à chaque projet.', '2024-05-07 22:00:00', 1, 1, 2),
+(2, '/Rubics/public/uploads/employees/BobSmith/BobSmith.jpg', 'Bob', 'Smith', '1985-09-20', 'Vidéaste talentueux, j\'excelle à capturer des moments mémorables et à créer des récits captivants.', '2024-05-07 22:00:00', 1, 2, 2),
+(3, '/Rubics/public/uploads/employees/CharlieJohnson/CharlieJohnson.jpg', 'Charlie', 'Johnson', '1988-03-10', 'Développeur backend talentueux, j\'aime construire des applications web robustes et efficaces.', '2024-05-07 22:00:00', 1, 3, 2),
+(4, '/Rubics/public/uploads/employees/DianaBrown/DianaBrown.jpg', 'Diana', 'Brown', '1992-11-25', 'Développeuse frontend passionnée, je transforme les concepts de design en interfaces web interactives.', '2024-05-07 22:00:00', 1, 4, 2),
+(5, '/Rubics/public/uploads/employees/EmilyWilliams/EmilyWilliams.jpg', 'Emily', 'Williams', '1987-07-08', 'Créatrice de sites web conviviaux, j\'aime expérimenter avec les nouvelles tendances de design.', '2024-05-07 22:00:00', 1, 5, 2),
+(6, '/Rubics/public/uploads/employees/FrankAnderson/FrankAnderson.jpg', 'Frank', 'Anderson', '1984-12-18', 'Artiste 3D passionné, j\'aime créer des environnements immersifs et des effets visuels époustouflants.', '2024-05-07 22:00:00', 1, 6, 2),
+(7, '/Rubics/public/uploads/employees/GraceThomas/GraceThomas.jpg', 'Grace', 'Thomas', '1991-02-28', 'Experte audiovisuelle polyvalente, j\'excelle dans la création d\'expériences multimédias captivantes.', '2024-05-07 22:00:00', 1, 7, 2),
+(8, '/Rubics/public/uploads/employees/HenryJackson/HenryJackson.jpg', 'Henry', 'Jackson', '1986-06-12', 'Expert en marketing digital, j\'explore constamment de nouvelles stratégies pour toucher les audiences.', '2024-05-07 22:00:00', 1, 8, 2),
+(9, '/Rubics/public/uploads/employees/IvyMiller/IvyMiller.jpg', 'Ivy', 'Miller', '1993-04-05', 'Passionnée de création de contenu, j\'excelle dans la création de récits captivants sur différentes plateformes.', '2024-05-07 22:00:00', 1, 9, 2),
+(10,'/Rubics/public/uploads/employees/JackMoore/JackMoore.jpg',  'Jack', 'Moore', '1989-08-30', 'Expert en branding, j\'aime créer des expériences de marque cohérentes qui résonnent avec les audiences.', '2024-05-07 22:00:00', 1, 10, 2);
 
 -- --------------------------------------------------------
 
