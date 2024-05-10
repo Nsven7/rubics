@@ -209,7 +209,7 @@ CREATE TABLE `employee` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `actif` tinyint(4) NOT NULL,
   `team_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL
+  `role_id` int(11) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
