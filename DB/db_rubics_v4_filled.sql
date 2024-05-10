@@ -217,16 +217,16 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `avatar`, `first_name`, `last_name`, `birthdate`, `biography`, `created_at`, `actif`, `team_id`, `role_id`) VALUES
-(1, '/Rubics/public/uploads/employees/AliceDoe/AliceDoe.jpg', 'Alice', 'Doe', '1990-05-15', 'Passionnée de design visuel, j\'apporte créativité et innovation à chaque projet.', '2024-05-07 22:00:00', 1, 1, 2),
-(2, '/Rubics/public/uploads/employees/BobSmith/BobSmith.jpg', 'Bob', 'Smith', '1985-09-20', 'Vidéaste talentueux, j\'excelle à capturer des moments mémorables et à créer des récits captivants.', '2024-05-07 22:00:00', 1, 2, 2),
-(3, '/Rubics/public/uploads/employees/CharlieJohnson/CharlieJohnson.jpg', 'Charlie', 'Johnson', '1988-03-10', 'Développeur backend talentueux, j\'aime construire des applications web robustes et efficaces.', '2024-05-07 22:00:00', 1, 3, 2),
-(4, '/Rubics/public/uploads/employees/DianaBrown/DianaBrown.jpg', 'Diana', 'Brown', '1992-11-25', 'Développeuse frontend passionnée, je transforme les concepts de design en interfaces web interactives.', '2024-05-07 22:00:00', 1, 4, 2),
-(5, '/Rubics/public/uploads/employees/EmilyWilliams/EmilyWilliams.jpg', 'Emily', 'Williams', '1987-07-08', 'Créatrice de sites web conviviaux, j\'aime expérimenter avec les nouvelles tendances de design.', '2024-05-07 22:00:00', 1, 5, 2),
-(6, '/Rubics/public/uploads/employees/FrankAnderson/FrankAnderson.jpg', 'Frank', 'Anderson', '1984-12-18', 'Artiste 3D passionné, j\'aime créer des environnements immersifs et des effets visuels époustouflants.', '2024-05-07 22:00:00', 1, 6, 2),
-(7, '/Rubics/public/uploads/employees/GraceThomas/GraceThomas.jpg', 'Grace', 'Thomas', '1991-02-28', 'Experte audiovisuelle polyvalente, j\'excelle dans la création d\'expériences multimédias captivantes.', '2024-05-07 22:00:00', 1, 7, 2),
-(8, '/Rubics/public/uploads/employees/HenryJackson/HenryJackson.jpg', 'Henry', 'Jackson', '1986-06-12', 'Expert en marketing digital, j\'explore constamment de nouvelles stratégies pour toucher les audiences.', '2024-05-07 22:00:00', 1, 8, 2),
-(9, '/Rubics/public/uploads/employees/IvyMiller/IvyMiller.jpg', 'Ivy', 'Miller', '1993-04-05', 'Passionnée de création de contenu, j\'excelle dans la création de récits captivants sur différentes plateformes.', '2024-05-07 22:00:00', 1, 9, 2),
-(10,'/Rubics/public/uploads/employees/JackMoore/JackMoore.jpg',  'Jack', 'Moore', '1989-08-30', 'Expert en branding, j\'aime créer des expériences de marque cohérentes qui résonnent avec les audiences.', '2024-05-07 22:00:00', 1, 10, 2);
+(1, '/Rubics/public/uploads/employees/AliceDoe/AliceDoe.jpg', 'Alice', 'Doe', '1990-05-15', 'Passionnée de design visuel, j\'apporte créativité et innovation à chaque projet.', '2024-05-07 22:00:00', 1, 4, 10),
+(2, '/Rubics/public/uploads/employees/BobSmith/BobSmith.jpg', 'Bob', 'Smith', '1985-09-20', 'Vidéaste talentueux, j\'excelle à capturer des moments mémorables et à créer des récits captivants.', '2024-05-07 22:00:00', 1, 5, 9),
+(3, '/Rubics/public/uploads/employees/CharlieJohnson/CharlieJohnson.jpg', 'Charlie', 'Johnson', '1988-03-10', 'Développeur backend talentueux, j\'aime construire des applications web robustes et efficaces.', '2024-05-07 22:00:00', 1, 6, 8),
+(4, '/Rubics/public/uploads/employees/DianaBrown/DianaBrown.jpg', 'Diana', 'Brown', '1992-11-25', 'Développeuse frontend passionnée, je transforme les concepts de design en interfaces web interactives.', '2024-05-07 22:00:00', 1, 7, 7),
+(5, '/Rubics/public/uploads/employees/EmilyWilliams/EmilyWilliams.jpg', 'Emily', 'Williams', '1987-07-08', 'Créatrice de sites web conviviaux, j\'aime expérimenter avec les nouvelles tendances de design.', '2024-05-07 22:00:00', 1, 8, 6),
+(6, '/Rubics/public/uploads/employees/FrankAnderson/FrankAnderson.jpg', 'Frank', 'Anderson', '1984-12-18', 'Artiste 3D passionné, j\'aime créer des environnements immersifs et des effets visuels époustouflants.', '2024-05-07 22:00:00', 1, 9, 5),
+(7, '/Rubics/public/uploads/employees/GraceThomas/GraceThomas.jpg', 'Grace', 'Thomas', '1991-02-28', 'Experte audiovisuelle polyvalente, j\'excelle dans la création d\'expériences multimédias captivantes.', '2024-05-07 22:00:00', 1, 10, 4),
+(8, '/Rubics/public/uploads/employees/HenryJackson/HenryJackson.jpg', 'Henry', 'Jackson', '1986-06-12', 'Expert en marketing digital, j\'explore constamment de nouvelles stratégies pour toucher les audiences.', '2024-05-07 22:00:00', 1, 3, 3),
+(9, '/Rubics/public/uploads/employees/IvyMiller/IvyMiller.jpg', 'Ivy', 'Miller', '1993-04-05', 'Passionnée de création de contenu, j\'excelle dans la création de récits captivants sur différentes plateformes.', '2024-05-07 22:00:00', 1, 2, 2),
+(10,'/Rubics/public/uploads/employees/JackMoore/JackMoore.jpg',  'Jack', 'Moore', '1989-08-30', 'Expert en branding, j\'aime créer des expériences de marque cohérentes qui résonnent avec les audiences.', '2024-05-07 22:00:00', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -396,16 +396,16 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `priority`, `pwd`, `created_at`, `actif`) VALUES
-(1, 1, 'password123', '2024-05-08 08:00:00', 1),
+(1, 2, 'password123', '2024-05-08 08:00:00', 1),
 (2, 2, 'securepwd456', '2024-05-08 08:30:00', 1),
-(3, 1, 'mysecretpwd789', '2024-05-08 09:00:00', 1),
+(3, 2, 'mysecretpwd789', '2024-05-08 09:00:00', 1),
 (4, 2, 'strongpwd987', '2024-05-08 09:30:00', 1),
-(5, 1, '123456', '2024-05-08 10:00:00', 1),
-(6, 1, 'azerty', '2024-05-08 11:00:00', 1),
+(5, 2, '123456', '2024-05-08 10:00:00', 1),
+(6, 2, 'azerty', '2024-05-08 11:00:00', 1),
 (7, 2, 'qwerty', '2024-05-08 11:30:00', 1),
-(8, 1, 'password123', '2024-05-08 12:00:00', 1),
+(8, 2, 'password123', '2024-05-08 12:00:00', 1),
 (9, 2, 'securepwd456', '2024-05-08 12:30:00', 1),
-(10, 1, 'mysecretpwd789', '2024-05-08 13:00:00', 1);
+(10, 2, 'mysecretpwd789', '2024-05-08 13:00:00', 1);
 
 -- --------------------------------------------------------
 

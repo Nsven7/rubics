@@ -213,16 +213,16 @@ function login($mail, $pwd)
         return $message;
     }
 
-    $sqlClientId = "SELECT id FROM client WHERE identifier_id = :identifier_id";
-    $stmtClientId = $bdd->prepare($sqlClientId);
-    $stmtClientId->bindParam(":identifier_id", $client['identifier_id']);
-    $stmtClientId->execute();
-    $clientId = $stmtClientId->fetchColumn();
+    // $sqlClientId = "SELECT id FROM client WHERE identifier_id = :identifier_id";
+    // $stmtClientId = $bdd->prepare($sqlClientId);
+    // $stmtClientId->bindParam(":identifier_id", $client['identifier_id']);
+    // $stmtClientId->execute();
+    // $clientId = $stmtClientId->fetchColumn();
 
     // Stocks datas in session 'client'
     $_SESSION['client'] = [
         'general' => [
-            'id' =>  $clientId,
+            'id' =>  $client['id'],
             'first_name' => $client['first_name'],
             'last_name' => $client['last_name'],
             'birthdate' => $client['birthdate'],
@@ -233,7 +233,7 @@ function login($mail, $pwd)
 
         ],
         'identifier' => [
-            'id' => $client['id'],
+            'id' => $client['identifier_id'],
             'username' => $client['username'],
             'mail' => $client['mail'],
             'pwd' => $client['pwd'],

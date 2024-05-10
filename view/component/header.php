@@ -25,7 +25,7 @@
         <?php
         } else {
         ?>
-            <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-login.php">Connexion</a>
+            <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-login.php">Connexion</a>
 
         <?php }; ?>
     </header>

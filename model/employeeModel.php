@@ -1,5 +1,5 @@
 <?php
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
 /**
  * This function inserts user data into the database.
@@ -8,8 +8,9 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
  * If there are no errors, it inserts the user data into the `identifier` and `client` tables.
  * It then retrieves the last inserted id and returns it.
  */
-function updateData($firstName, $lastName, $birthdate, $biography, $avatar)
+function updateData($firstName, $lastName, $birthdate, $biography, $pwd, $confirmPassword, $avatar)
 {
+
     // Check datas received
     $errors = [];
     if (empty($firstName)) {
@@ -28,33 +29,47 @@ function updateData($firstName, $lastName, $birthdate, $biography, $avatar)
         $message = "La biographie est obligatoire";
         $errors[] = $message;
     }
+    if (empty($pwd) && empty($confirmPassword)) {
+        $pwd = $_SESSION['employee']['role']['pwd'];
+    } elseif (strlen($pwd) < 8) {
+        $errors[] = "Mot de passe doit contenir au moins 8 caractères";
+    } elseif ($pwd !== $confirmPassword) {
+        $errors[] = "Les mots de passe ne correspondent pas";
+    } elseif (empty($confirmPassword)) {
+        $errors[] = "Veuillez confirmer votre mot de passe";
+    }
     if (empty($avatar)) {
-        $message = "L'avatar est obligatoire";
-        $errors[] = $message;
+        $avatar = $_SESSION['employee']['general']['avatar'];
     }
 
     // Retrieve db connection
     global $bdd;
 
     // Check if client exists
-    $id = $_SESSION['employee']['general']['id'];
+    $stmtEmployeeId = $bdd->prepare("SELECT id FROM employee WHERE employee.first_name = ? AND employee.last_name = ?");
+    $stmtEmployeeId->execute([$firstName, $lastName]);
+    $employeeId = $stmtEmployeeId->fetchColumn();
 
     // Check if employee exists
     $sqlEmployee = "SELECT * FROM `employee` WHERE id = :id";
     $stmtEmployee = $bdd->prepare($sqlEmployee);
-    $stmtEmployee->bindParam(":id", $id);
+    $stmtEmployee->bindParam(":id", $employeeId, PDO::PARAM_INT);
     $stmtEmployee->execute();
     $employee = $stmtEmployee->fetch(PDO::FETCH_ASSOC);
 
     if ($employee === false) {
         $message = "L'employé n'existe pas";
-        return $message;
+        $errors[] = $message;
+    }
+
+    if (!empty($errors)) {
+        return $errors;
     }
 
     // Update employee data
     $sqlEmployee = "UPDATE `employee` SET first_name = :first_name, last_name = :last_name, birthdate = :birthdate, biography = :biography, avatar = :avatar WHERE id = :id";
     $stmtEmployee = $bdd->prepare($sqlEmployee);
-    $stmtEmployee->bindParam(":id", $id);
+    $stmtEmployee->bindParam(":id", $employeeId);
     $stmtEmployee->bindParam(":first_name", $firstName);
     $stmtEmployee->bindParam(":last_name", $lastName);
     $stmtEmployee->bindParam(":birthdate", $birthdate);
@@ -62,14 +77,20 @@ function updateData($firstName, $lastName, $birthdate, $biography, $avatar)
     $stmtEmployee->bindParam(":avatar", $avatar);
     $stmtEmployee->execute();
 
-    $_SESSION['employee'] = [
-    'general' => [
-        'avatar' => $avatar,
-        'firstName' => $firstName,
-        'lastName' => $lastName,
-        'birthdate' => $birthdate,
-        'biography' => $biography,
-    ]];
+    // Update employee's role
+    $id = $_SESSION['employee']['role']['id'];
+
+    $querysqlUpdateEmployee = "UPDATE role SET pwd = :pwd WHERE id = :id";
+    $stmtUpdateEmployee = $bdd->prepare($querysqlUpdateEmployee);
+    $stmtUpdateEmployee->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmtUpdateEmployee->bindParam(":pwd", $pwd);
+
+    try {
+        $stmtUpdateEmployee->execute();
+    } catch (PDOException $e) {
+        $message = "Une erreur s'est produite lors de la mise à jour des identifiants client";
+        $errors[] = $message;
+    }
 }
 
 /**
@@ -99,11 +120,15 @@ function login($firstName, $lastName, $pwd)
             $stmt->execute([$firstName, $lastName]);
             $employeeDetails = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            $stmtEmployeeId = $bdd->prepare("SELECT id FROM employee WHERE employee.first_name = ? AND employee.last_name = ?");
+            $stmtEmployeeId->execute([$firstName, $lastName]);
+            $employeeId = $stmtEmployeeId->fetchColumn();
+
             // Verify the password
             if ($employeeDetails['pwd'] === $pwd) {
                 $_SESSION['employee'] = [
                     'general' => [
-                        'id' => $employeeDetails['id'],
+                        'id' => $employeeId,
                         'avatar' => $employeeDetails['avatar'],
                         'firstName' => $employeeDetails['first_name'],
                         'lastName' => $employeeDetails['last_name'],
@@ -111,18 +136,18 @@ function login($firstName, $lastName, $pwd)
                         'biography' => $employeeDetails['biography'],
                         'createdAt' => $employeeDetails['createdAt'],
                         'actif' => $employeeDetails['actif'],
-                        'teamId' => $employeeDetails['teamId'],
-                        'roleId' => $employeeDetails['roleId'],
+                        'teamId' => $employeeDetails['team_id'],
+                        'roleId' => $employeeDetails['role_id'],
                     ],
                     'role' => [
-                        'id' => $employeeDetails['id'],
+                        'id' => $employeeDetails['role_id'],
                         'priority' => $employeeDetails['priority'],
                         'pwd' => $employeeDetails['pwd'],
                         'createdAt' => $employeeDetails['createdAt'],
                         'actif' => $employeeDetails['actif'],
                     ],
                     'team' => [
-                        'id' => $employeeDetails['id'],
+                        'id' => $employeeDetails['team_id'],
                         'name' => $employeeDetails['name'],
                         'actif' => $employeeDetails['actif'],
                     ]
@@ -138,6 +163,9 @@ function login($firstName, $lastName, $pwd)
     } catch (PDOException $e) {
         $message = "Une erreur s'est produite, veuillez réessayer";
         $errors[] = $message;
+    }
+    if (!empty($errors)) {
+        return $errors;
     }
 }
 
