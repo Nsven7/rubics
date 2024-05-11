@@ -49,7 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         case 'Connexion':
             $firstName = htmlspecialchars(trim($_POST['firstName']));
             $lastName = htmlspecialchars(trim($_POST['lastName']));
-            $pwd = md5(htmlspecialchars(trim($_POST['pwd'])));
+            //$pwd = md5(htmlspecialchars(trim($_POST['pwd'])));
+            $pwd = $_POST['password'];
 
             $error = login($firstName, $lastName, $pwd);
 
@@ -59,11 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../view/view-admin-login.php?message=" . $message);
                 exit;
             } else {
-                if ($_SESSION['employee']['role']['priority'] == 2) {
+                if ($_SESSION['employee']) {
                     $message = "success-register";
                     header("Location: ../view/view-employee-admin-home.php?message=" . $message);
                     exit;
-                } elseif ($_SESSION['employee']['role']['priority'] == 1) {
+                } elseif ($_SESSION['admin']) {
                     $message = "success-register";
                     header("Location: ../view/view-admin-home.php?message=" . $message);
                     exit;

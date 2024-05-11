@@ -3,8 +3,11 @@ $title = "Admin - Projet";
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
 require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dataModel.php");
 
-if (!isset($_SESSION['client']) && !isset($_SESSION['employee'])) {
+if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");
+    exit;
+} elseif (isset($_SESSION['admin'])) {
+    header("Location: ../view/view-admin-home.php");
     exit;
 } elseif (isset($_SESSION['employee'])) {
     header("Location: ../view/view-employee-admin-home.php");
@@ -70,10 +73,9 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee'])) {
                             method="POST">
                             <div class="field-container">
                                 <label for="name">Nom</label>
-                                <input type="text" id="name" name="name" minlength="3" maxlength="25" autofocus
-                                    value="<?php if (isset($_SESSION['client']['company']['name'])) {
-                                        echo $_SESSION['client']['company']['name'];
-                                    } ?>">
+                                <input type="text" id="name" name="name" minlength="3" maxlength="25" autofocus value="<?php if (isset($_SESSION['client']['company']['name'])) {
+                                    echo $_SESSION['client']['company']['name'];
+                                } ?>">
                             </div>
 
                             <div class="field-container">

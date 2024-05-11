@@ -3,8 +3,11 @@ $title = "Admin - Demande";
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dataModel.php");
 
-if (!isset($_SESSION['client']) && !isset($_SESSION['employee'])) {
+if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");
+    exit;
+} elseif (isset($_SESSION['admin'])) {
+    header("Location: ../view/view-admin-home.php");
     exit;
 } elseif (isset($_SESSION['employee'])) {
     header("Location: ../view/view-employee-admin-home.php");

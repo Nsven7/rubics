@@ -209,7 +209,7 @@ CREATE TABLE `employee` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `actif` tinyint(4) NOT NULL,
   `team_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -482,7 +482,7 @@ INSERT INTO `skill` (`id`, `name`, `actif`) VALUES
 (56, 'VDMX', 1),
 (57, 'Resolume Arena', 1),
 (58, 'Isadora', 1),
-(59, 'Cycling \'74', 1),
+(59, 'Cycling', 1),
 (60, 'Supercollider', 1);
 
 -- --------------------------------------------------------

@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
 /**
  * This function inserts user data into the database.
@@ -40,7 +40,7 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
         if (empty($username)) {
             $errors[] = "Nom d'utilisateur requis";
         }
-        
+
         if (empty($pwd)) {
             $errors[] = "Mot de passe requis";
         } elseif (strlen($pwd) < 8) {
@@ -96,7 +96,7 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
         if (!empty($errors)) {
             return $errors;
         }
-        
+
         // Update user's data
         $querysqlUpdateClient = "UPDATE client SET first_name = :first_name, last_name = :last_name, birthdate = :birthdate, last_connection = :last_connection, actif = :actif WHERE identifier_id = :identifier_id";
         $stmtUpdateClient = $bdd->prepare($querysqlUpdateClient);
@@ -208,7 +208,7 @@ function login($mail, $pwd)
     // Retrieves client data from the database in an array
     $client = $stmtClient->fetch(PDO::FETCH_ASSOC);
 
-    if($client === false) {
+    if ($client === false) {
         $message = "Adresse mail ou mot de passe incorect";
         return $message;
     }
@@ -222,7 +222,7 @@ function login($mail, $pwd)
     // Stocks datas in session 'client'
     $_SESSION['client'] = [
         'general' => [
-            'id' =>  $client['id'],
+            'id' => $client['id'],
             'first_name' => $client['first_name'],
             'last_name' => $client['last_name'],
             'birthdate' => $client['birthdate'],
@@ -253,4 +253,17 @@ function login($mail, $pwd)
 function logout()
 {
     session_destroy();
+}
+
+function clients()
+{
+    global $bdd;
+
+    $query = "SELECT * FROM client";
+    $stmt = $bdd->prepare($query);
+    $stmt->execute();
+
+    $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $clients;
 }

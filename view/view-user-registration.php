@@ -2,10 +2,14 @@
 $title = "S'enregistrer";
 include($_SERVER['DOCUMENT_ROOT']."/Rubics/view/component/header.php");
 
-if (isset($_SESSION['client']) && !isset($_SESSION['employee'])) {
+if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
   header("Location: ../view/view-user-admin-home.php");
   exit;
-} elseif (isset($_SESSION['employee'])) {
+} elseif (isset($_SESSION['admin'])) {
+  header("Location: ../view/view-admin-home.php");
+  exit;
+}
+elseif (isset($_SESSION['employee'])) {
   header("Location: ../view/view-employee-admin-home.php");
   exit;
 } else { ?>

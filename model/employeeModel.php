@@ -78,7 +78,8 @@ function updateData($firstName, $lastName, $birthdate, $biography, $pwd, $confir
     $stmtEmployee->execute();
 
     // Update employee's role
-    $id = $_SESSION['employee']['role']['id'];
+    //$id = $_SESSION['employee']['role']['id'];
+    $id = ($_SESSION['employee'] ? $_SESSION['employee']['role']['id'] : $_SESSION['admin']['role']['id']);
 
     $querysqlUpdateEmployee = "UPDATE role SET pwd = :pwd WHERE id = :id";
     $stmtUpdateEmployee = $bdd->prepare($querysqlUpdateEmployee);
@@ -126,7 +127,7 @@ function login($firstName, $lastName, $pwd)
 
             // Verify the password
             if ($employeeDetails['pwd'] === $pwd) {
-                $_SESSION['employee'] = [
+                $_SESSION[$employeeDetails['priority'] == 1 ? 'admin' : 'employee'] = [
                     'general' => [
                         'id' => $employeeId,
                         'avatar' => $employeeDetails['avatar'],
@@ -134,7 +135,7 @@ function login($firstName, $lastName, $pwd)
                         'lastName' => $employeeDetails['last_name'],
                         'birthdate' => $employeeDetails['birthdate'],
                         'biography' => $employeeDetails['biography'],
-                        'createdAt' => $employeeDetails['createdAt'],
+                        'createdAt' => $employeeDetails['created_at'],
                         'actif' => $employeeDetails['actif'],
                         'teamId' => $employeeDetails['team_id'],
                         'roleId' => $employeeDetails['role_id'],
@@ -143,7 +144,7 @@ function login($firstName, $lastName, $pwd)
                         'id' => $employeeDetails['role_id'],
                         'priority' => $employeeDetails['priority'],
                         'pwd' => $employeeDetails['pwd'],
-                        'createdAt' => $employeeDetails['createdAt'],
+                        'createdAt' => $employeeDetails['created_at'],
                         'actif' => $employeeDetails['actif'],
                     ],
                     'team' => [
@@ -152,6 +153,7 @@ function login($firstName, $lastName, $pwd)
                         'actif' => $employeeDetails['actif'],
                     ]
                 ];
+
             } else {
                 $message = "Mot de passe incorrect";
                 $errors[] = $message;
@@ -178,4 +180,17 @@ function login($firstName, $lastName, $pwd)
 function logout()
 {
     session_destroy();
+}
+
+function employees()
+{
+    global $bdd;
+
+    $query = "SELECT * FROM employee";
+    $stmt = $bdd->prepare($query);
+    $stmt->execute();
+
+    $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $employees;
 }
