@@ -10,7 +10,11 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.ph
                 <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
                 <div class="accordionContent">
                     <ul>
-                        <li class="actif-link">Modifier mes informations</li>
+                        <li>
+                            <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-home.php">
+                                Modifier mes informations
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -38,7 +42,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.ph
                         <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-employee-index.php">Liste employés</a></li>
                         <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-new.php">Nouvelle compétence</a></li>
                         <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-index.php">Liste compétences</a></li>
-                        <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-relation.php">Lier compétence</a></li>
+                        <li class="actif-link">Lier compétence</li>
                     </ul>
                 </div>
             </div>

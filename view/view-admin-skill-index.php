@@ -1,7 +1,7 @@
 <?php
 $title = "Admin - Home";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/skillModel.php");
 
 if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");
@@ -13,8 +13,8 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
     header("Location: ../view/view-user-admin-home.php");
     exit;
 } else {
-    $categories = category();
-    ?>
+    $skills = skills();
+?>
 
     <div class="container-items">
         <div class="container-content">
@@ -23,7 +23,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
                     <div class="accordionContent">
                         <ul>
-                            <li class="actif-link">Modifier mes informations</li>
+                            <li>
+                                <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-home.php">
+                                    Modifier mes informations
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -40,8 +44,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     projet</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-new.php">Nouvelle
                                     catégorie</a></li>
-                            <li><a
-                                    href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
+                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
                             </li>
                         </ul>
                     </div>
@@ -61,8 +64,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     employés</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-new.php">Nouvelle
                                     compétence</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-index.php">Liste
-                                    compétences</a></li>
+                            <li class="actif-link">Liste compétences</li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-relation.php">Lier
                                     compétence</a></li>
                         </ul>
@@ -83,71 +85,45 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
             </div>
 
             <div class="main">
-                <h1>Mes informations</h1>
+                <h1>Compétences</h1>
 
                 <div class="main-conent">
                     <div class="data-card">
-                        <h3>Général</h3>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php"
-                            method="POST">
-                            <div class="field-container">
-                                <label for="last_name">Nom</label>
-                                <input type="text" id="last_name" name="last_name" minlength="3" maxlength="25"
-                                    value="<?php echo $_SESSION['client']['general']['last_name']; ?>">
-                            </div>
-                            <div class="field-container">
-                                <label for="first_name">Prénom</label>
-                                <input type="text" id="first_name" name="first_name" autofocus minlength="3" maxlength="25"
-                                    value="<?php echo $_SESSION['client']['general']['first_name']; ?>">
-                            </div>
-                            <div class="field-container">
-                                <label for="birthdate">Date de naissance</label>
-                                <input type="date" id="birthdate" name="birthdate" min="1950-01-01" max="2006-12-31"
-                                    value="<?php echo $_SESSION['client']['general']['birthdate']; ?>">
-                            </div>
-
-                            <div class="field-container">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" maxlength="100"
-                                    value="<?php echo $_SESSION['client']['identifier']['mail']; ?>">
-                            </div>
-                            <div class="field-container">
-                                <label for="username">Nom d'utilisateur</label>
-                                <input type="text" id="username" name="username" minlength="5" maxlength="20"
-                                    value="<?php echo $_SESSION['client']['identifier']['username']; ?>">
-                            </div>
-                            <div class="field-container">
-                                <label for="password">Mot de passe</label>
-                                <input type="password" id="password" name="password" minlength="8" maxlength="20">
-                            </div>
-                            <div class="field-container">
-                                <label for="confirm_password">Répétez le mot de passe</label>
-                                <input type="password" id="confirm_password" name="confirm_password" minlength="8"
-                                    maxlength="20">
-                            </div>
-
-                            <div>
-                                <label for="secret_question">Secret Question:</label>
-                                <select id="secret_question" name="secret_question">
-                                    <?php if ($_SESSION['client']['identifier']['secret_question'] == "pet") {
-                                        echo "<option value=\"pet\">What is the name of your first pet?</option>";
-                                    } ?>
-                                    <?php if ($_SESSION['client']['identifier']['secret_question'] == "city") {
-                                        echo "<option value=\"city\">What city were you born in?</option>";
-                                    } ?>
-                                    <?php if ($_SESSION['client']['identifier']['secret_question'] == "school") {
-                                        echo "<option value=\"school\">What is the name of your first school?</option>";
-                                    } ?>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="answer">Answer:</label>
-                                <input type="text" id="answer" name="answer" minlength="5" maxlength="100"
-                                    value="<?php echo $_SESSION['client']['identifier']['secret_answer']; ?>">
-                            </div>
-
-                            <input class="btn" type="submit" name="submit" value="S'enregistrer" />
-                        </form>
+                        <h3>Liste</h3>
+                        <table id="read-data">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom</th>
+                                    <th>Actif</th>
+                                    <th>Modifier</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if (isset($skills)) {
+                                    // Loop through the project data and display each row in the table
+                                    foreach ($skills as $skill) {
+                                        echo "<tr>";
+                                        echo "<td>" . $skill['id'] . "</td>";
+                                        echo "<td>" . $skill['name'] . "</td>";
+                                        echo "<td>" . $skill['actif'] . "</td>";
+                                ?>
+                                        <td style="text-align: center">
+                                            <a href="view-admin-skill-new.php?id=<?php echo $skill['id']; ?>">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                                                </svg>
+                                            </a>
+                                        </td>
+                                <?php
+                                        echo "</tr>";
+                                    }
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

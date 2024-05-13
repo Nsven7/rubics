@@ -248,15 +248,16 @@ CREATE TABLE `identifier` (
 --
 
 INSERT INTO `identifier` (`id`, `username`, `mail`, `pwd`, `secret_question`, `secret_answer`) VALUES
-(1, 'john_doe', 'john.doe@example.com', 'password123', 'pet', 'Smith'),
-(2, 'alice_smith', 'alice.smith@example.com', 'securepass', 'school', 'New York'),
-(3, 'michaelj', 'michael.j@example.com', 'mysecret', 'pet', 'Trex'),
-(4, 'emilyb', 'emily.b@example.com', 'password!', 'pet', 'Fluffy'),
-(5, 'will_jones', 'will.jones@example.com', 'p@ssw0rd', 'color', 'Red'),
-(6, 'sophia_d', 'sophia.d@example.com', 'pass123', 'color', 'Blue'),
-(7, 'james_w', 'james.w@example.com', 'securepwd', 'school', 'Tournai'),
-(8, 'mike_s', 'mike.s@example.com', 'pwd123', 'pet', 'Heyden'),
-(9, 'alex_m', 'alex.m@example.com', 'mysecurepwd', 'school', 'Mouscron');
+(1, 'john_doe', 'john.doe@example.com', 'b0c56a50389f2a0f172f83c3fd30aad6', 'pet', 'Smith'),
+(2, 'alice_smith', 'alice.smith@example.com', 'd625fcd01cbb600c60a7ee0d5bf15c2a', 'school', 'New York'),
+(3, 'michaelj', 'michael.j@example.com', '931fa1373e8c04fec709ae558964eadc', 'pet', 'Trex'),
+(4, 'emilyb', 'emily.b@example.com', '965682a92f51858255d17f8de0df573c', 'pet', 'Fluffy'),
+(5, 'will_jones', 'will.jones@example.com', 'b54aaa412a8e8390165e1186c5313390', 'color', 'Red'),
+(6, 'sophia_d', 'sophia.d@example.com', '66b7b5ab57a0c5da8c576dfc2d9122ce', 'color', 'Blue'),
+(7, 'james_w', 'james.w@example.com', '358e601116b541129b1996be05045e75', 'school', 'Tournai'),
+(8, 'mike_s', 'mike.s@example.com', 'faa668b1de61c5e3f28cae4c3f559e26', 'pet', 'Heyden'),
+(9, 'alex_m', 'alex.m@example.com', '30c12d6bdadc049d75e9c17004a684c7', 'school', 'Mouscron');
+
 
 -- --------------------------------------------------------
 
@@ -396,16 +397,16 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `priority`, `pwd`, `created_at`, `actif`) VALUES
-(1, 2, 'password123', '2024-05-08 08:00:00', 1),
-(2, 2, 'securepwd456', '2024-05-08 08:30:00', 1),
-(3, 2, 'mysecretpwd789', '2024-05-08 09:00:00', 1),
-(4, 2, 'strongpwd987', '2024-05-08 09:30:00', 1),
-(5, 2, '123456', '2024-05-08 10:00:00', 1),
-(6, 2, 'azerty', '2024-05-08 11:00:00', 1),
-(7, 2, 'qwerty', '2024-05-08 11:30:00', 1),
-(8, 2, 'password123', '2024-05-08 12:00:00', 1),
-(9, 2, 'securepwd456', '2024-05-08 12:30:00', 1),
-(10, 2, 'mysecretpwd789', '2024-05-08 13:00:00', 1);
+(1, 2, 'b0c56a50389f2a0f172f83c3fd30aad6', '2024-05-08 08:00:00', 1),
+(2, 2, 'd625fcd01cbb600c60a7ee0d5bf15c2a', '2024-05-08 08:30:00', 1),
+(3, 2, '931fa1373e8c04fec709ae558964eadc', '2024-05-08 09:00:00', 1),
+(4, 2, '965682a92f51858255d17f8de0df573c', '2024-05-08 09:30:00', 1),
+(5, 2, 'b54aaa412a8e8390165e1186c5313390', '2024-05-08 10:00:00', 1),
+(6, 2, '66b7b5ab57a0c5da8c576dfc2d9122ce', '2024-05-08 11:00:00', 1),
+(7, 2, '358e601116b541129b1996be05045e75', '2024-05-08 11:30:00', 1),
+(8, 2, 'faa668b1de61c5e3f28cae4c3f559e26', '2024-05-08 12:00:00', 1),
+(9, 2, '30c12d6bdadc049d75e9c17004a684c7', '2024-05-08 12:30:00', 1),
+(10, 2, '0cb1664d30ed979b3c8a01b703bbcf84', '2024-05-08 13:00:00', 1);
 
 -- --------------------------------------------------------
 

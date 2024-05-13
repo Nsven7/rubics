@@ -194,3 +194,17 @@ function employees()
 
     return $employees;
 }
+
+function employee($id)
+{
+    // Retrieve db connection
+    global $bdd;
+
+    $sql = "SELECT * FROM employee WHERE id = :id";
+    $stmt = $bdd->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $employee = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $employee;
+}

@@ -1,7 +1,7 @@
 <?php
 $title = "Admin - Home";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/userModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/userModel.php");
 
 if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");
@@ -14,7 +14,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
     exit;
 } else {
     $clients = clients();
-    ?>
+?>
 
     <div class="container-items">
         <div class="container-content">
@@ -23,7 +23,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
                     <div class="accordionContent">
                         <ul>
-                            <li class="actif-link">Modifier mes informations</li>
+                            <li>
+                                <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-home.php">
+                                    Modifier mes informations
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -40,8 +44,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     projet</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-new.php">Nouvelle
                                     catégorie</a></li>
-                            <li><a
-                                    href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
+                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
                             </li>
                         </ul>
                     </div>
@@ -75,8 +78,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                         <ul>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-request-index.php">Liste
                                     demandes</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-clients-index.php">Liste
-                                    clients</a></li>
+                            <li class="actif-link">Liste clients</li>
                         </ul>
                     </div>
                 </div>
@@ -113,8 +115,8 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                         echo "<td>" . $client['created_at'] . "</td>";
                                         echo "<td>" . $client['last_connection'] . "</td>";
                                         echo "<td>" . $client['actif'] . "</td>";
-                                        ?>
-                                        <?php
+                                ?>
+                                <?php
                                         echo "</tr>";
                                     }
                                 }

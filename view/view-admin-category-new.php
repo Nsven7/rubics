@@ -1,7 +1,7 @@
 <?php
 $title = "Admin - Home";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
-require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
@@ -26,7 +26,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
                     <div class="accordionContent">
                         <ul>
-                            <li class="actif-link">Modifier mes informations</li>
+                            <li>
+                                <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-home.php">
+                                    Modifier mes informations
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -41,10 +45,8 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     projets</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-relation.php">Assigner
                                     projet</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-new.php">Nouvelle
-                                    catégorie</a></li>
-                            <li><a
-                                    href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
+                            <li class="actif-link">Nouvelle catégorie</li>
+                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
                             </li>
                         </ul>
                     </div>
@@ -91,13 +93,12 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                 <div class="main-conent">
                     <div class="data-card">
                         <h3>Général</h3>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/categoryController.php"
-                            method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/categoryController.php" method="POST">
                             <div class="field-container">
                                 <label for="name">Nom</label>
                                 <input type="text" id="name" name="name" minlength="3" maxlength="25" value="<?php if (isset($category)) {
-                                    echo $category['name'];
-                                } ?>">
+                                                                                                                    echo $category['name'];
+                                                                                                                } ?>">
                             </div>
 
                             <div class="field-container">
@@ -107,15 +108,15 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                 <?php } ?>
 
                                 <input type="text" id="description" name="description" minlength="10" maxlength="100" value="<?php if (isset($category)) {
-                                    echo $category['description'];
-                                } ?>">
+                                                                                                                                    echo $category['description'];
+                                                                                                                                } ?>">
                             </div>
 
                             <div class="field-container">
                                 <label for="actif">Actif</label>
                                 <input type="checkbox" id="actif" name="actif" value="1" <?php if (isset($category) && $category['actif']) {
-                                    echo 'checked';
-                                } ?>>
+                                                                                                echo 'checked';
+                                                                                            } ?>>
                             </div>
 
 

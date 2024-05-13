@@ -1,6 +1,10 @@
 <?php
 $title = "Admin - Home";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/teamModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/skillModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
+
 if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");
     exit;
@@ -10,7 +14,15 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
 } elseif (isset($_SESSION['client'])) {
     header("Location: ../view/view-user-admin-home.php");
     exit;
-} else { ?>
+} else {
+    $teams = activeTeams();
+    $skills = activeSkills();
+
+    if (isset($_GET['id'])) {
+        $id = intval($_GET['id']);
+        $employee = employee($id);
+    }
+?>
 
     <div class="container-items">
         <div class="container-content">
@@ -19,7 +31,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
                     <div class="accordionContent">
                         <ul>
-                            <li class="actif-link">Modifier mes informations</li>
+                            <li>
+                                <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-home.php">
+                                    Modifier mes informations
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -36,8 +52,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     projet</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-new.php">Nouvelle
                                     catégorie</a></li>
-                            <li><a
-                                    href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
+                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
                             </li>
                         </ul>
                     </div>
@@ -51,8 +66,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     équipe</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-team-index.php">Liste
                                     équipes</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-employee-new.php">Nouvel
-                                    employé</a></li>
+                            <li class="actif-link">Nouvel employé</li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-employee-index.php">Liste
                                     employés</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-new.php">Nouvelle
@@ -84,65 +98,75 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                 <div class="main-conent">
                     <div class="data-card">
                         <h3>Général</h3>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php"
-                            method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php" method="POST" enctype="multipart/form-data">
                             <div class="field-container">
-                                <label for="last_name">Nom</label>
-                                <input type="text" id="last_name" name="last_name" minlength="3" maxlength="25"
-                                    value="<?php echo $_SESSION['client']['general']['last_name']; ?>">
+                                <label for="avatar">Image</label>
+                                <input type="file" name="fileToUpload" id="fileToUpload">
                             </div>
                             <div class="field-container">
-                                <label for="first_name">Prénom</label>
-                                <input type="text" id="first_name" name="first_name" autofocus minlength="3" maxlength="25"
-                                    value="<?php echo $_SESSION['client']['general']['first_name']; ?>">
+                                <label for="lastName">Nom</label>
+                                <input type="text" id="lastName" name="lastName" minlength="3" maxlength="25" value="<?php if (isset($employee)) {
+                                                                                                                            echo $employee['last_name'];
+                                                                                                                        } ?>">
+                            </div>
+                            <div class="field-container">
+                                <label for="firstName">Prénom</label>
+                                <input type="text" id="firstName" name="firstName" autofocus minlength="3" maxlength="25" value="<?php if (isset($employee)) {
+                                                                                                                                        echo $employee['first_name'];
+                                                                                                                                    } ?>">
                             </div>
                             <div class="field-container">
                                 <label for="birthdate">Date de naissance</label>
-                                <input type="date" id="birthdate" name="birthdate" min="1950-01-01" max="2006-12-31"
-                                    value="<?php echo $_SESSION['client']['general']['birthdate']; ?>">
-                            </div>
-
-                            <div class="field-container">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" maxlength="100"
-                                    value="<?php echo $_SESSION['client']['identifier']['mail']; ?>">
+                                <input type="date" id="birthdate" name="birthdate" min="1950-01-01" max="2006-12-31" value="<?php if (isset($employee)) {
+                                                                                                                                echo $employee['birthdate'];
+                                                                                                                            } ?>">
                             </div>
                             <div class="field-container">
-                                <label for="username">Nom d'utilisateur</label>
-                                <input type="text" id="username" name="username" minlength="5" maxlength="20"
-                                    value="<?php echo $_SESSION['client']['identifier']['username']; ?>">
+                                <label for="biography">Descrption</label>
+                                <input type="text" id="biography" name="biography" value="<?php if (isset($employee)) {
+                                                                                                echo $employee['biography'];
+                                                                                            } ?>">
                             </div>
                             <div class="field-container">
                                 <label for="password">Mot de passe</label>
-                                <input type="password" id="password" name="password" minlength="8" maxlength="20">
+                                <input type="password" id="pwd" name="pwd" minlength="8" maxlength="20" value="<?php if (isset($employee)) {
+                                                                                                                    echo $employee[''];
+                                                                                                                } ?>">
                             </div>
                             <div class="field-container">
                                 <label for="confirm_password">Répétez le mot de passe</label>
-                                <input type="password" id="confirm_password" name="confirm_password" minlength="8"
-                                    maxlength="20">
+                                <input type="password" id="confirm_password" name="confirm_password" minlength="8" maxlength="20" value="<?php if (isset($employee)) {
+                                                                                                                                                echo $employee[''];
+                                                                                                                                            } ?>">
                             </div>
-
-                            <div>
-                                <label for="secret_question">Secret Question:</label>
-                                <select id="secret_question" name="secret_question">
-                                    <?php if ($_SESSION['client']['identifier']['secret_question'] == "pet") {
-                                        echo "<option value=\"pet\">What is the name of your first pet?</option>";
-                                    } ?>
-                                    <?php if ($_SESSION['client']['identifier']['secret_question'] == "city") {
-                                        echo "<option value=\"city\">What city were you born in?</option>";
-                                    } ?>
-                                    <?php if ($_SESSION['client']['identifier']['secret_question'] == "school") {
-                                        echo "<option value=\"school\">What is the name of your first school?</option>";
-                                    } ?>
+                            <div class="field-container">
+                                <label for="teamId">Équipe</label>
+                                <select name="teamId" id="teamId">
+                                    <?php
+                                    // Assuming $teams contains an array of teams fetched from the database where "actif" is 1
+                                    foreach ($teams as $team) {
+                                        echo '<option value="' . $team['id'] . '">' . $team['name'] . '</option>';
+                                    }
+                                    ?>
                                 </select>
                             </div>
-                            <div>
-                                <label for="answer">Answer:</label>
-                                <input type="text" id="answer" name="answer" minlength="5" maxlength="100"
-                                    value="<?php echo $_SESSION['client']['identifier']['secret_answer']; ?>">
+
+                            <div class="field-container">
+                                <label for="roleId">Rôle</label>
+                                <select name="roleId" id="roleId">
+                                    <option value="1">Admin</option>
+                                    <option value="2">Employé</option>
+                                </select>
                             </div>
 
-                            <input class="btn" type="submit" name="submit" value="S'enregistrer" />
+                            <?php
+                            // Assuming $skills contains an array of skills fetched from the database
+                            foreach ($skills as $skill) {
+                                echo '<input type="checkbox" name="skills[]" style="margin-right: 1rem" value="' . $skill['id'] . '">' .  $skill['name'] . '<br>';
+                            }
+                            ?>
+
+                            <input class="btn" type="submit" name="submit" value="Enregistrer" />
                         </form>
                     </div>
                 </div>

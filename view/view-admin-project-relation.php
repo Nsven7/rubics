@@ -10,7 +10,11 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.ph
                 <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
                 <div class="accordionContent">
                     <ul>
-                        <li class="actif-link">Modifier mes informations</li>
+                        <li>
+                            <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-home.php">
+                                Modifier mes informations
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

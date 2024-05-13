@@ -1,6 +1,19 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
+function activeTeams()
+{
+    global $bdd;
+
+    $query = "SELECT * FROM team WHERE actif = 1";
+    $stmt = $bdd->prepare($query);
+    $stmt->execute();
+
+    $teams = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $teams;
+}
+
 function teams()
 {
     global $bdd;
