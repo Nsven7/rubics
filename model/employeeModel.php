@@ -200,7 +200,11 @@ function employee($id)
     // Retrieve db connection
     global $bdd;
 
-    $sql = "SELECT * FROM employee WHERE id = :id";
+    $sql = "SELECT e.*, t.*, r.*
+    FROM employee e
+    JOIN team t ON e.team_id = team_id
+    JOIN role r ON e.role_id = role_id
+    WHERE e.id = :id";
     $stmt = $bdd->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();

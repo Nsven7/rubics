@@ -21,7 +21,9 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
     if (isset($_GET['id'])) {
         $id = intval($_GET['id']);
         $employee = employee($id);
+        $skillsEmployee = getSkills($employee);
     }
+
 ?>
 
     <div class="container-items">
@@ -73,8 +75,6 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     compétence</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-index.php">Liste
                                     compétences</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-relation.php">Lier
-                                    compétence</a></li>
                         </ul>
                     </div>
                 </div>
@@ -129,39 +129,42 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             </div>
                             <div class="field-container">
                                 <label for="password">Mot de passe</label>
-                                <input type="password" id="pwd" name="pwd" minlength="8" maxlength="20" value="<?php if (isset($employee)) {
-                                                                                                                    echo $employee[''];
-                                                                                                                } ?>">
+                                <input type="password" id="pwd" name="pwd" minlength="8" maxlength="20">
                             </div>
                             <div class="field-container">
                                 <label for="confirm_password">Répétez le mot de passe</label>
-                                <input type="password" id="confirm_password" name="confirm_password" minlength="8" maxlength="20" value="<?php if (isset($employee)) {
-                                                                                                                                                echo $employee[''];
-                                                                                                                                            } ?>">
+                                <input type="password" id="confirm_password" name="confirm_password" minlength="8" maxlength="20">
                             </div>
                             <div class="field-container">
                                 <label for="teamId">Équipe</label>
                                 <select name="teamId" id="teamId">
-                                    <?php
-                                    // Assuming $teams contains an array of teams fetched from the database where "actif" is 1
-                                    foreach ($teams as $team) {
-                                        echo '<option value="' . $team['id'] . '">' . $team['name'] . '</option>';
-                                    }
-                                    ?>
+                                    <?php foreach ($teams as $team) : ?>
+                                        <option value="<?php echo $team['id']; ?>" <?php if (isset($employee) && $employee['team_id'] == $team['id']) echo 'selected'; ?>>
+                                            <?php echo $team['name']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
 
                             <div class="field-container">
                                 <label for="roleId">Rôle</label>
                                 <select name="roleId" id="roleId">
-                                    <option value="1">Admin</option>
-                                    <option value="2">Employé</option>
+                                    <option value="1" <?php echo (isset($employee) && $employee['priority'] == 1) ? 'selected' : ''; ?>>Admin</option>
+                                    <option value="2" <?php echo (isset($employee) && $employee['priority'] == 1) ? 'selected' : ''; ?>>Employee</option>
                                 </select>
                             </div>
 
                             <?php
-                            // Assuming $skills contains an array of skills fetched from the database
                             foreach ($skills as $skill) {
+                                if (isset($skillsEmployee)) {
+                                    foreach ($skillsEmployee as $skillEmployee) {
+                                        if ($skill['name'] == $skillEmployee) {
+                                            echo '<input type="checkbox" checked name="skills[]" style="margin-right: 1rem" value="' . $skill['id'] . '">' .  $skill['name'] . '<br>';
+                                            break;
+                                        }
+                                    }
+                                }
+                                // If the skill wasn't found, show unchecked checkbox.
                                 echo '<input type="checkbox" name="skills[]" style="margin-right: 1rem" value="' . $skill['id'] . '">' .  $skill['name'] . '<br>';
                             }
                             ?>

@@ -42,7 +42,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.ph
                         <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-employee-index.php">Liste employés</a></li>
                         <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-new.php">Nouvelle compétence</a></li>
                         <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-index.php">Liste compétences</a></li>
-                        <li class="actif-link">Lier compétence</li>
                     </ul>
                 </div>
             </div>

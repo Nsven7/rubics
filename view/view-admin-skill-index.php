@@ -65,8 +65,6 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-new.php">Nouvelle
                                     compétence</a></li>
                             <li class="actif-link">Liste compétences</li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-relation.php">Lier
-                                    compétence</a></li>
                         </ul>
                     </div>
                 </div>
