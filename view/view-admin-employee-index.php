@@ -13,7 +13,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
     header("Location: ../view/view-user-admin-home.php");
     exit;
 } else {
-    $employees = employees();
+    $employees = employees($_SESSION['admin']['general']['id']);
 ?>
 
     <div class="container-items">

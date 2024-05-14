@@ -181,13 +181,14 @@ function logout()
 {
     session_destroy();
 }
-
-function employees()
+ 
+function employees($id)
 {
     global $bdd;
 
-    $query = "SELECT * FROM employee";
+    $query = "SELECT * FROM employee WHERE id != :id";
     $stmt = $bdd->prepare($query);
+    $stmt->bindParam(':id', $id);
     $stmt->execute();
 
     $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);

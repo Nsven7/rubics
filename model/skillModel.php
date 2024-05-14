@@ -48,7 +48,7 @@ function getSkills($employeeId)
     global $bdd;
 
     // Prepare SQL query
-    $query = "SELECT s.name AS skill_name 
+    $query = "SELECT skill_id
               FROM characterize c 
               INNER JOIN skill s ON c.skill_id = s.id 
               WHERE c.employee_id = :employee_id";
@@ -63,12 +63,12 @@ function getSkills($employeeId)
     $stmt->execute();
 
     // Fetch all records as associative arrays
-    $arraySkills = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $skills = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-    foreach ($arraySkills as $key => $value) {
-        // Extract the skill name from each sub-array and add it to the transformed array
-        $skills[$key] = $value["skill_name"];
-    }
+    // foreach ($arraySkills as $key => $value) {
+    //     // Extract the skill name from each sub-array and add it to the transformed array
+    //     $skills[$key] = $value["skill_name"];
+    // }
     return $skills;
 }
 

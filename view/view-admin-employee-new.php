@@ -24,7 +24,9 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
         $skillsEmployee = getSkills($employee);
     }
 
-?>
+    ?>
+
+
 
     <div class="container-items">
         <div class="container-content">
@@ -98,7 +100,13 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                 <div class="main-conent">
                     <div class="data-card">
                         <h3>Général</h3>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php" method="POST" enctype="multipart/form-data">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php?id=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
+                            <?php if (isset($employee)) { ?>
+                                <div class="avatar">
+                                    <img src="<?php echo $employee['avatar']; ?>" alt="avatar" />
+                                </div>
+                            <?php }
+                            ?>
                             <div class="field-container">
                                 <label for="avatar">Image</label>
                                 <input type="file" name="fileToUpload" id="fileToUpload">
@@ -147,18 +155,19 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             </div>
 
                             <div class="field-container">
-                                <label for="roleId">Rôle</label>
-                                <select name="roleId" id="roleId">
+                                <label for="priority">Rôle</label>
+                                <select name="priority" id="priority">
                                     <option value="1" <?php echo (isset($employee) && $employee['priority'] == 1) ? 'selected' : ''; ?>>Admin</option>
-                                    <option value="2" <?php echo (isset($employee) && $employee['priority'] == 1) ? 'selected' : ''; ?>>Employee</option>
+                                    <option value="2" <?php echo (isset($employee) && $employee['priority'] == 2) ? 'selected' : ''; ?>>Employé</option>
                                 </select>
                             </div>
 
                             <?php
+                            die(var_dump($skillsEmployee));
                             foreach ($skills as $skill) {
                                 if (isset($skillsEmployee)) {
                                     foreach ($skillsEmployee as $skillEmployee) {
-                                        if ($skill['name'] == $skillEmployee) {
+                                        if ($skill['id'] == $skillEmployee['id']) {
                                             echo '<input type="checkbox" checked name="skills[]" style="margin-right: 1rem" value="' . $skill['id'] . '">' .  $skill['name'] . '<br>';
                                             break;
                                         }
