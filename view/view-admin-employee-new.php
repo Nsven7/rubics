@@ -1,9 +1,9 @@
 <?php
 $title = "Admin - Home";
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/teamModel.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/skillModel.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/teamModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/skillModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
 
 if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");
@@ -21,7 +21,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
     if (isset($_GET['id'])) {
         $id = intval($_GET['id']);
         $employee = employee($id);
-        $skillsEmployee = getSkills(intval($employee[0]));
+        $skillsEmployee = getSkills(intval($id));
     }
     ?>
 
@@ -55,7 +55,8 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     projet</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-new.php">Nouvelle
                                     catégorie</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
+                            <li><a
+                                    href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
                             </li>
                         </ul>
                     </div>
@@ -99,7 +100,8 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                 <div class="main-conent">
                     <div class="data-card">
                         <h3>Général</h3>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php<?php if(isset($id)) echo "?id=".$id; ?>" method="POST" enctype="multipart/form-data">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php<?php if (isset($id))
+                              echo "?id=" . $id; ?>" method="POST" enctype="multipart/form-data">
                             <?php if (isset($employee)) { ?>
                                 <div class="avatar">
                                     <img src="<?php echo $employee['avatar']; ?>" alt="avatar" />
@@ -113,26 +115,27 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             <div class="field-container">
                                 <label for="lastName">Nom</label>
                                 <input type="text" id="lastName" name="lastName" minlength="3" maxlength="25" value="<?php if (isset($employee)) {
-                                                                                                                            echo $employee['last_name'];
-                                                                                                                        } ?>">
+                                    echo $employee['last_name'];
+                                } ?>">
                             </div>
                             <div class="field-container">
                                 <label for="firstName">Prénom</label>
-                                <input type="text" id="firstName" name="firstName" autofocus minlength="3" maxlength="25" value="<?php if (isset($employee)) {
-                                                                                                                                        echo $employee['first_name'];
-                                                                                                                                    } ?>">
+                                <input type="text" id="firstName" name="firstName" autofocus minlength="3" maxlength="25"
+                                    value="<?php if (isset($employee)) {
+                                        echo $employee['first_name'];
+                                    } ?>">
                             </div>
                             <div class="field-container">
                                 <label for="birthdate">Date de naissance</label>
                                 <input type="date" id="birthdate" name="birthdate" min="1950-01-01" max="2006-12-31" value="<?php if (isset($employee)) {
-                                                                                                                                echo $employee['birthdate'];
-                                                                                                                            } ?>">
+                                    echo $employee['birthdate'];
+                                } ?>">
                             </div>
                             <div class="field-container">
                                 <label for="biography">Descrption</label>
                                 <input type="text" id="biography" name="biography" value="<?php if (isset($employee)) {
-                                                                                                echo $employee['biography'];
-                                                                                            } ?>">
+                                    echo $employee['biography'];
+                                } ?>">
                             </div>
                             <div class="field-container">
                                 <label for="password">Mot de passe</label>
@@ -140,39 +143,49 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             </div>
                             <div class="field-container">
                                 <label for="confirm_password">Répétez le mot de passe</label>
-                                <input type="password" id="confirm_password" name="confirm_password" minlength="8" maxlength="20">
+                                <input type="password" id="confirm_password" name="confirm_password" minlength="8"
+                                    maxlength="20">
                             </div>
                             <div class="field-container">
                                 <label for="teamId">Équipe</label>
                                 <select name="teamId" id="teamId">
-                                    <?php foreach ($teams as $team) : ?>
-                                        <option value="<?php echo $team['id']; ?>" <?php if (isset($employee) && $employee['team_id'] == $team['id']) echo 'selected'; ?>>
+                                    <?php foreach ($teams as $team): ?>
+                                        <option value="<?php echo $team['id']; ?>" <?php if (isset($employee) && $employee['team_id'] == $team['id'])
+                                               echo 'selected'; ?>>
                                             <?php echo $team['name']; ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
 
+
                             <div class="field-container">
                                 <label for="priority">Rôle</label>
                                 <select name="priority" id="priority">
-                                    <option value="1" <?php echo (isset($employee) && $employee['priority'] == 1) ? 'selected' : ''; ?>>Admin</option>
-                                    <option value="2" <?php echo (isset($employee) && $employee['priority'] == 2) ? 'selected' : ''; ?>>Employé</option>
+                                    <option value="1" <?php (isset($employee) && $employee['priority'] == 1) ? 'selected' : ''; ?>>Admin</option>
+                                    <option value="2" <?php (isset($employee) && $employee['priority'] == 2) ? 'selected' : ''; ?>>Employee</option>
                                 </select>
+                            </div>
+
+                            <div class="field-container">
+                                <label for="actif">Role actif</label>
+                                <input type="checkbox" id="actif" name="actif" value="1" <?php if (isset($employee) && $employee['actif'] == 1) {
+                                    echo 'checked';
+                                } ?>>
+                            </div>
+
+                            <div class="field-container">
+                                <label for="actif">Role actif</label>
+                                <input type="checkbox" id="actif" name="roleActif" value="1">
                             </div>
 
                             <?php
                             foreach ($skills as $skill) {
-                                if (isset($skillsEmployee)) {
-                                    foreach ($skillsEmployee as $skillEmployee) {
-                                        if ($skill['id'] == $skillEmployee) {
-                                            echo '<input type="checkbox" checked name="skills[]" style="margin-right: 1rem" value="' . $skill['id'] . '">' .  $skill['name'] . '<br>';
-                                            break;
-                                        }
-                                    }
-                                }
-                                // If the skill wasn't found, show unchecked checkbox.
-                                echo '<input type="checkbox" name="skills[]" style="margin-right: 1rem" value="' . $skill['id'] . '">' .  $skill['name'] . '<br>';
+                                $isChecked = isset($skillsEmployee) && in_array($skill['id'], $skillsEmployee);
+                                $checkbox = '<input type="checkbox" name="skills[]" style="margin-right: 1rem" value="' . $skill['id'] . '"';
+                                $checkbox .= $isChecked ? ' checked' : '';
+                                $checkbox .= '>' . $skill['name'] . '<br>';
+                                echo $checkbox;
                             }
                             ?>
 

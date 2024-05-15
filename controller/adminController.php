@@ -2,9 +2,9 @@
 session_start();
 
 // Include the model file
-require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/adminModel.php");
-require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
-require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dataModel.php");
+require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/adminModel.php");
+require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
+require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dataModel.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['submit'];
@@ -15,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (!empty($fileToUpload)) {
                 $fileToUpload = $_POST['fileToUpload'];
+            } else {
+                $fileToUpload = "";
             }
             $firstName = htmlspecialchars(trim(ucfirst($_POST['firstName'])));
             $lastName = htmlspecialchars(trim(ucfirst($_POST['lastName'])));
@@ -25,22 +27,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $confirmPassword = md5(htmlspecialchars(trim($_POST['confirm_password'])));
 
             $teamId = htmlspecialchars(($_POST['teamId']));
-            $priority = htmlspecialchars(($_POST['priority']));
+            $priority = intval(htmlspecialchars(($_POST['priority'])));
             $skills = $_POST['skills'];
+
+            $actif = ($_POST['actif'] == 1 ? 1 : 0);
+            $roleActif = ($_POST['roleActif'] == 1 ? 1 : 0);
 
             if (isset($_GET['id'])) {
                 $id = intval($_GET['id']);
                 $employee = employee($id);
+            } else {
+                $id = null;
             }
-
-
 
             if (empty($pwd) && empty($confirmPassword)) {
                 $pwd = $employee['pwd'];
                 $confirmPassword = $pwd;
             }
 
-            if (!empty($fileToUpload)) {
+            if (isset($fileToUpload)) {
                 $name = $firstName . $lastName;
                 $newName = str_replace(' ', '', ucwords($name));
                 $path = $_SERVER['DOCUMENT_ROOT'] . "/Rubics/public/uploads/employees/" . $newName . "/";
@@ -48,16 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $fileToUpload = uploadFile($path, $newName);
             } else {
-                $employee = employee($id);
-                $avatar = $employee['avatar'];
+                if (isset($employee)) {
+                    $avatar = $employee['avatar'];
+                }
             }
-
-            $error = insertOrUpdateEmployee( $firstName, $lastName, $birthdate, $biography, $pwd, $confirmPassword, $avatar, $teamId, $priority, $skills);
-
-            die($error);
-
             
-
+            $error = insertOrUpdateEmployee($id, $firstName, $lastName, $birthdate, $biography, $pwd, $confirmPassword, $avatar, $teamId, $priority, $skills, $actif, $roleActif);
 
             if (isset($error)) {
                 //Redirection with error message
@@ -70,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit;
             }
 
-            // Action 'Connexion' from login page    
+        // Action 'Connexion' from login page    
         case 'Connexion':
             $firstName = htmlspecialchars(trim($_POST['firstName']));
             $lastName = htmlspecialchars(trim($_POST['lastName']));
