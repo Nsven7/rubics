@@ -1,7 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
-function insertOrUpdateEmployee($id, $firstName, $lastName, $birthdate, $biography, $pwd, $confirmPassword, $avatar, $teamId, $priority, $skills)
+function insertOrUpdateEmployee($firstName, $lastName, $birthdate, $biography, $pwd, $confirmPassword, $avatar, $teamId, $priority, $skills, $id = null)
 {
 
     // Check datas received
@@ -45,64 +45,68 @@ function insertOrUpdateEmployee($id, $firstName, $lastName, $birthdate, $biograp
     // Retrieve db connection
     global $bdd;
 
-    // Check if client exists
-    $stmtEmployeeId = $bdd->prepare("SELECT id FROM employee WHERE employee.id = ?");
-    $stmtEmployeeId->execute([$id]);
-    $employeeId = $stmtEmployeeId->fetchColumn();
+    if ($id != null) {
+        // Check if client exists
+        $stmtEmployeeId = $bdd->prepare("SELECT id FROM employee WHERE employee.id = ?");
+        $stmtEmployeeId->execute([$id]);
+        $employeeId = $stmtEmployeeId->fetchColumn();
 
-    if ($employeeId) {
-        // Update role data
-        $stmtRoleId = $bdd->prepare("SELECT role_id FROM employee WHERE employee.id = ?");
-        $stmtRoleId->execute([$id]);
-        $roleId = $stmtRoleId->fetchColumn();
+        if ($employeeId) {
+            // Update role data
+            $stmtRoleId = $bdd->prepare("SELECT role_id FROM employee WHERE employee.id = ?");
+            $stmtRoleId->execute([$id]);
+            $roleId = $stmtRoleId->fetchColumn();
 
-        $querysqlUpdateEmployee = "UPDATE role SET pwd = :pwd, priority = :priority  WHERE id = :id";
-        $stmtUpdateEmployee = $bdd->prepare($querysqlUpdateEmployee);
-        $stmtUpdateEmployee->bindParam(":id", $roleId, PDO::PARAM_INT);
-        $stmtUpdateEmployee->bindParam(":priority", $priority);
-        $stmtUpdateEmployee->bindParam(":pwd", $pwd);
+            $querysqlUpdateEmployee = "UPDATE role SET pwd = :pwd, priority = :priority  WHERE id = :id";
+            $stmtUpdateEmployee = $bdd->prepare($querysqlUpdateEmployee);
+            $stmtUpdateEmployee->bindParam(":id", $roleId, PDO::PARAM_INT);
+            $stmtUpdateEmployee->bindParam(":priority", $priority);
+            $stmtUpdateEmployee->bindParam(":pwd", $pwd);
 
-        try {
-            $stmtUpdateEmployee->execute();
-        } catch (PDOException $e) {
-            $message = "Une erreur s'est produite lors de la mise à jour des identifiants client";
-            $errors[] = $message;
-        }
+            try {
+                $stmtUpdateEmployee->execute();
+            } catch (PDOException $e) {
+                $message = "Une erreur s'est produite lors de la mise à jour des identifiants client";
+                $errors[] = $message;
+            }
 
-        // Update employee data
-        $sqlEmployee = "UPDATE `employee` SET first_name = :first_name, last_name = :last_name, birthdate = :birthdate, biography = :biography, avatar = :avatar, team_id = :team_id, role_id = :role_id WHERE id = :id";
-        $stmtEmployee = $bdd->prepare($sqlEmployee);
-        $stmtEmployee->bindParam(":id", $employeeId);
-        $stmtEmployee->bindParam(":first_name", $firstName);
-        $stmtEmployee->bindParam(":last_name", $lastName);
-        $stmtEmployee->bindParam(":birthdate", $birthdate);
-        $stmtEmployee->bindParam(":biography", $biography);
-        $stmtEmployee->bindParam(":avatar", $avatar);
-        $stmtEmployee->bindParam(":role_id", $roleId, PDO::PARAM_INT);
-        $stmtEmployee->bindParam(":team_id", $teamId, PDO::PARAM_INT);
+            // Update employee data
+            $sqlEmployee = "UPDATE `employee` SET first_name = :first_name, last_name = :last_name, birthdate = :birthdate, biography = :biography, avatar = :avatar, team_id = :team_id, role_id = :role_id WHERE id = :id";
+            $stmtEmployee = $bdd->prepare($sqlEmployee);
+            $stmtEmployee->bindParam(":id", $employeeId);
+            $stmtEmployee->bindParam(":first_name", $firstName);
+            $stmtEmployee->bindParam(":last_name", $lastName);
+            $stmtEmployee->bindParam(":birthdate", $birthdate);
+            $stmtEmployee->bindParam(":biography", $biography);
+            $stmtEmployee->bindParam(":pwd", $pwd);
+            $stmtEmployee->bindParam(":avatar", $avatar);
+            $stmtEmployee->bindParam(":role_id", $roleId, PDO::PARAM_INT);
+            $stmtEmployee->bindParam(":team_id", $teamId, PDO::PARAM_INT);
 
-        try {
-            $stmtEmployee->execute();
-        } catch (PDOException $e) {
-            $message = "Une erreur s'est produite lors de la mise à jour des données de l'employé";
-            $errors[] = $message;
-        }
+            try {
+                $stmtEmployee->execute();
+            } catch (PDOException $e) {
+                $message = "Une erreur s'est produite lors de la mise à jour des données de l'employé";
+                $errors[] = $message;
+            }
 
-        if (!empty($errors)) {
-            return $errors;
-        }
+            if (!empty($errors)) {
+                return $errors;
+            }
 
-        // First, select the IDs that exist in the table for the current employee
-        $stmt = $bdd->prepare("SELECT skill_id FROM characterize WHERE employee_id = :employee_id");
-        $stmt->bindParam(':employee_id', $employeeId);
-        $stmt->execute();
-        $existingIds = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            // First, select the IDs that exist in the table for the current employee
+            $stmt = $bdd->prepare("SELECT skill_id FROM characterize WHERE employee_id = :employee_id");
+            $stmt->bindParam(':employee_id', $employeeId);
+            $stmt->execute();
+            $existingIds = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
+            // Loop over the array of IDs
+            foreach ($skills as $skill) {
+                // If the ID exists in the table, do nothing
+                if (in_array($id, $existingIds)) {
+                    continue;
+                }
 
-        // Loop over the array of IDs
-        foreach ($skills as $skill) {
-            // If the ID exists in the table, do nothing
-            if (in_array($id, $existingIds)) {
                 // If the ID doesn't exist in the table, insert it
                 $stmt = $bdd->prepare("INSERT INTO characterize (employee_id, skill_id) VALUES (:employee_id, :skill_id)");
                 $stmt->bindParam(':employee_id', $employeeId);
@@ -110,15 +114,42 @@ function insertOrUpdateEmployee($id, $firstName, $lastName, $birthdate, $biograp
                 $stmt->execute();
             }
 
+            // Now, delete IDs from the table that exist in the table but not in the array
+            $idsToDelete = array_diff($existingIds, $skills);
+            foreach ($idsToDelete as $idToDelete) {
+                $stmt = $bdd->prepare("DELETE FROM characterize WHERE employee_id = :employee_id AND skill_id = :skill_id");
+                $stmt->bindParam(':employee_id', $employeeId);
+                $stmt->bindParam(':skill_id', $idToDelete);
+                $stmt->execute();
+            }
+        }
+    } else {
+        // Insert new employee
+        $sqlInsertEmployee = "INSERT INTO employee (first_name, last_name, birthdate, biography, avatar, team_id, role_id) VALUES (:first_name, :last_name, :birthdate, :biography, :avatar, :team_id, :role_id)";
+        $stmtInsertEmployee = $bdd->prepare($sqlInsertEmployee);
+        $stmtInsertEmployee->bindParam(":first_name", $firstName);
+        $stmtInsertEmployee->bindParam(":last_name", $lastName);
+        $stmtInsertEmployee->bindParam(":birthdate", $birthdate);
+        $stmtInsertEmployee->bindParam(":biography", $biography);
+        $stmtInsertEmployee->bindParam(":pwd", $pwd);
+        $stmtInsertEmployee->bindParam(":avatar", $avatar);
+        $stmtInsertEmployee->bindParam(":role_id", $roleId, PDO::PARAM_INT);
+        $stmtInsertEmployee->bindParam(":team_id", $teamId, PDO::PARAM_INT);
+
+        try {
+            $stmtInsertEmployee->execute();
+            //$employeeId = $bdd->lastInsertId();
+        } catch (PDOException $e) {
+            $message = "Une erreur s'est produite lors de l'insertion des données de l'employé";
+            $errors[] = $message;
         }
 
-        // Now, delete IDs from the table that exist in the table but not in the array
-        $idsToDelete = array_diff($existingIds, $skills);
-        foreach ($idsToDelete as $id) {
-            $stmt = $bdd->prepare("DELETE FROM characterize WHERE employee_id = :employee_id AND skill_id = :skill_id");
-            $stmt->bindParam(':employee_id', $employeeId);
-            $stmt->bindParam(':skill_id', $skill);
-            $stmt->execute();
-        }
+        // Insert skills for new employee
+        // foreach ($skills as $skill) {
+        //     $stmt = $bdd->prepare("INSERT INTO characterize (employee_id, skill_id) VALUES (:employee_id, :skill_id)");
+        //     $stmt->bindParam(':employee_id', $employeeId);
+        //     $stmt->bindParam(':skill_id', $skill);
+        //     $stmt->execute();
+        // }
     }
 }

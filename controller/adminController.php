@@ -33,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $employee = employee($id);
             }
 
+
+
             if (empty($pwd) && empty($confirmPassword)) {
                 $pwd = $employee['pwd'];
                 $confirmPassword = $pwd;
@@ -50,7 +52,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $avatar = $employee['avatar'];
             }
 
-            $error = insertOrUpdateEmployee($id, $firstName, $lastName, $birthdate, $biography, $pwd, $confirmPassword, $avatar, $teamId, $priority, $skills);
+            $error = insertOrUpdateEmployee( $firstName, $lastName, $birthdate, $biography, $pwd, $confirmPassword, $avatar, $teamId, $priority, $skills);
+
+            die($error);
+
+            
+
 
             if (isset($error)) {
                 //Redirection with error message
@@ -58,11 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../view/view-employee-admin-home.php?message=" . $message);
                 exit;
             } else {
-                // session_destroy();
-                // // Starts a new session
-                // session_start();
-                // // Retrieve employee's data from login function
-                // login($firstName, $lastName, $pwd);
                 $message = "success-data-added";
                 header("Location: ../view/view-admin-home.php?message=" . $message);
                 exit;

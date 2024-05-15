@@ -209,7 +209,7 @@ function employee($id)
     $stmt = $bdd->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
-    $employee = $stmt->fetch(PDO::FETCH_ASSOC);
+    $employee = $stmt->fetch();
 
     return $employee;
 }

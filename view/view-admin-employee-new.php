@@ -21,9 +21,8 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
     if (isset($_GET['id'])) {
         $id = intval($_GET['id']);
         $employee = employee($id);
-        $skillsEmployee = getSkills($employee);
+        $skillsEmployee = getSkills(intval($employee[0]));
     }
-
     ?>
 
 
@@ -100,7 +99,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                 <div class="main-conent">
                     <div class="data-card">
                         <h3>Général</h3>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php?id=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php<?php if(isset($id)) echo "?id=".$id; ?>" method="POST" enctype="multipart/form-data">
                             <?php if (isset($employee)) { ?>
                                 <div class="avatar">
                                     <img src="<?php echo $employee['avatar']; ?>" alt="avatar" />
@@ -163,11 +162,10 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             </div>
 
                             <?php
-                            die(var_dump($skillsEmployee));
                             foreach ($skills as $skill) {
                                 if (isset($skillsEmployee)) {
                                     foreach ($skillsEmployee as $skillEmployee) {
-                                        if ($skill['id'] == $skillEmployee['id']) {
+                                        if ($skill['id'] == $skillEmployee) {
                                             echo '<input type="checkbox" checked name="skills[]" style="margin-right: 1rem" value="' . $skill['id'] . '">' .  $skill['name'] . '<br>';
                                             break;
                                         }
