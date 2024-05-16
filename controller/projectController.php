@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $description = htmlspecialchars(trim(ucfirst($_POST['description'])));
             $createdAt = htmlspecialchars($_POST['createdAt']);
             $finishedAt = htmlspecialchars($_POST['finishedAt']);
-            $finalized = ($_POST['finalized'] == 1 ? 1 : 0);
+            $finalized = (isset($_POST['finalized']) == 1 ? 1 : 0);
 
             $employees = $_POST['employees'];
             
@@ -43,8 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $avatar = $employee['avatar'];
                 }
             }
+
             
-            $error = insertOrUpdateProject($request, $project, $name, $description, $createdAt, $finishedAt, $finalized, $employees);
+            
+            $error = insertOrUpdateProject($idRequest, $project, $name, $description, $createdAt, $finishedAt, $finalized, $employees);
+
+            die(var_dump($error));
 
             if (isset($error)) {
                 //Redirection with error message

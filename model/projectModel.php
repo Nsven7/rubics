@@ -18,7 +18,7 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
         $message = "La date de lancement est obligatoire";
         $errors[] = $message;
     }
-    if (empty($skills)) {
+    if (empty($employees)) {
         $message = "Veuillez sélectionner des employés";
         $errors[] = $message;
     }
@@ -109,7 +109,7 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
         }
     } else {
         // Insert user's identifiers
-        $querysql = "INSERT INTO project (request, name, description, createdAt, finishedAt, finalized) VALUES (:request, :name, :description, :createdAt, :finishedAt, :finalized)";
+        $querysql = "INSERT INTO project (request_id, name, description, created_at, finished_at, finalized) VALUES (:request_id, :name, :description, :created_at, :finished_at, :finalized)";
 
         // Prepare SQL request
         $stmtProject = $bdd->prepare($querysql);
@@ -118,9 +118,10 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
         $stmtProject->bindParam(":request", $request);
         $stmtProject->bindParam(":name", $name);
         $stmtProject->bindParam(":description", $description);
-        $stmtProject->bindParam(":createdAt", $createdAt);
-        $stmtProject->bindParam(":finishedAt", $finishedAt);
+        $stmtProject->bindParam(":created_at", $createdAt);
+        $stmtProject->bindParam(":finished_at", $finishedAt);
         $stmtProject->bindParam(":finalized", $finalized);
+        $stmtProject->bindParam(':request_id', $request, PDO::PARAM_INT);
 
         // Execute SQL request
         try {
@@ -134,12 +135,19 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
             return $errors;
         }
 
+        $sqlLastProject = "SELECT id FROM project ORDER BY id DESC LIMIT 1";
+        $stmtProject = $bdd->prepare($sqlLastProject);
+        $stmtProject->execute();
+
+        // Retrieve last record's id
+        $projectId = $stmtProject->fetchColumn();
+
         //Insert skills for new employee
-        // foreach ($employees as $employee) {
-        //     $stmt = $bdd->prepare("INSERT INTO characterize (employee_id, employee_id) VALUES (:employee_id, :employee_id)");
-        //     $stmt->bindParam(':employee_id', $employeeId);
-        //     $stmt->bindParam(':employee_id', $employee);
-        //     $stmt->execute();
-        // }
+        foreach ($employees as $employee) {
+            $stmt = $bdd->prepare("INSERT INTO realize (project_id, employee_id) VALUES (:employee_id, :employee_id)");
+            $stmt->bindParam(':project_id', $projectId);
+            $stmt->bindParam(':employee_id', $employee);
+            $stmt->execute();
+        }
     }
 }
