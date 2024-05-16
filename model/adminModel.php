@@ -46,11 +46,6 @@ function insertOrUpdateEmployee($id, $firstName, $lastName, $birthdate, $biograp
     global $bdd;
 
     if ($id != null) {
-        // Check if client exists
-        // $stmtEmployeeId = $bdd->prepare("SELECT id FROM employee WHERE employee.first_name = ? AND employee.last_name = ?");
-        // $stmtEmployeeId->execute([$firstName, $lastName]);
-        // $employeeId = $stmtEmployeeId->fetchColumn();
-
         // Check if employee exists
         $sqlEmployee = "SELECT * FROM `employee` WHERE id = :id";
         $stmtEmployee = $bdd->prepare($sqlEmployee);
@@ -66,10 +61,6 @@ function insertOrUpdateEmployee($id, $firstName, $lastName, $birthdate, $biograp
         if (!empty($errors)) {
             return $errors;
         }
-
-        // $stmtTeamId = $bdd->prepare("SELECT id FROM team WHERE id = ?");
-        // $stmtTeamId->execute([$teamId]);
-        // $teamId = $stmtTeamId->fetchColumn();
 
         // Update employee data
         $sqlEmployee = "UPDATE `employee` SET first_name = :first_name, last_name = :last_name, birthdate = :birthdate, biography = :biography, avatar = :avatar, team_id = :team_id, actif = :actif WHERE id = :id";

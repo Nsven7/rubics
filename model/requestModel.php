@@ -39,7 +39,7 @@ function insertRequest($name, $description, $budget, $category)
     $stmtCategoryCheck = $bdd->prepare($querySqlCategory);
     $stmtCategoryCheck->bindParam(":category", $category, PDO::PARAM_INT);
     $stmtCategoryCheck->execute();
-    
+
     $idCategory = $stmtCategoryCheck->fetchColumn();
 
     // Insert new request
@@ -70,4 +70,29 @@ function insertRequest($name, $description, $budget, $category)
     $request = ['request' => $stmt->fetch(PDO::FETCH_ASSOC)];
 
     $_SESSION['client'] += $request;
+}
+
+
+function getRequests()
+{
+    global $bdd;
+
+    // SQL query
+    $sql = "SELECT * FROM request WHERE request.id NOT IN (SELECT request_id FROM project)";
+
+    // Prepare the query
+    $stmt = $bdd->prepare($sql);
+
+    // Execute the query
+    $stmt->execute();
+
+    // Fetch the data
+    $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Check if any requests were found
+    if ($requests) {
+        return $requests;
+    } else {
+        return array(); // No requests without project found
+    }
 }

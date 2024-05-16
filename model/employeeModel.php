@@ -153,7 +153,6 @@ function login($firstName, $lastName, $pwd)
                         'actif' => $employeeDetails['actif'],
                     ]
                 ];
-
             } else {
                 $message = "Mot de passe incorrect";
                 $errors[] = $message;
@@ -181,7 +180,7 @@ function logout()
 {
     session_destroy();
 }
- 
+
 function employees($id)
 {
     global $bdd;
@@ -214,4 +213,29 @@ function employee($id)
     $employee['id'] = $id;
 
     return $employee;
+}
+
+function getActiveEmployeesByTeam()
+{
+
+    // Retrieve db connection
+    global $bdd;
+
+    // Prepare the SQL query
+    $query = "
+    SELECT e.id AS employee_id, e.first_name, e.last_name AS employee_name, t.name AS team_name
+    FROM employee e
+    JOIN team t ON e.team_id = t.id
+    WHERE e.actif = 1
+    ORDER BY t.name, e.first_name
+";
+
+    // Prepare and execute the statement
+    $statement = $bdd->prepare($query);
+    $statement->execute();
+
+    // Fetch the results
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $results;
 }
