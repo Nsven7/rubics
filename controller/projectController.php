@@ -20,14 +20,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $finalized = (isset($_POST['finalized']) == 1 ? 1 : 0);
 
             $employees = $_POST['employees'];
-            
+
             if (isset($_GET['id-request']) && isset($_GET['id-project'])) {
                 $idRequest = intval($_GET['id-request']);
                 $request = request($idRequest);
-                
+
                 $idProject = intval($_GET['id-project']);
                 $project = project($idProject);
-            } else {
+            } elseif (isset($_GET['id-request']) && !isset($_GET['id-project'])) {
+                $idRequest = intval($_GET['id-request']);
                 $project = null;
             }
 
@@ -44,11 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
 
-            
-            
+
+
             $error = insertOrUpdateProject($idRequest, $project, $name, $description, $createdAt, $finishedAt, $finalized, $employees);
 
-            die(var_dump($error));
 
             if (isset($error)) {
                 //Redirection with error message

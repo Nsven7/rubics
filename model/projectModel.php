@@ -1,7 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
-function insertOrUpdateProject($requestId, $projectId, $name, $description, $createdAt, $finishedAt, $finalized, $employees)
+function insertOrUpdateProject($request, $projectId, $name, $description, $createdAt, $finishedAt, $finalized, $employees)
 {
 
     // Check datas received
@@ -48,7 +48,7 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
         $stmtProject = $bdd->prepare($sqlProject);
         $stmtProject->bindParam(":id", $id);
         $stmtProject->bindParam(":name", $name);
-        $stmtProject->bindParam(":request_id", $requestId, PDO::PARAM_INT);
+        $stmtProject->bindParam(":request_id", $request, PDO::PARAM_INT);
         $stmtProject->bindParam(":actif", $actif);
         $stmtProject->execute();
 
@@ -108,14 +108,18 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
             $stmt->execute();
         }
     } else {
+
+        if($finishedAt != null){}
+        else {
+            $finishedAt = null;
+        }
         // Insert user's identifiers
-        $querysql = "INSERT INTO project (request_id, name, description, created_at, finished_at, finalized) VALUES (:request_id, :name, :description, :created_at, :finished_at, :finalized)";
+        $querysql = "INSERT INTO project (name, description, created_at, finished_at, finalized, request_id) VALUES (:name, :description, :created_at, :finished_at, :finalized, :request_id)";
 
         // Prepare SQL request
         $stmtProject = $bdd->prepare($querysql);
 
         // BindParam
-        $stmtProject->bindParam(":request", $request);
         $stmtProject->bindParam(":name", $name);
         $stmtProject->bindParam(":description", $description);
         $stmtProject->bindParam(":created_at", $createdAt);

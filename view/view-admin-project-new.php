@@ -19,11 +19,12 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
 
 
     if (isset($_GET['id-request'])) {
-        $idRequest = intval($_GET['id']);
+        $idRequest = intval($_GET['id-request']);
     }
     if (isset($_GET['id-project'])) {
-        $idProject = intval($_GET['id']);
+        $idProject = intval($_GET['id-project']);
     }
+
 ?>
 
 
