@@ -39,8 +39,6 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     <h2 class="accordionTitle">Projets<span class="accordionIcon"></span></h2>
                     <div class="accordionContent">
                         <ul>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-new.php">Nouveau
-                                    projet</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-index.php">Liste
                                     projets</a></li>
 

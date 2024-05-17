@@ -55,8 +55,12 @@ function getEmployees($projectId)
     return $employees;
 }
 
-function insertOrUpdateProject($requestId, $projectId, $name, $description, $createdAt, $finishedAt, $finalized, $employees)
+function insertOrUpdateProject($projectId, $requestId, $name, $description, $createdAt, $finishedAt, $finalized, $employees)
 {
+
+    $timestamp = time();
+    $createdAt = date("Y-m-d H:i:s", $timestamp);
+    $finishedAt = date("Y-m-d H:i:s", $timestamp);
 
     // Check datas received
     $errors = [];
@@ -68,10 +72,13 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
         $message = "La desciption est obligatoire";
         $errors[] = $message;
     }
-    if (empty($createdAt)) {
-        $message = "La date de lancement est obligatoire";
-        $errors[] = $message;
-    }
+    // if (empty($createdAt)) {
+    //     //$message = "La date de lancement est obligatoire";
+    //     $timestamp = time();
+    //     $createdAt = date("Y-m-d H:i:s", $timestamp);
+
+    //     $errors[] = $message;
+    // }
     if (empty($employees)) {
         $message = "Veuillez sélectionner des employés";
         $errors[] = $message;
@@ -80,13 +87,14 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
     // Retrieve db connection
     global $bdd;
 
+    
     if ($projectId != null) {
         // Check if employee exists
         $sqlProject = "SELECT * FROM `project` WHERE id = :id";
         $stmtProject = $bdd->prepare($sqlProject);
         $stmtProject->bindParam(":id", $projectId, PDO::PARAM_INT);
         $stmtProject->execute();
-        $project = $stmtProject->fetch(PDO::FETCH_ASSOC);
+        $project = $stmtProject->fetchAll(PDO::FETCH_ASSOC);
 
         if ($project === false) {
             $message = "Le projet n'existe pas";
@@ -97,22 +105,23 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
             return $errors;
         }
 
+
         // Update employee data
-        $sqlProject = "UPDATE `project` SET name = :name, description = :description, created_at, :created_at, finished_at, :finished_at, finalized, :finalized WHERE id = :id";
+        $sqlProject = "UPDATE `project` SET name = :name, description = :description, created_at = :created_at, finished_at = :finished_at, finalized = :finalized, WHERE id = :id";
         $stmtProject = $bdd->prepare($sqlProject);
-        $stmtProject->bindParam(":id", $projectId, PDO::PARAM_INT);
+        $stmtProject->bindValue(":id", $projectId, PDO::PARAM_INT);
         $stmtProject->bindParam(":name", $name);
         $stmtProject->bindParam(":description", $description);
         $stmtProject->bindParam(":created_at", $createdAt);
         $stmtProject->bindParam(":finished_at", $finishedAt);
         $stmtProject->bindParam(":finalized", $finalized);
-        $stmtProject->bindParam(":request_id", $requestId, PDO::PARAM_INT);
 
         try {
             $stmtProject->execute();
         } catch (PDOException $e) {
-            $message = "Une erreur s'est produite lors de la mise à jour des données du projet";
-            $errors[] = $message;
+            echo "Exception caught: " . $e->getMessage();
+            //$message = "Une erreur s'est produite lors de la mise à jour des données du projet";
+            //$errors[] = $message;
         }
 
         if (!empty($errors)) {
@@ -121,7 +130,7 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
 
         // First, select the IDs that exist in the table for the current employee
         $stmt = $bdd->prepare("SELECT employee_id FROM realize WHERE project_id = :project_id");
-        $stmt->bindParam(':project_id', $projectId);
+        $stmt->bindParam(':project_id', $projectId, PDO::PARAM_INT);
         $stmt->execute();
         $existingIds = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
@@ -134,7 +143,7 @@ function insertOrUpdateProject($requestId, $projectId, $name, $description, $cre
 
             // If the ID doesn't exist in the table, insert it
             $stmt = $bdd->prepare("INSERT INTO realize (project_id, employee_id) VALUES (:project_id, :employee_id)");
-            $stmt->bindParam(':project_id', $projectId);
+            $stmt->bindParam(':project_id', $projectId, PDO::PARAM_INT);
             $stmt->bindParam(':employee_id', $employee);
             $stmt->execute();
         }

@@ -18,14 +18,12 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
 } else {
     $employees = getActiveEmployeesByTeam();
 
-
-    if (isset($_GET['id-request'])) {
-        $idRequest = intval($_GET['id-request']);
-    }
     if (isset($_GET['id-project'])) {
         $idProject = intval($_GET['id-project']);
         $project = getProjectId(intval($idProject));
         $projectEmployees = getEmployees(intval($idProject));
+    } else {
+        $idRequest = intval($_GET['id-request']);
     }
 
 ?>
@@ -104,8 +102,8 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                 <div class="main-conent">
                     <div class="data-card">
                         <h3>Général</h3>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/projectController.php<?php if (isset($idRequest))
-                                                                                                                    echo "?id-request=" . $idRequest; ?>" method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/projectController.php<?php if (isset($idProject)) echo "?id-project=" . $idProject;
+                                                                                                                else echo "?id-request=" . $idRequest; ?>" method="POST">
 
                             <div class="field-container">
                                 <label for="name">Nom</label>

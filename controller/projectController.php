@@ -18,37 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $createdAt = htmlspecialchars($_POST['createdAt']);
             $finishedAt = htmlspecialchars($_POST['finishedAt']);
             $finalized = (isset($_POST['finalized']) == 1 ? 1 : 0);
-
             $employees = $_POST['employees'];
 
-            if (isset($_GET['id-request']) && isset($_GET['id-project'])) {
-                $idRequest = intval($_GET['id-request']);
-                $request = request($idRequest);
-
-                $idProject = intval($_GET['id-project']);
-                $project = project($idProject);
-            } elseif (isset($_GET['id-request']) && !isset($_GET['id-project'])) {
-                $idRequest = intval($_GET['id-request']);
-                $project = null;
-            }
-
-            if (isset($fileToUpload)) {
-                $name = $firstName . $lastName;
-                $newName = str_replace(' ', '', ucwords($name));
-                $path = $_SERVER['DOCUMENT_ROOT'] . "/Rubics/public/uploads/employees/" . $newName . "/";
-                $avatar = $path . $newName;
-
-                $fileToUpload = uploadFile($path, $newName);
+            if (isset($_GET['id-project'])) {
+                $projectId = intval($_GET['id-project']);
+                $project = getProjectId($projectId);
+                $requestId = intval($project['request_id']);
             } else {
-                if (isset($employee)) {
-                    $avatar = $employee['avatar'];
-                }
+                $requestId = intval($_GET['id-request']);
+                $projectId = null;
             }
 
-
-
-            $error = insertOrUpdateProject($idRequest, $project, $name, $description, $createdAt, $finishedAt, $finalized, $employees);
-
+            $error = insertOrUpdateProject($projectId, $requestId, $name, $description, $createdAt, $finishedAt, $finalized, $employees);
 
             if (isset($error)) {
                 //Redirection with error message
