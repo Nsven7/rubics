@@ -223,12 +223,12 @@ function getActiveEmployeesByTeam()
 
     // Prepare the SQL query
     $query = "
-    SELECT e.id AS employee_id, e.first_name, e.last_name AS employee_name, t.name AS team_name
+    SELECT e.id, e.first_name, e.last_name, t.name AS team_name
     FROM employee e
     JOIN team t ON e.team_id = t.id
     WHERE e.actif = 1
     ORDER BY t.name, e.first_name
-";
+    ";
 
     // Prepare and execute the statement
     $statement = $bdd->prepare($query);

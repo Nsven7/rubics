@@ -4,6 +4,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.ph
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/teamModel.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/requestModel.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
 
 if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");
@@ -23,6 +24,8 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
     }
     if (isset($_GET['id-project'])) {
         $idProject = intval($_GET['id-project']);
+        $project = getProjectId(intval($idProject));
+        $projectEmployees = getEmployees(intval($idProject));
     }
 
 ?>
@@ -49,11 +52,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     <h2 class="accordionTitle">Projets<span class="accordionIcon"></span></h2>
                     <div class="accordionContent">
                         <ul>
-                            <li class="actif-link">Nouveau projet</li>
+                            <li class="actif-link">
+                                <?php echo (isset($_GET['id-project']) ? "Modifier projet" : "Nouveau projet"); ?>
+                            </li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-index.php">Liste
                                     projets</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-relation.php">Assigner
-                                    projet</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-new.php">Nouvelle
                                     catégorie</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
@@ -107,7 +110,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             <div class="field-container">
                                 <label for="name">Nom</label>
                                 <input type="text" id="name" name="name" minlength="3" maxlength="25" autofocus value="<?php if (isset($project)) {
-                                                                                                                            echo $project['last_name'];
+                                                                                                                            echo $project['name'];
                                                                                                                         } ?>">
                             </div>
 
@@ -121,14 +124,14 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             <div class="field-container">
                                 <label for="createdAt">Date de commencement</label>
                                 <input type="date" id="createdAt" name="createdAt" min="1950-01-01" max="2006-12-31" value="<?php if (isset($project)) {
-                                                                                                                                echo $project['birthdate'];
+                                                                                                                                echo $project['created_at'];
                                                                                                                             } ?>">
                             </div>
 
                             <div class="field-container">
                                 <label for="finishedAt">Date de fin</label>
                                 <input type="date" id="finishedAt" name="finishedAt" min="1950-01-01" max="2006-12-31" value="<?php if (isset($project)) {
-                                                                                                                                    echo $project['birthdate'];
+                                                                                                                                    echo $project['finished_at'];
                                                                                                                                 } ?>">
                             </div>
 
@@ -137,11 +140,13 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                 <input type="checkbox" id="finalized" name="finalized" value="1">
                             </div>
 
+
                             <?php foreach ($employees as $employee) {
-                                echo "<label>";
-                                echo "<input type='checkbox' style='margin-right: 1rem' name='employees[]' value='" . $employee['employee_id'] . "'>";
-                                echo $employee['employee_name'] . " (Team: " . $employee['team_name'] . ")";
-                                echo "</label><br>";
+                                $isChecked = isset($projectEmployees) && in_array($employee['id'], $projectEmployees);
+                                $checkbox = '<input type="checkbox" name="employees[]" style="margin-right: 1rem" value="' . $employee['id'] . '"';
+                                $checkbox .= $isChecked ? ' checked' : '';
+                                $checkbox .= '>' . $employee['last_name'] . ' ' . $employee['first_name'] . '<br>';
+                                echo $checkbox;
                             } ?>
 
 

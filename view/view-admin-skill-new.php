@@ -39,8 +39,6 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     <h2 class="accordionTitle">Projets<span class="accordionIcon"></span></h2>
                     <div class="accordionContent">
                         <ul>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-new.php">Nouveau
-                                    projet</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-index.php">Liste
                                     projets</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-relation.php">Assigner
@@ -65,7 +63,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     employé</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-employee-index.php">Liste
                                     employés</a></li>
-                            <li class="actif-link">Nouvelle compétence</li>
+
+                            <li class="actif-link">
+                                <?php echo (isset($skill) ? "Modifier compétence" : "Nouvelle compétence"); ?>
+                            </li>
+
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-index.php">Liste
                                     compétences</a></li>
                         </ul>
