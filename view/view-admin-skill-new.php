@@ -97,7 +97,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             <div class="field-container">
                                 <label for="name">Nom</label>
                                 <?php if (isset($skill)) { ?>
-                                    <input type="hidden" name=skillId" value="<?php echo $skill['id']; ?>">
+                                    <input type="hidden" name="skillId" value="<?php echo $skill['id']; ?>">
                                 <?php } ?>
                                 <input type="text" id="name" name="name" minlength="2" maxlength="25" value="<?php if (isset($skill)) {
                                                                                                                     echo $skill['name'];

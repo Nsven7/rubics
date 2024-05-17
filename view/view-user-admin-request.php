@@ -1,9 +1,9 @@
 <?php
 $title = "Admin - Demande";
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dataModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
 
-if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
+if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");
     exit;
 } elseif (isset($_SESSION['admin'])) {
@@ -13,7 +13,7 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
     header("Location: ../view/view-employee-admin-home.php");
     exit;
 } else {
-    $categories = category();
+    $categories = activeCategories();
     ?>
 
     <div class="container-items">

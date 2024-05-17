@@ -23,14 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $birthdate = htmlspecialchars($_POST['birthdate']);
             $mail = htmlspecialchars(trim($_POST['email']));
             $username = htmlspecialchars(trim(ucfirst($_POST['username'])));
-            $pwd = htmlspecialchars(trim($_POST['password']));
-            $confirmPassword = htmlspecialchars(trim($_POST['confirm_password']));
+            $pwd = md5(htmlspecialchars(trim($_POST['password'])));
+            $confirmPassword = md5(htmlspecialchars(trim($_POST['confirm_password'])));
             $secretQuestion = htmlspecialchars($_POST['secret_question']);
             $answer = htmlspecialchars(trim($_POST['answer']));
 
 
 
             $error = insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username, $pwd, $confirmPassword, $secretQuestion, $answer, $terms);
+
+
 
             if (isset($error)) {
                 //Redirection with error message
@@ -62,9 +64,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Action 'Connexion' from login page    
         case 'Connexion':
             $mail = htmlspecialchars(trim($_POST['email']));
-            $pwd = md5((htmlspecialchars(trim($_POST['password']))));
+            $pwd = md5(htmlspecialchars(trim($_POST['password'])));
 
             $error = login($mail, $pwd);
+
 
             if (isset($error)) {
                 //Redirection with error message

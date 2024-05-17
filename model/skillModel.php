@@ -72,6 +72,28 @@ function getSkills($employeeId)
     return $skills;
 }
 
+function getSkillsEmployee($employeeId)
+{
+    // Retrieve db connection
+    global $bdd;
+
+    // Prepare SQL query
+    $query = "SELECT s.id AS skill_id, s.name AS skill_name
+    FROM characterize c 
+    INNER JOIN skill s ON c.skill_id = s.id 
+    WHERE c.employee_id = :employee_id";
+    
+    $stmt = $bdd->prepare($query);
+    $stmt->bindParam(':employee_id', $employeeId, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $skills = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $skills;
+}
+
+
+
 function insertOrUpdateSkill($name, $actif, $id = null)
 {
     // Check datas received

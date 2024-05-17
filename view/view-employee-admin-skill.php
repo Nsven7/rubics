@@ -13,7 +13,7 @@ if (!isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-user-admin-home.php");
     exit;
 } else {
-    $skills = getSkills($_SESSION['employee']['general']['id']);
+    $skills = getSkillsEmployee($_SESSION['employee']['general']['id']);
     ?>
 
     <div class="container-items">
@@ -63,7 +63,7 @@ if (!isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
                     <div class="data-card">
                         <h3>Tags</h3>
                         <?php foreach ($skills as $skill): ?>
-                            <span class="badge rounded-pill bg-success"><?php echo $skill ?></span>
+                            <span class="badge rounded-pill bg-success"><?php echo $skill['skill_name'] ?></span>
                         <?php endforeach; ?>
                     </div>
                 </div>

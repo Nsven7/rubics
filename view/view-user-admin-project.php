@@ -3,7 +3,7 @@ $title = "Admin - Projet(s)";
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
 require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dataModel.php");
 
-if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
+if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");
     exit;
 } elseif (isset($_SESSION['admin'])) {

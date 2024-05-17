@@ -49,8 +49,6 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
             $errors[] = "Les mots de passe ne correspondent pas";
         } elseif (empty($confirmPassword)) {
             $errors[] = "Veuillez confirmer votre mot de passe";
-        } elseif (strlen($pwd) > 8 and $pwd === $confirmPassword) {
-            $pwd = md5($pwd);
         }
 
         if (empty($secretQuestion)) {

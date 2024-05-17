@@ -15,6 +15,20 @@ function categories()
     return $categories;
 }
 
+function activeCategories()
+{
+    // Retrieve db connection
+    global $bdd;
+
+    $query = "SELECT * FROM category WHERE actif = 1";
+    $stmt = $bdd->prepare($query);
+    $stmt->execute();
+
+    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $categories;
+}
+
 function category($id)
 {
     // Retrieve db connection

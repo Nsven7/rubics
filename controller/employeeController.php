@@ -49,8 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         case 'Connexion':
             $firstName = htmlspecialchars(trim($_POST['firstName']));
             $lastName = htmlspecialchars(trim($_POST['lastName']));
-            //$pwd = md5(htmlspecialchars(trim($_POST['pwd'])));
-            $pwd = $_POST['password'];
+            $pwd = md5(htmlspecialchars(trim($_POST['password'])));
 
             $error = login($firstName, $lastName, $pwd);
 
