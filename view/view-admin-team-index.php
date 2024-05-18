@@ -81,7 +81,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
             </div>
 
             <div class="main">
-                <h1>Employés</h1>
+                <h1>Équipes</h1>
 
                 <div class="main-conent">
                     <div class="data-card">
@@ -103,7 +103,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                         echo "<tr>";
                                         echo "<td>" . $team['id'] . "</td>";
                                         echo "<td>" . $team['name'] . "</td>";
-                                        echo "<td>" . $team['actif'] . "</td>";
+                                        echo "<td style='text-align: center'>" .
+                                            ($team['actif']
+                                                ? "<img src='../public/icon/icon-check.svg' alt='Active'>"
+                                                : "<img src='../public/icon/icon-cross.svg' alt='Inactive'>")
+                                            . "</td>";
                                 ?>
                                         <td style="text-align: center">
                                             <a href="view-admin-team-new.php?id=<?php echo $team['id']; ?>">

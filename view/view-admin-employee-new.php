@@ -94,7 +94,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
             </div>
 
             <div class="main">
-                <h1>Mes informations</h1>
+                <h1>Nouvel employé</h1>
 
                 <div class="main-conent">
                     <div class="data-card">
@@ -176,6 +176,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                 <input type="checkbox" id="actif" name="roleActif" value="1">
                             </div>
 
+                            <h3>Compétences</h3>
                             <?php
                             foreach ($skills as $skill) {
                                 $isChecked = isset($skillsEmployee) && in_array($skill['id'], $skillsEmployee);

@@ -56,6 +56,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
             </div>
 
             <div class="main">
+            <?php if (isset($_GET['message']) && $_GET['message'] == 'success-data-updated') {
+                    echo "<p class='alert alert-success'>Informations mises à jours avec succés</p>";
+                } elseif (isset($_GET['message']) == 'success-logged') {
+                    echo "<p class='alert alert-success'>Bienvenu " . $_SESSION['client']['general']['first_name'] . "</p>";
+                } ?>
                 <h1>Mes informations</h1>
 
                 <div class="main-conent">

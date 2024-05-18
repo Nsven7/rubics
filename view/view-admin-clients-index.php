@@ -108,7 +108,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                         echo "<td>" . $client['birthdate'] . "</td>";
                                         echo "<td>" . $client['created_at'] . "</td>";
                                         echo "<td>" . $client['last_connection'] . "</td>";
-                                        echo "<td>" . $client['actif'] . "</td>";
+                                        echo "<td style='text-align: center'>" .
+                                            ($client['actif']
+                                                ? "<img src='../public/icon/icon-check.svg' alt='Active'>"
+                                                : "<img src='../public/icon/icon-cross.svg' alt='Inactive'>")
+                                            . "</td>";
                                 ?>
                                 <?php
                                         echo "</tr>";

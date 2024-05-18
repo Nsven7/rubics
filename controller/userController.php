@@ -32,34 +32,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $error = insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username, $pwd, $confirmPassword, $secretQuestion, $answer, $terms);
 
-
-
             if (isset($error)) {
                 //Redirection with error message
                 $message = implode(" - ", $error);
-                if (!isset($_SESSION['client'])) {
-                    header("Location: ../view/view-user-admin-home.php?message=" . $message);
-                    exit;
-                } else {
-                    header("Location: ../view/view-user-registration.php?message=" . $message);
-                    exit;
-                }
+                header("Location: ../view/view-user-admin-home.php?message=" . $message);
+                exit;
             } else {
-                if (!isset($_SESSION['client'])) {
-                    $message = "success";
-                    header("Location: ../view/view-login.php?message=" . $message);
-                    exit;
-                } else {
-                    session_destroy();
-                    // Starts a new session
-                    session_start();
-                    // Retrieve user's data from login function
-                    login($mail, $password);
-                    $message = "success";
-                    header("Location: ../view/view-user-admin-home.php?message=" . $message);
-                    exit;
-                }
+                session_destroy();
+                // Starts a new session
+                session_start();
+                // Retrieve employee's data from login function
+                login($firstName, $lastName, $pwd);
+                $message = "success-data-updated";
+                header("Location: ../view/view-user-admin-home.php?message=" . $message);
+                exit;
             }
+
+            // if (isset($error)) {
+            //     //Redirection with error message
+            //     $message = implode(" - ", $error);
+            //     if (!isset($_SESSION['client'])) {
+            //         header("Location: ../view/view-user-admin-home.php?message=" . $message);
+            //         exit;
+            //     } else {
+            //         header("Location: ../view/view-user-registration.php?message=" . $message);
+            //         exit;
+            //     }
+            // } else {
+            //     if (!isset($_SESSION['client'])) {
+            //         $message = "success";
+            //         header("Location: ../view/view-login.php?message=" . $message);
+            //         exit;
+            //     } else {
+            //         session_destroy();
+            //         // Starts a new session
+            //         session_start();
+            //         // Retrieve user's data from login function
+            //         login($mail, $password);
+            //         $message = "success";
+            //         header("Location: ../view/view-user-admin-home.php?message=" . $message);
+            //         exit;
+            //     }
+            // }
 
             // Action 'Connexion' from login page    
         case 'Connexion':
@@ -75,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../view/view-login.php?message=" . $message);
                 exit;
             } else {
-                $message = "success-register";
+                $message = "success-logged";
                 header("Location: ../view/view-user-admin-home.php?message=" . $message);
                 exit;
             }

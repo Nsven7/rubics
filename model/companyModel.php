@@ -1,6 +1,20 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
+function getCompany($id)
+{
+    // Retrieve db connection
+    global $bdd;
+
+    $sql = "SELECT * FROM company WHERE client_id = :client_id";
+    $stmt = $bdd->prepare($sql);
+    $stmt->bindParam(':client_id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $company = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $company;
+}
+
 /**
  * This function inserts company data into the database.
  * It first checks if the required fields are not empty.

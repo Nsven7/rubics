@@ -103,7 +103,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                         echo "<td>" . $category['id'] . "</td>";
                                         echo "<td>" . $category['name'] . "</td>";
                                         echo "<td>" . $category['description'] . "</td>";
-                                        echo "<td>" . $category['actif'] . "</td>";
+                                        echo "<td style='text-align: center'>" .
+                                            ($category['actif']
+                                                ? "<img src='../public/icon/icon-check.svg' alt='Active'>"
+                                                : "<img src='../public/icon/icon-cross.svg' alt='Inactive'>")
+                                            . "</td>";
                                 ?>
                                         <td style="text-align: center">
                                             <a href="view-admin-category-new.php?id=<?php echo $category['id']; ?>">

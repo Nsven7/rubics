@@ -9,23 +9,16 @@
 </head>
 
 <body>
+
     <header>
-        <!-- Start session in header -->
-        <?php session_start();
-
-        // Check wich user is connected
-        if (isset($_SESSION['client']) || isset($_SESSION['employee']) || isset($_SESSION['admin'])) { ?>
-
-            <!-- If it's the case: display "logout" button -->
-            <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
-                <input type="submit" value="Déconnexion" name="submit">
-            </form>
-
-            <!-- Else: display "connextion" button -->
-        <?php
-        } else {
-        ?>
-            <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-home.php">Connexion</a>
-
-        <?php }; ?>
+        <div class="logo">
+            <img class="logo" src="../public/logo_rubics.svg" alt="Logo" />
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Projets</a></li>
+                <li><a href="#">Équipes</a></li>
+                <li><a class="btn secondary" href="register.html">Sign in<span class="arrow"></span></a></li>
+            </ul>
+        </nav>
     </header>

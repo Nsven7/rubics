@@ -43,7 +43,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     projet</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-new.php">Nouvelle
                                     catégorie</a></li>
-                            <li class="actif-link">Catégories</li>
+                                    <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-category-index.php">Catégories</a>
                         </ul>
                     </div>
                 </div>
@@ -72,8 +72,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     <h2 class="accordionTitle">Clients<span class="accordionIcon"></span></h2>
                     <div class="accordionContent">
                         <ul>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-request-index.php">Liste
-                                    demandes</a></li>
+                        <li class="actif-link">Liste demandes</li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-clients-index.php">Liste
                                     clients</a></li>
                         </ul>
@@ -82,7 +81,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
             </div>
 
             <div class="main">
-                <h1>Catégories</h1>
+                <h1>Demandes</h1>
 
                 <div class="main-conent">
                     <div class="data-card">

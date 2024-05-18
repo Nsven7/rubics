@@ -103,7 +103,11 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                         echo "<tr>";
                                         echo "<td>" . $skill['id'] . "</td>";
                                         echo "<td>" . $skill['name'] . "</td>";
-                                        echo "<td>" . $skill['actif'] . "</td>";
+                                        echo "<td style='text-align: center'>" .
+                                            ($skill['actif']
+                                                ? "<img src='../public/icon/icon-check.svg' alt='Active'>"
+                                                : "<img src='../public/icon/icon-cross.svg' alt='Inactive'>")
+                                            . "</td>";
                                 ?>
                                         <td style="text-align: center">
                                             <a href="view-admin-skill-new.php?id=<?php echo $skill['id']; ?>">

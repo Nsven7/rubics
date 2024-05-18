@@ -1,6 +1,7 @@
 <?php
 $title = "Admin - Projet";
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/companyModel.php");
 
 if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");
@@ -11,7 +12,9 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
 } elseif (isset($_SESSION['employee'])) {
     header("Location: ../view/view-employee-admin-home.php");
     exit;
-} else { ?>
+} else { 
+    $id = $_SESSION['client']['general']['id'];
+    $company = getCompany($id)?>
 
     <div class="container-items">
         <div class="container-content">
@@ -72,57 +75,57 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             method="POST">
                             <div class="field-container">
                                 <label for="name">Nom</label>
-                                <input type="text" id="name" name="name" minlength="3" maxlength="25" autofocus value="<?php if (isset($_SESSION['client']['company']['name'])) {
-                                    echo $_SESSION['client']['company']['name'];
+                                <input type="text" id="name" name="name" minlength="3" maxlength="25" autofocus value="<?php if (isset($company)) {
+                                    echo $company['name'];
                                 } ?>">
                             </div>
 
                             <div class="field-container">
                                 <label for="vat">TVA</label>
-                                <input type="text" id="vat" name="vat" minlength="3" maxlength="25" value="<?php if (isset($_SESSION['client']['company']['vat'])) {
-                                    echo $_SESSION['client']['company']['vat'];
+                                <input type="text" id="vat" name="vat" minlength="3" maxlength="25" value="<?php if (isset($company)) {
+                                    echo $company['vat'];
                                 } ?>">
                             </div>
 
                             <div class="field-container">
                                 <label for="country">Country</label>
-                                <input type="text" id="country" name="country" minlength="3" maxlength="25" value="<?php if (isset($_SESSION['client']['company']['country'])) {
-                                    echo $_SESSION['client']['company']['country'];
+                                <input type="text" id="country" name="country" minlength="3" maxlength="25" value="<?php if (isset($company)) {
+                                    echo $company['country'];
                                 } ?>">
                             </div>
 
                             <div class="field-container">
                                 <label for="locality">Localité</label>
-                                <input type="text" id="locality" name="locality" value="<?php if (isset($_SESSION['client']['company']['locality'])) {
-                                    echo $_SESSION['client']['company']['locality'];
+                                <input type="text" id="locality" name="locality" value="<?php if (isset($company)) {
+                                    echo $company['locality'];
                                 } ?>">
                             </div>
 
                             <div class="field-container">
                                 <label for="zipCode">Code Postal</label>
-                                <input type="text" id="zipCode" name="zipCode" minlength="5" maxlength="20" value="<?php if (isset($_SESSION['client']['company']['zip_code'])) {
-                                    echo $_SESSION['client']['company']['zip_code'];
+                                <input type="text" id="zipCode" name="zipCode" minlength="5" maxlength="20" value="<?php if (isset($company)) {
+                                    echo $company['zip_code'];
                                 } ?>">
                             </div>
 
                             <div class="field-container">
                                 <label for="street">Rue</label>
-                                <input type="text" id="street" name="street" minlength="8" maxlength="20" value="<?php if (isset($_SESSION['client']['company']['street'])) {
-                                    echo $_SESSION['client']['company']['street'];
+                                <input type="text" id="street" name="street" minlength="8" maxlength="20" value="<?php if (isset($company)) {
+                                    echo $company['street'];
                                 } ?>">
                             </div>
 
                             <div class="field-container">
                                 <label for="number">Numéro</label>
-                                <input type="number" id="number" name="number" minlength="8" value="<?php if (isset($_SESSION['client']['company']['number'])) {
-                                    echo $_SESSION['client']['company']['number'];
+                                <input type="number" id="number" name="number" minlength="8" value="<?php if (isset($company)) {
+                                    echo $company['number'];
                                 } ?>">
                             </div>
 
                             <div class="field-container">
                                 <label for="comment">Commmentaire</label>
-                                <input type="text" id="comment" name="comment" minlength="8" maxlength="20" value="<?php if (isset($_SESSION['client']['company']['comment'])) {
-                                    echo $_SESSION['client']['company']['comment'];
+                                <input type="text" id="comment" name="comment" minlength="8" maxlength="20" value="<?php if (isset($company)) {
+                                    echo $company['comment'];
                                 } ?>">
                             </div>
 
