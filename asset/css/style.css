@@ -6,8 +6,8 @@
     --clr-primary-third: #525CEB;
     --clr-primary-four: #BFCFE7;
     --ft-h1: 3rem;
-    --ft-h2: 3rem;
-    --ft-h3: 2rem;
+    --ft-h2: 2rem;
+    --ft-h3: 1.5rem;
     --ft-h4: 1.2rem;
     --ft-h5: 0.8rem;
     --ft-h6: 0.7rem;
@@ -18,6 +18,7 @@
     --fw-bold: 700;
 }
 
+/********* General ********/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -28,16 +29,7 @@ html,
 body {
     min-height: 100vh;
     width: 100vw;
-}
-
-h1 {
-    font-size: var(--ft-h1);
-    font-weight: var(--fw-bold);
-    color: var(--clr-white);
-}
-
-.clr-white {
-    color: var(--clr-white);
+    font-family: Poppins, Helvetica, sans-serif;
 }
 
 body {
@@ -56,7 +48,8 @@ header {
     top: 0;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 3rem;
+    height: 100px;
+    padding-inline: 3rem;
     background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(1rem);
     clip-path: inset(0);
@@ -77,20 +70,135 @@ header nav a {
     text-decoration: none;
 }
 
-.container-content {
-    width: 100%;
-    height: 100%;
+.logo {
+    width: 10rem;
 }
 
-.section-one {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: var(--fw-bold);
+    color: var(--clr-white);
+}
+
+h1 {
+    font-size: var(--ft-h1);
+}
+
+h2 {
+    font-size: var(--ft-h2);
+}
+
+h3 {
+    font-size: var(--ft-h3);
+}
+
+p {
+    font-size: var(--ft-body);
+    font-weight: var(--fw-thin);
+}
+
+.clr-white {
+    color: var(--clr-white);
+}
+
+.clr-third {
+    color: var(--clr-primary-third);
+}
+
+.ft-weight-bold {
+    font-weight: var(--fw-bold);
+}
+
+/********* Components ********/
+.cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    color: var(--clr-white);
+    background-color: var(--clr-primary-third);
+    border: 2px solid var(--clr-primary-third);
+    text-decoration: none;
+    padding: 0.7rem 1.5rem;
+    font-size: var(--ft-h5);
+    transition: all .3s ease;
+}
+
+.btn:hover {
+    background: none;
+    color: var(--clr-primary-third);
+}
+
+.btn>.arrow {
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--clr-white);
+    border-bottom: 2px solid var(--clr-white);
+    position: relative;
+    transform: rotate(-45deg);
+    margin-left: 4rem;
+    transition: all .3s ease;
+}
+
+.btn:hover>.arrow {
+    transform: rotate(-45deg) translate(4px, 4px);
+    border-color: var(--clr-primary-third);
+}
+
+.btn.secondary {
+    background: none;
+    color: var(--clr-primary-third);
+}
+
+.btn.secondary:hover {
+    background: var(--clr-primary-third);
+    color: var(--clr-white);
+}
+
+.btn.secondary>.arrow {
+    border-right: 2px solid var(--clr-primary-third);
+    border-bottom: 2px solid var(--clr-primary-third);
+}
+
+.btn.secondary:hover>.arrow {
+    transform: rotate(-45deg) translate(4px, 4px);
+    border-color: var(--clr-primary-white);
+}
+
+.container-content {
+    height: calc(100vh - 100px); /* Subtract the header height */
+    padding-top: 100px; /* Same height as the header to avoid content underlap */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-inline: 10%;
+}
+
+/********* Sections ********/
+
+.section-one,
+.section-two,
+.section-three {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-.intro {
-    padding-left: 10%;
+/********* Section 1 ********/
+.section-two {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1rem);
+    clip-path: inset(0);
 }
 
 .cube {
@@ -98,7 +206,7 @@ header nav a {
 }
 
 .cube img {
-    width: 50%;
+    width: 70%;
     aspect-ratio: 1/1;
 }
 
@@ -107,4 +215,69 @@ header nav a {
     display: flex;
     justify-content: center;
     width: 50%;
+}
+
+/********* Section 2 ********/
+.section-two .left {
+    width: 40%;
+    height: 100%;
+}
+
+.section-two .left div {
+    margin: 20% 0 auto 0;
+}
+
+.section-two .left h2 {
+    margin-bottom: 3rem;
+}
+
+.section-two>.right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-between;
+    gap: 2rem;
+    width: 60%;
+}
+
+.section-two .right div {
+    width: 40%;
+}
+
+.section-two h3 {
+    margin: 1rem 0 1.5rem 0;
+}
+
+.section-two img {
+    aspect-ratio: 1/1;
+    width: 4rem;
+}
+
+/********* Section 3 ********/
+.section-three .left{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-between;
+    gap: 2rem;
+    width: 60%;
+}
+
+.section-three>.right{
+    width: 40%;
+    padding-inline: 5%;
+}
+
+.card-item {
+    width: 40%;
+    padding: 1.5rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1rem);
+    clip-path: inset(0);
+}
+
+.card-item img {
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    width: 50%;
+
 }
