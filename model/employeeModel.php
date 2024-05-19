@@ -239,3 +239,16 @@ function getActiveEmployeesByTeam()
 
     return $results;
 }
+
+function getActiveEmployees()
+{
+    global $bdd;
+
+    $query = "SELECT * FROM employee WHERE actif = 1";
+    $stmt = $bdd->prepare($query);
+    $stmt->execute();
+
+    $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $employees;
+}

@@ -20,7 +20,7 @@ function getActiveAndFinalizedProjects()
     // Retrieve db connection
     global $bdd;
 
-    $query = "SELECT * FROM project WHERE active = 1 AND finalized = 1";
+    $query = "SELECT * FROM project WHERE finalized = 0";
     $stmt = $bdd->prepare($query);
     $stmt->execute();
 

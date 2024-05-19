@@ -142,6 +142,14 @@ input[type="checkbox"] {
     accent-color: var(--clr-primary-third);
 }
 
+select {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    display: inline-block;
+    border-radius: 0.25rem;
+    margin-left: 3rem;
+  }
+
 .custom-select {
     display: block;
     border: none;
@@ -261,8 +269,9 @@ input[type="checkbox"] {
     border-color: var(--clr-primary-white);
 }
 
+
 .container-content {
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
     /* Subtract the header height */
     padding-top: 100px;
     /* Same height as the header to avoid content underlap */
@@ -328,6 +337,14 @@ input[type="checkbox"] {
 
 .cards .card-item {
     max-width: 20%;
+}
+
+.card-item {
+    aspect-ratio: 2/3;
+}
+
+.empty {
+    opacity: 0;
 }
 
 .blur {

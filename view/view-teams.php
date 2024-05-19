@@ -1,9 +1,10 @@
 <?php
 $title = "Projets";
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/teamModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
 
-$projects = getActiveAndFinalizedProjects();
+$employees = getActiveEmployees();
 ?>
 
 <div class="container-items">
@@ -37,53 +38,27 @@ $projects = getActiveAndFinalizedProjects();
 
     <div class="container-content">
         <div class="cards">
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
+            <?php
+            if (isset($employees)) {
+                $employeeCount = count($employees);
+                $divisibleByFour = $employeeCount % 4;
 
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
+                foreach ($employees as $employee) {
+                    echo "<div class='card-item'>";
+                    echo "<img src=" . $employee['avatar'] . " " . "alt='designer icon'>";
+                    echo "<h3>" . $employee['last_name'] . " " . $employee['first_name'] . "</h3>";
+                    echo "<p class='ft-weight-bold clr-third'>" . $employee['biography'] . "</p>";
+                    echo "</div>";
+                }
 
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
-
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
-
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
-
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
-
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
-
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
+                if ($divisibleByFour !== 0) {
+                    $additionalDivs = 4 - $divisibleByFour;
+                    for ($i = 0; $i < $additionalDivs; $i++) {
+                        echo "<div class='card-item empty'></div>";
+                    }
+                }
+            }
+            ?>
         </div>
     </div>
 

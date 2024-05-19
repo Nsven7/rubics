@@ -37,53 +37,28 @@ $projects = getActiveAndFinalizedProjects();
 
     <div class="container-content">
         <div class="cards">
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
+            <?php
+            if (isset($projects)) {
+                $projectCount = count($projects);
+                $divisibleByFour = $projectCount % 4;
 
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
+                foreach ($projects as $project) {
+                    echo "<div class='card-item'>";
+                    echo "<img src='../public/uploads/employees/AliceDoe/AliceDoe.jpg' alt='designer icon'>";
+                    echo "<h3>" . $project['name'] . "</h3>";
+                    echo "<p class='ft-weight-bold clr-third'>" . $project['description'] . "</p>";
+                    echo "</div>";
+                }
 
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
+                if ($divisibleByFour !== 0) {
+                    $additionalDivs = 4 - $divisibleByFour;
+                    for ($i = 0; $i < $additionalDivs; $i++) {
+                        echo "<div class='card-item empty'></div>";
+                    }
+                }
+            }
+            ?>
 
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
-
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
-
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
-
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
-
-            <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
-            </div>
         </div>
     </div>
 

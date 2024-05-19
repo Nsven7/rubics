@@ -20,12 +20,18 @@
             <a href="#">R.G.P.D</a>
         </div>
         <div>
-            <div class="cta">
-                <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Projets<span class="arrow right"></span></a>
+            <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
+                <input class="btn" type="submit" value="Déconnexion" name="submit">
+            </form>
+
+            <!-- <div class="cta">
+                <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Projets<span
+                        class="arrow right"></span></a>
             </div>
             <div class="cta">
-                <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Équipes<span class="arrow right"></span></a>
-            </div>
+                <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Équipes<span
+                        class="arrow right"></span></a>
+            </div> -->
         </div>
     </div>
 </footer>
