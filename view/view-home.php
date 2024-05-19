@@ -1,6 +1,6 @@
 <?php
 $title = "Accueil";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
 ?>
 <div class="container-items">
     <div class="container-content section-one">
@@ -87,5 +87,8 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
                 <a class="btn" href="login.html">Découvrir<span class="arrow right"></span></a>
             </div>
         </div>
-
     </div>
+
+    <?php
+    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+    ?>

@@ -16,8 +16,8 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">Projets</a></li>
-                <li><a href="#">Équipes</a></li>
+                <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Projets</a></li>
+                <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Équipes</a></li>
                 <li><a class="btn secondary" href="register.html">Sign in<span class="arrow"></span></a></li>
             </ul>
         </nav>

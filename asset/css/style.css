@@ -70,6 +70,22 @@ header nav a {
     text-decoration: none;
 }
 
+footer {
+    display: flex;
+    align-items: center;
+    height: 50%;
+    padding-inline: 10%;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1rem);
+    clip-path: inset(0);
+}
+
+.content-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .logo {
     width: 10rem;
 }
