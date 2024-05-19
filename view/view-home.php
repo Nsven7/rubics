@@ -1,6 +1,6 @@
 <?php
 $title = "Accueil";
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
 ?>
 <div class="container-items">
     <div class="container-content section-one">
@@ -20,7 +20,8 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
             <div class="clr-white">
                 <h2>Nos<br>compétences<br>à votre service.</h2>
                 <div class="cta">
-                    <a class="btn" href="login.html">Réalisations<span class="arrow right"></span></a>
+                <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Réalisations<span
+                        class="arrow right"></span></a>
                 </div>
             </div>
         </div>
@@ -84,11 +85,12 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
         <div class="right clr-white">
             <h2>Faîtes connaissance de notre grande famille.</h2>
             <div class="cta">
-                <a class="btn" href="login.html">Découvrir<span class="arrow right"></span></a>
+                <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Découvrir<span
+                        class="arrow right"></span></a>
             </div>
         </div>
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
     ?>

@@ -10,7 +10,7 @@ $projects = getActiveAndFinalizedProjects();
     <div class="container-content section-one">
         <div class="intro">
             <div class="clr-white">
-                <h1>Visionner nos projets et laissez-vous séduire.</h1>
+                <h1>Faites connaissance de nos équipes et compétences de chacun.</h1>
             </div>
         </div>
         <div class="cube">
@@ -20,7 +20,7 @@ $projects = getActiveAndFinalizedProjects();
 
     <div class="banner">
         <div class="left clr-white">
-            <h2>Filtrez par type selon<br> votre projet ou découvrez<br> nos réalisations.</h2>
+            <h2>Filtrez par domaine de<br> compétences et découvrez les<br> prestataires de votre futur projet.</h2>
         </div>
         <div class="right">
             <select name="cars" id="cars" form="carform">
@@ -30,7 +30,7 @@ $projects = getActiveAndFinalizedProjects();
                 <option value="audi">Audi</option>
             </select>
             <div class="cta">
-                <a class="btn" href="login.html">Réalisations<span class="arrow right"></span></a>
+                <a class="btn" href="login.html">Appliquer<span class="arrow right"></span></a>
             </div>
         </div>
     </div>

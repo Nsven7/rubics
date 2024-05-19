@@ -12,13 +12,14 @@
 
     <header>
         <div class="logo">
-            <img class="logo" src="../public/logo_rubics.svg" alt="Logo" />
+            <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-home.php">
+                <img class="logo" src="../public/logo_rubics.svg" alt="Logo" />
+            </a>
         </div>
         <nav>
             <ul>
                 <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Projets</a></li>
                 <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Équipes</a></li>
-                <li><a class="btn secondary" href="register.html">Sign in<span class="arrow"></span></a></li>
             </ul>
         </nav>
     </header>

@@ -15,6 +15,20 @@ function getAllProjects()
     return $projects;
 }
 
+function getActiveAndFinalizedProjects()
+{
+    // Retrieve db connection
+    global $bdd;
+
+    $query = "SELECT * FROM project WHERE active = 1 AND finalized = 1";
+    $stmt = $bdd->prepare($query);
+    $stmt->execute();
+
+    $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $projects;
+}
+
 function getProjectId($id)
 {
     // Retrieve db connection

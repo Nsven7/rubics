@@ -16,6 +16,8 @@
     --fw-light: 300;
     --fw-medium: 600;
     --fw-bold: 700;
+    --mrg-top-1: 1rem;
+    --mrg-top-2: 2rem;
 }
 
 /********* General ********/
@@ -49,7 +51,7 @@ header {
     align-items: center;
     justify-content: space-between;
     height: 100px;
-    padding-inline: 3rem;
+    padding-inline: 10%;
     background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(1rem);
     clip-path: inset(0);
@@ -110,11 +112,73 @@ h2 {
 
 h3 {
     font-size: var(--ft-h3);
+    margin-bottom: 1.5rem;
 }
 
 p {
     font-size: var(--ft-body);
     font-weight: var(--fw-thin);
+}
+
+.form-group {
+    display: flex;
+    gap: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid var(--clr-white);
+    padding: 5px;
+    color: var(--clr-white);
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    accent-color: var(--clr-primary-third);
+}
+
+.custom-select {
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid var(--clr-white);
+    padding: 5px;
+    color: var(--clr-white);
+    width: 100%;
+    /* Additional styles to handle the default appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    /* For better UX */
+}
+
+.custom-select option {
+    color: var(--clr-black);
+    /* Ensures options text is readable */
+}
+
+/* Additional styling for the select dropdown icon */
+.custom-select-wrapper {
+    position: relative;
+    display: block;
+}
+
+.custom-select-wrapper::after {
+    content: '\25BC';
+    /* Downward arrow character */
+    position: absolute;
+    top: 25%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--clr-white);
 }
 
 .clr-white {
@@ -127,6 +191,14 @@ p {
 
 .ft-weight-bold {
     font-weight: var(--fw-bold);
+}
+
+.mrg-top-1 {
+    margin-top: var(--mrg-top-1);
+}
+
+.mrg-top-2 {
+    margin-top: var(--mrg-top-2);
 }
 
 /********* Components ********/
@@ -190,13 +262,78 @@ p {
 }
 
 .container-content {
-    height: calc(100vh - 100px); /* Subtract the header height */
-    padding-top: 100px; /* Same height as the header to avoid content underlap */
+    height: calc(100vh - 100px);
+    /* Subtract the header height */
+    padding-top: 100px;
+    /* Same height as the header to avoid content underlap */
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     padding-inline: 10%;
+}
+
+.container-form {
+    height: calc(100vh - 100px);
+    padding-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-left {
+    width: 60%;
+    padding: 0 10%;
+}
+
+.form-right {
+    width: 40%;
+    padding: 5%;
+    padding-right: 10%;
+
+}
+
+.banner {
+    height: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 10%;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(1rem);
+    clip-path: inset(0);
+}
+
+.banner .left {
+    width: 50%;
+}
+
+.banner .right {
+    width: 40%;
+}
+
+.banner .right {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+}
+
+.cards .card-item {
+    max-width: 20%;
+}
+
+.blur {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1rem);
+    clip-path: inset(0);
 }
 
 /********* Sections ********/
@@ -260,7 +397,7 @@ p {
 }
 
 .section-two h3 {
-    margin: 1rem 0 1.5rem 0;
+    margin-top: 1rem;
 }
 
 .section-two img {
@@ -269,7 +406,7 @@ p {
 }
 
 /********* Section 3 ********/
-.section-three .left{
+.section-three .left {
     display: flex;
     flex-wrap: wrap;
     align-items: space-between;
@@ -277,7 +414,7 @@ p {
     width: 60%;
 }
 
-.section-three>.right{
+.section-three>.right {
     width: 40%;
     padding-inline: 5%;
 }
