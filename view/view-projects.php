@@ -1,9 +1,17 @@
 <?php
 $title = "Projets";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
 
-$projects = getActiveAndFinalizedProjects();
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+} else $id = null;
+
+//$projects = getAllProjects();
+$projects = finalizedProjects($id);
+$categories = activeCategories();
+
 ?>
 
 <div class="container-items">
@@ -23,15 +31,20 @@ $projects = getActiveAndFinalizedProjects();
             <h2>Filtrez par type selon<br> votre projet ou découvrez<br> nos réalisations.</h2>
         </div>
         <div class="right">
-            <select name="cars" id="cars" form="carform">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
-            <div class="cta">
-                <a class="btn" href="login.html">Réalisations<span class="arrow right"></span></a>
-            </div>
+        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/projectController.php" method="POST">
+                <div class="field-container">
+                    <select name="categoryId" id="categoryId">
+                        <?php foreach ($categories as $category) : ?>
+                            <option value="<?php echo $category['id']; ?>" <?php if (isset($id) && $id == $category['id'])
+                                                                                echo 'selected'; ?>>
+                                <?php echo $category['name']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <input class="btn" type="submit" name="submit" value="Appliquer" />
+            </form>
         </div>
     </div>
 
@@ -63,5 +76,5 @@ $projects = getActiveAndFinalizedProjects();
     </div>
 
     <?php
-    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
     ?>

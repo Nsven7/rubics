@@ -76,6 +76,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
             break;
 
+        case 'Appliquer':
+
+            if (isset($_POST['teamId'])) {
+                $teamId = intval($_POST['teamId']);
+                header("Location: ../view/view-teams.php?id=$teamId");
+                exit();
+            } else {
+                header("Location: ../view/view-teams.php");
+                exit();
+            }
+
         default:
             // Default case if none of the above match
             echo "Unknown action!";

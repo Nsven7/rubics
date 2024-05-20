@@ -1,10 +1,16 @@
 <?php
 $title = "Projets";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/teamModel.php");
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/teamModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
 
-$employees = getActiveEmployees();
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+} else $id = null;
+
+$employees = getActiveEmployees($id);
+$teams = activeTeams();
+
 ?>
 
 <div class="container-items">
@@ -24,14 +30,21 @@ $employees = getActiveEmployees();
             <h2>Filtrez par domaine de<br> compétences et découvrez les<br> prestataires de votre futur projet.</h2>
         </div>
         <div class="right">
-            <select name="cars" id="cars" form="carform">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
-            <div class="cta">
-                <a class="btn" href="login.html">Appliquer<span class="arrow right"></span></a>
+            <div class="right">
+                <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php" method="POST">
+                    <div class="field-container">
+                        <select name="teamId" id="teamId">
+                            <?php foreach ($teams as $team) : ?>
+                                <option value="<?php echo $team['id']; ?>" <?php if (isset($id) && $id == $team['id'])
+                                                                                echo 'selected'; ?>>
+                                    <?php echo $team['name']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <input class="btn" type="submit" name="submit" value="Appliquer" />
+                </form>
             </div>
         </div>
     </div>
@@ -40,6 +53,7 @@ $employees = getActiveEmployees();
         <div class="cards">
             <?php
             if (isset($employees)) {
+
                 $employeeCount = count($employees);
                 $divisibleByFour = $employeeCount % 4;
 
@@ -63,5 +77,5 @@ $employees = getActiveEmployees();
     </div>
 
     <?php
-    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
     ?>

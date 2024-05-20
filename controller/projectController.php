@@ -2,9 +2,9 @@
 session_start();
 
 // Include the model file
-require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/adminModel.php");
-require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
-require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/adminModel.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['submit'];
@@ -40,6 +40,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $message = "success-data-added";
                 header("Location: ../view/view-admin-home.php?message=" . $message);
                 exit;
+            }
+
+        case 'Appliquer':
+            if (isset($_POST['categoryId'])) {
+                $categoryId = intval($_POST['categoryId']);
+                header("Location: ../view/view-projects.php?id=$categoryId");
+                exit();
+            } else {
+                header("Location: ../view/view-projects.php");
+                exit();
             }
 
         default:

@@ -240,14 +240,20 @@ function getActiveEmployeesByTeam()
     return $results;
 }
 
-function getActiveEmployees()
+function getActiveEmployees($idTeam = null)
 {
     global $bdd;
 
-    $query = "SELECT * FROM employee WHERE actif = 1";
-    $stmt = $bdd->prepare($query);
-    $stmt->execute();
+    if ($idTeam === null) {
+        $query = "SELECT * FROM employee WHERE actif = 1";
+        $stmt = $bdd->prepare($query);
+    } else {
+        $query = "SELECT * FROM employee WHERE actif = 1 AND team_id = :team_id";
+        $stmt = $bdd->prepare($query);
+        $stmt->bindParam(':team_id', $idTeam, PDO::PARAM_INT);
+    }
 
+    $stmt->execute();
     $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     return $employees;

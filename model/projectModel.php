@@ -15,13 +15,23 @@ function getAllProjects()
     return $projects;
 }
 
-function getActiveAndFinalizedProjects()
+function finalizedProjects($id)
 {
     // Retrieve db connection
     global $bdd;
 
-    $query = "SELECT * FROM project WHERE finalized = 0";
-    $stmt = $bdd->prepare($query);
+    if ($id === null) {
+        $query = "SELECT * FROM project WHERE finalized = 0";
+        $stmt = $bdd->prepare($query);
+    } else {
+        $query = "SELECT p.*
+        FROM project p
+        JOIN request r ON p.request_id = r.id
+        WHERE r.category_id = :category_id AND p.finalized = 0";
+        $stmt = $bdd->prepare($query);
+        $stmt->bindParam(':category_id', $id, PDO::PARAM_INT);
+    }
+
     $stmt->execute();
 
     $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
