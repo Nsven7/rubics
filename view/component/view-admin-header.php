@@ -16,11 +16,13 @@
         // Check wich user is connected
         if (isset($_SESSION['client']) || isset($_SESSION['employee']) || isset($_SESSION['admin'])) { ?>
 
-            <h1>My Company</h1>
+            <div class="logo">
+                <img class="logo" src="../public/logo_rubics.svg" alt="Logo" />
+            </div>
             <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
                 <input class="btn" type="submit" value="Déconnexion" name="submit">
             </form>
-        <?php
+            <?php
         } elseif (isset($_GET['message']) && strpos($_GET['message'], 'requis')) {
             $message = $_GET['message'];
             header("Location: ../view/view-user-registration.php?message=" . $message);
@@ -32,5 +34,6 @@
         } else {
             header("Location: ../view/view-login.php");
             exit;
-        }; ?>
+        }
+        ; ?>
     </header>

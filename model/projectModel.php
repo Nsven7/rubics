@@ -21,13 +21,13 @@ function finalizedProjects($id)
     global $bdd;
 
     if ($id === null) {
-        $query = "SELECT * FROM project WHERE finalized = 0";
+        $query = "SELECT * FROM project WHERE finalized = 1";
         $stmt = $bdd->prepare($query);
     } else {
         $query = "SELECT p.*
         FROM project p
         JOIN request r ON p.request_id = r.id
-        WHERE r.category_id = :category_id AND p.finalized = 0";
+        WHERE r.category_id = :category_id AND p.finalized = 1";
         $stmt = $bdd->prepare($query);
         $stmt->bindParam(':category_id', $id, PDO::PARAM_INT);
     }

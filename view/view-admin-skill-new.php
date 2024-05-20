@@ -1,7 +1,7 @@
 <?php
 $title = "Admin - Home";
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
-require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/skillModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
+require ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/skillModel.php");
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
@@ -41,11 +41,12 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                         <ul>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-index.php">Liste
                                     projets</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-relation.php">Assigner
-                                    projet</a></li>
+                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-media-new.php">Nouveau
+                                    média</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-new.php">Nouvelle
                                     catégorie</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
+                            <li><a
+                                    href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
                             </li>
                         </ul>
                     </div>
@@ -93,22 +94,23 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                 <div class="main-conent">
                     <div class="data-card">
                         <h3>Général</h3>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/skillController.php" method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/skillController.php"
+                            method="POST">
                             <div class="field-container">
                                 <label for="name">Nom</label>
                                 <?php if (isset($skill)) { ?>
                                     <input type="hidden" name="skillId" value="<?php echo $skill['id']; ?>">
                                 <?php } ?>
                                 <input type="text" id="name" name="name" minlength="2" maxlength="25" value="<?php if (isset($skill)) {
-                                                                                                                    echo $skill['name'];
-                                                                                                                } ?>">
+                                    echo $skill['name'];
+                                } ?>">
                             </div>
 
                             <div class="field-container">
                                 <label for="actif">Actif</label>
                                 <input type="checkbox" id="actif" name="actif" value="1" <?php if (isset($skill) && $skill['actif']) {
-                                                                                                echo 'checked';
-                                                                                            } ?>>
+                                    echo 'checked';
+                                } ?>>
                             </div>
 
 

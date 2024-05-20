@@ -331,6 +331,15 @@ a:hover {
     padding-right: 10%;
 }
 
+.form-centre {
+    width: 70%;
+    height: 70%;
+    padding: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .field-container {
     display: flex;
     gap: 2rem;
