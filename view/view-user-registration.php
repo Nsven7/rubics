@@ -70,7 +70,7 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
         </div>
         <div>
           <div class="cta">
-            <input type="submit" class="btn" value="Enregistrer">
+            <input type="submit" name="submit" class="btn" value="Enregistrer">
             <span class="arrow right"></span>
           </div>
         </div>

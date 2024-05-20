@@ -245,10 +245,10 @@ function getActiveEmployees($idTeam = null)
     global $bdd;
 
     if ($idTeam === null) {
-        $query = "SELECT * FROM employee WHERE actif = 1";
+        $query = "SELECT employee.*, team.name AS team_name FROM employee LEFT JOIN team ON employee.team_id = team.id WHERE employee.actif = 1";
         $stmt = $bdd->prepare($query);
     } else {
-        $query = "SELECT * FROM employee WHERE actif = 1 AND team_id = :team_id";
+        $query = "SELECT employee.*, team.name AS team_name FROM employee LEFT JOIN team ON employee.team_id = team.id WHERE employee.actif = 1 AND employee.team_id = :team_id";
         $stmt = $bdd->prepare($query);
         $stmt->bindParam(':team_id', $idTeam, PDO::PARAM_INT);
     }

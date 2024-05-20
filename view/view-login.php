@@ -44,7 +44,7 @@ required>
         </div>
         <div>
           <div class="mrg-top-1 cta">
-            <input type="submit" class="btn" value="Connexion">
+            <input type="submit" name="submit" class="btn" value="Connexion">
             <span class="arrow right"></span>
           </div>
         </div>

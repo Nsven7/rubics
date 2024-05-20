@@ -41,9 +41,8 @@ $teams = activeTeams();
                                 </option>
                             <?php endforeach; ?>
                         </select>
+                        <input class="btn" type="submit" name="submit" value="Appliquer" />
                     </div>
-
-                    <input class="btn" type="submit" name="submit" value="Appliquer" />
                 </form>
             </div>
         </div>
@@ -60,8 +59,10 @@ $teams = activeTeams();
                 foreach ($employees as $employee) {
                     echo "<div class='card-item'>";
                     echo "<img src=" . $employee['avatar'] . " " . "alt='designer icon'>";
+                    //echo "<br><span class='badge badge-primary'>" . $employee['team_name'] . "</span>";
                     echo "<h3>" . $employee['last_name'] . " " . $employee['first_name'] . "</h3>";
-                    echo "<p class='ft-weight-bold clr-third'>" . $employee['biography'] . "</p>";
+                    echo "<p class='ft-weight-bold clr-third'>" . $employee['team_name'] . "</p>";
+                    echo "<p class='ft-weight-bold clr-white'>" . $employee['biography'] . "</p>";
                     echo "</div>";
                 }
 

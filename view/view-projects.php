@@ -31,7 +31,7 @@ $categories = activeCategories();
             <h2>Filtrez par type selon<br> votre projet ou découvrez<br> nos réalisations.</h2>
         </div>
         <div class="right">
-        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/projectController.php" method="POST">
+            <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/projectController.php" method="POST">
                 <div class="field-container">
                     <select name="categoryId" id="categoryId">
                         <?php foreach ($categories as $category) : ?>
@@ -41,9 +41,9 @@ $categories = activeCategories();
                             </option>
                         <?php endforeach; ?>
                     </select>
+                    <input class="btn" type="submit" name="submit" value="Appliquer" />
                 </div>
 
-                <input class="btn" type="submit" name="submit" value="Appliquer" />
             </form>
         </div>
     </div>

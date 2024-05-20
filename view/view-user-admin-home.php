@@ -124,7 +124,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                                     value="<?php echo $_SESSION['client']['identifier']['secret_answer']; ?>">
                             </div>
 
-                            <input class="btn" type="submit" name="submit" value="S'enregistrer" />
+                            <input class="btn" type="submit" name="submit" value="Enregistrer" />
                         </form>
                     </div>
                 </div>

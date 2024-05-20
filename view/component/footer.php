@@ -14,24 +14,32 @@
                 </p>
             </div>
         </div>
-        <div>
+        <div class="link">
             <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Projets</a>
             <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Équipes</a>
             <a href="#">R.G.P.D</a>
         </div>
         <div>
-            <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
-                <input class="btn" type="submit" value="Déconnexion" name="submit">
-            </form>
+            <?php
+            if (isset($_SESSION['client'])) { ?>
+                <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
+                    <input class="btn" type="submit" value="Déconnexion" name="submit">
+                </form>
 
-            <!-- <div class="cta">
-                <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Projets<span
-                        class="arrow right"></span></a>
-            </div>
-            <div class="cta">
-                <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Équipes<span
-                        class="arrow right"></span></a>
-            </div> -->
+            <?php } elseif (isset($_SESSION['employee']) || isset($_SESSION['admin'])) { ?>
+
+                <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php" method="POST">
+                    <input class="btn" type="submit" value="Déconnexion" name="submit">
+                </form>
+
+            <?php } else { ?>
+                <div class="cta">
+                    <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connextion<span class="arrow right"></span></a>
+                </div>
+                <div class="cta">
+                    <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-registration.php">S'enregistrer<span class="arrow right"></span></a>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </footer>
