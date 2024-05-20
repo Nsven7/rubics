@@ -137,7 +137,8 @@ CREATE TABLE IF NOT EXISTS `rubics`.`project` (
   `created_at` TIMESTAMP NOT NULL,
   `finished_at` TIMESTAMP NULL,
   `finalized` TINYINT NOT NULL,
-  `request_id` INT NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `comment` text NULL,
   PRIMARY KEY (`id`, `request_id`),
   INDEX `fk_project_request1_idx` (`request_id` ASC),
   CONSTRAINT `fk_project_request1`

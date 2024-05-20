@@ -286,23 +286,24 @@ CREATE TABLE `project` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `finished_at` timestamp NULL DEFAULT NULL,
   `finalized` tinyint(4) NOT NULL,
-  `request_id` int(11) NOT NULL
+  `request_id` int(11) NOT NULL,
+  `comment` text NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`id`, `name`, `description`, `created_at`, `finished_at`, `finalized`, `request_id`) VALUES
-(1, 'Entreprise de design d\'intérieur', 'Création d\'un logo et d\'une charte graphique', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 1),
-(2, 'Événement caritatif', 'Réalisation d\'une vidéo promotionnelle.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 2),
-(3, 'Entreprise de commerce électronique', 'Développement d\'une application web de gestion des stocks.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 3),
-(4, 'Agence de voyage', 'Conception et développement d\'un site web vitrine.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 4),
-(5, 'Entreprise en cosmétique', 'Modélisation 3D d\'un prototype de produit.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 5),
-(6, 'Marque de vêtements', 'Montage vidéo d\'une publicité.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 6),
-(7, 'Nouvelle application mobile', 'Stratégie de marketing numérique.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 7),
-(8, 'Entreprise de restauration', 'Création de contenu pour les réseaux sociaux.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 8),
-(9, 'Entreprise en technologie', 'Refonte de l\'identité visuelle.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 9);
+INSERT INTO `project` (`id`, `name`, `description`, `created_at`, `finished_at`, `finalized`, `request_id`, `comment`) VALUES
+(1, 'Entreprise de design d\'intérieur', 'Création d\'un logo et d\'une charte graphique', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 1, 'Nous sommes extrêmement satisfaits du logo et de la charte graphique créés par l\'équipe. Ils ont capturé parfaitement l\'essence de notre marque et ont su transmettre notre message de manière visuellement saisissante.'),
+(2, 'Événement caritatif', 'Réalisation d\'une vidéo promotionnelle.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 2, 'La vidéo promotionnelle réalisée a dépassé toutes nos attentes. Elle a été un élément clé dans notre stratégie de marketing et a suscité un fort engagement de la part de notre audience. Bravo pour le travail exceptionnel!'),
+(3, 'Entreprise de commerce électronique', 'Développement d\'une application web de gestion des stocks.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 3, 'L\'application web développée par l\'équipe a grandement facilité nos processus internes. Son interface intuitive et ses fonctionnalités robustes ont considérablement amélioré notre efficacité opérationnelle. Merci pour cette solution sur mesure!'),
+(4, 'Agence de voyage', 'Conception et développement d\'un site web vitrine.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 4, 'Le site web vitrine conçu et développé correspond parfaitement à notre image de marque. Son design épuré et ses performances exceptionnelles ont contribué à renforcer notre présence en ligne et à attirer de nouveaux clients.'),
+(5, 'Entreprise en cosmétique', 'Modélisation 3D d\'un prototype de produit.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 5, 'La modélisation 3D du prototype de notre produit a été réalisée avec une précision remarquable. Les détails et la qualité du rendu ont permis à notre équipe de mieux visualiser le produit final et d\'apporter des améliorations significatives. Un travail impeccable!'),
+(6, 'Marque de vêtements', 'Montage vidéo d\'une publicité.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 6, 'La publicité montée par l\'équipe a été un véritable succès. Son dynamisme, sa créativité et sa capacité à captiver l\'attention ont généré un retour positif de la part de notre audience. Merci pour cette collaboration fructueuse!'),
+(7, 'Nouvelle application mobile', 'Stratégie de marketing numérique.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 7, 'La stratégie de marketing numérique mise en place a été extrêmement efficace pour accroître notre visibilité en ligne et générer des leads qualifiés. Les résultats obtenus ont dépassé nos attentes et ont contribué à la croissance de notre entreprise.'),
+(8, 'Entreprise de restauration', 'Création de contenu pour les réseaux sociaux.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 8, 'Le contenu créé pour nos réseaux sociaux a été très bien reçu par notre communauté. Il a réussi à susciter de l\'engagement et à renforcer notre présence en ligne. Nous sommes ravis de la qualité et de la pertinence du contenu produit.'),
+(9, 'Entreprise en technologie', 'Refonte de l\'identité visuelle.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 9, 'La refonte de notre identité visuelle a été un véritable coup de maître. L\'équipe a su moderniser notre image de marque tout en préservant nos valeurs fondamentales. Cette nouvelle identité visuelle reflète parfaitement qui nous sommes et où nous allons.');
 
 -- --------------------------------------------------------
 

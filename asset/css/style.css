@@ -129,7 +129,7 @@ h2 {
 
 h3 {
     font-size: var(--ft-h3);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 p {
@@ -220,6 +220,14 @@ select {
 
 .ft-weight-medium {
     font-weight: var(--fw-medium);
+}
+
+.ft-weight-light {
+    font-weight: var(--fw-light);
+}
+
+.ft-weight-thin {
+    font-weight: var(--fw-thin);
 }
 
 .mrg-top-1 {
@@ -397,6 +405,20 @@ a:hover {
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(1rem);
     clip-path: inset(0);
+}
+
+.project-image {
+    width: 60%;
+}
+
+.project-image img {
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+.project-details {
+    padding-left: 5%;
+    width: 40%;
 }
 
 /********* Sections ********/

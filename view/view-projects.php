@@ -1,12 +1,13 @@
 <?php
 $title = "Projets";
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
-} else $id = null;
+} else
+    $id = null;
 
 //$projects = getAllProjects();
 $projects = finalizedProjects($id);
@@ -34,9 +35,9 @@ $categories = activeCategories();
             <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/projectController.php" method="POST">
                 <div class="field-container">
                     <select name="categoryId" id="categoryId">
-                        <?php foreach ($categories as $category) : ?>
+                        <?php foreach ($categories as $category): ?>
                             <option value="<?php echo $category['id']; ?>" <?php if (isset($id) && $id == $category['id'])
-                                                                                echo 'selected'; ?>>
+                                   echo 'selected'; ?>>
                                 <?php echo $category['name']; ?>
                             </option>
                         <?php endforeach; ?>
@@ -56,10 +57,13 @@ $categories = activeCategories();
                 $divisibleByFour = $projectCount % 4;
 
                 foreach ($projects as $project) {
+
                     echo "<div class='card-item'>";
+                    echo "<a href='view-project-details.php?id=" . $project['id'] . "'>";
                     echo "<img src='../public/uploads/employees/AliceDoe/AliceDoe.jpg' alt='designer icon'>";
                     echo "<h3>" . $project['name'] . "</h3>";
                     echo "<p class='ft-weight-bold clr-third'>" . $project['description'] . "</p>";
+                    echo "</a>";
                     echo "</div>";
                 }
 
@@ -76,5 +80,5 @@ $categories = activeCategories();
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
     ?>
