@@ -77,13 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail = htmlspecialchars(trim($_POST['email']));
             $secretQuestion = htmlspecialchars($_POST['secret_question']);
             $answer = htmlspecialchars(trim($_POST['answer']));
-            $error = null;
 
-            $client = reinitialize($mail, $secretQuestion, $answer, $error);
+            $client = reinitialize($mail, $secretQuestion, $answer);
 
 
-            if ($error != null) {
-                die(var_dump($client));
+            if ($client == "bad-creditentials") {
                 //Redirection with error message
                 $message = "bad-creditential";
                 header("Location: ../view/view-user-password.php?message=" . $message);

@@ -8,7 +8,7 @@ $projects = getAllProjects();
 <div class="container-items">
     <div class="container-content section-one">
         <div class="intro">
-            <div class="clr-white">
+            <div>
                 <h1>Rubics, l'agence multi-facettes aux servvices de votre projet.</h1>
                 <p>Charte graphique, développement web, print, vidéo... Nous vous accompagnons dans votre projet.</p>
             </div>
@@ -20,14 +20,14 @@ $projects = getAllProjects();
 
     <div class="container-content section-two">
         <div class="left">
-            <div class="clr-white">
+            <div>
                 <h2>Nos<br>compétences<br>à votre service.</h2>
                 <div class="cta">
                     <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Réalisations<span class="arrow right"></span></a>
                 </div>
             </div>
         </div>
-        <div class="right clr-white">
+        <div class="right">
             <div>
                 <img src="../public/icon/icon-designer.svg" alt="designer icon">
                 <h3>Infographie</h3>
@@ -84,7 +84,7 @@ $projects = getAllProjects();
                 <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
             </div>
         </div>
-        <div class="right clr-white">
+        <div class="right">
             <h2>Faîtes connaissance de notre grande famille.</h2>
             <div class="cta">
                 <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Découvrir<span class="arrow right"></span></a>

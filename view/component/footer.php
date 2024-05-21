@@ -17,7 +17,7 @@
         <div class="link">
             <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Projets</a>
             <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Équipes</a>
-            <a href="#">R.G.P.D</a>
+            <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-rgpd.php">R.G.P.D</a>
         </div>
         <div>
             <?php

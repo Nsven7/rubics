@@ -15,7 +15,7 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
 
   <div class="container-form section-one">
     <div class="form-left">
-      <div class="clr-white">
+      <div>
         <h1>Déjà inscrit ?</h1>
         <p>Connectez-vous à votre compte pour suivre<br>
           et gérer vos projets.

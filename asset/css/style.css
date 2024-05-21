@@ -18,6 +18,7 @@
     --fw-bold: 700;
     --mrg-top-1: 1rem;
     --mrg-top-2: 2rem;
+    --mrg-top-3: 3rem;
 }
 
 /********* General ********/
@@ -41,6 +42,7 @@ body {
     background-size: cover;
     margin: 0;
     padding: 0;
+    color: var(--clr-white);
 }
 
 header {
@@ -145,7 +147,8 @@ p {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"]
+select {
     display: block;
     border: none;
     outline: none;
@@ -160,14 +163,6 @@ input[type="checkbox"] {
     accent-color: var(--clr-primary-third);
 }
 
-select {
-    max-width: 100%;
-    border: 1px solid #ccc;
-    display: inline-block;
-    border-radius: 0.25rem;
-    margin-left: 3rem;
-  }
-
 .custom-select {
     display: block;
     border: none;
@@ -175,20 +170,15 @@ select {
     background: none;
     border-bottom: 1px solid var(--clr-white);
     padding: 5px;
-    color: var(--clr-white);
+    color: #8993b7;
     width: 100%;
-    margin: 0;
     /* Additional styles to handle the default appearance */
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     cursor: pointer;
+    border-radius: 0;
     /* For better UX */
-}
-
-.custom-select option {
-    color: var(--clr-black);
-    /* Ensures options text is readable */
 }
 
 /* Additional styling for the select dropdown icon */
@@ -201,7 +191,7 @@ select {
     content: '\25BC';
     /* Downward arrow character */
     position: absolute;
-    top: 25%;
+    top: 50%;
     right: 10px;
     transform: translateY(-50%);
     pointer-events: none;
@@ -238,6 +228,10 @@ select {
 
 .mrg-top-2 {
     margin-top: var(--mrg-top-2);
+}
+
+.mrg-top-3 {
+    margin-top: var(--mrg-top-3);
 }
 
 a {
@@ -352,6 +346,11 @@ a:hover {
     width: 100%;
 }
 
+.container-centre {
+    width: 80%;
+    padding: 10%;
+}
+
 .container-form {
     height: calc(100vh - 100px);
     padding-top: 100px;
@@ -403,9 +402,6 @@ a:hover {
 
 .banner .right {
     width: 40%;
-}
-
-.banner .right {
     display: flex;
     justify-content: space-between;
 }

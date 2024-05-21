@@ -15,7 +15,7 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
 
   <div class="container-form section-one">
     <div class="form-left">
-      <div class="clr-white">
+      <div>
         <h1>Pas de compte ?</h1>
         <p>Inscrivez-vous pour accéder à toutes les fonctionnalités de notre service.<br>
           Gérez vos projets au même endroit.
@@ -66,7 +66,7 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
 
         <div>
           <span class="terms"><input type="checkbox" id="terms" name="terms">
-            <label class="clr-white" for="terms">J'accepte les termes et conditions</label>
+            <label for="terms">J'accepte les termes et conditions</label>
         </div>
         <div>
           <div class="cta">

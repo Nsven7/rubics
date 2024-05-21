@@ -18,14 +18,14 @@ if (isset($_SESSION['admin'])) {
         <div class="container-content section-one">
             <div class="form-centre blur">
                 <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
-                    <?php if (isset($_GET['message']) && $_GET['message'] == "bad-creditential" ) {
+                    <?php if (isset($_GET['message']) && $_GET['message'] == "bad-creditential") {
                         echo "<p class='alert alert-danger'>Informations incorrectes</p>";
                     } ?>
                     <div class="form-group">
                         <input type="email" id="email" name="email" placeholder="Adresse mail" maxlength="100">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mrg-top-3">
                         <div class="custom-select-wrapper">
                             <select class="custom-select" id="secret_question" name="secret_question" placeholder="Question secrète">
                                 <option value="">Select...</option>
@@ -35,14 +35,18 @@ if (isset($_SESSION['admin'])) {
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mrg-top-3">
                         <input type="text" id="answer" name="answer" placeholder="Réponse" minlength="2" maxlength="100">
                     </div>
 
-                    <div class="mrg-top-1 cta">
+                    <div class="mrg-top-3 cta">
                         <input type="submit" name="submit" class="btn" value="Réinitialiser">
                     </div>
                 </form>
             </div>
         </div>
-    <?php } ?>
+
+
+    <?php
+    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+} ?>

@@ -18,7 +18,7 @@ $categories = activeCategories();
 <div class="container-items">
     <div class="container-content section-one">
         <div class="intro">
-            <div class="clr-white">
+            <div>
                 <h1>Visionner nos projets et laissez-vous séduire.</h1>
             </div>
         </div>
@@ -28,7 +28,7 @@ $categories = activeCategories();
     </div>
 
     <div class="banner">
-        <div class="left clr-white">
+        <div class="left">
             <h2>Filtrez par type selon<br> votre projet ou découvrez<br> nos réalisations.</h2>
         </div>
         <div class="right">

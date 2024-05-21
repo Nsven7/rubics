@@ -20,7 +20,7 @@ $employees = getEmployeesOnProject($id);
 <div class="container-items">
     <div class="container-content section-one">
         <div class="intro">
-            <div class="clr-white">
+            <div>
                 <h1>Visionnez nos projets<br>et laissez-vous séduire.</h1>
             </div>
         </div>
@@ -36,7 +36,7 @@ $employees = getEmployeesOnProject($id);
         <div class="project-details">
             <?php if (isset($project)) {
                 echo "<h2>" . $project['name'] . "</h2>";
-                echo "<p class='clr-white ft-weight-bold'>" . $project['description'] . "</p><br><br>";
+                echo "<p class='ft-weight-bold'>" . $project['description'] . "</p><br><br>";
             }
 
             if (isset($employees)) {
@@ -47,16 +47,16 @@ $employees = getEmployeesOnProject($id);
                     $names[] = $employee['first_name'];
                 }
                 $teams = array_unique($teams);
-                $headingTeam = count($teams) > 1 ? "<h3 class='clr-white'>Équipes</h3>" : "<h3 class='clr-white'>Équipe</h3>";
+                $headingTeam = count($teams) > 1 ? "<h3>Équipes</h3>" : "<h3>Équipe</h3>";
                 echo $headingTeam;
-                echo "<p class='clr-white ft-weight-thin'>" . implode(", ", $teams) . "</p><br>";
+                echo "<p class='ft-weight-thin'>" . implode(", ", $teams) . "</p><br>";
 
-                $headingEmployee = count($employees) > 1 ? "<h3 class='clr-white'>Membres</h3>" : "<h3 class='clr-white'>Membre</h3>";
+                $headingEmployee = count($employees) > 1 ? "<h3>Membres</h3>" : "<h3>Membre</h3>";
                 echo $headingEmployee;
-                echo "<p class='clr-white ft-weight-thin'>" . implode(", ", $names) . "</p><br>";
+                echo "<p class='ft-weight-thin'>" . implode(", ", $names) . "</p><br>";
 
                 echo "<h3>Retour client</h3>";
-                echo "<p class='clr-white ft-weight-thin'>" . $project['comment'] . "</p><br>";
+                echo "<p class='ft-weight-thin'>" . $project['comment'] . "</p><br>";
             }
             ?>
         </div>

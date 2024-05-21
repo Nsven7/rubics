@@ -253,7 +253,7 @@ function logout()
     session_destroy();
 }
 
-function reinitialize($mail, $secretQuestion, $answer, $error = null)
+function reinitialize($mail, $secretQuestion, $answer)
 {
     global $bdd;
 
@@ -266,17 +266,12 @@ function reinitialize($mail, $secretQuestion, $answer, $error = null)
     try {
         $stmtClient->execute();
     } catch (PDOException $e) {
-        //echo "Exception caught: " . $e->getMessage();
-        $error = "Adresse mail non valide";
-    }
-
-    if ($error != null) {
-        return $error;
+        echo "Exception caught: " . $e->getMessage();
+        return;
     }
 
     // Retrieves client data from the database in an array
     $client = $stmtClient->fetch(PDO::FETCH_ASSOC);
-
 
     if ($client['secret_question'] === $secretQuestion && ($client['secret_answer'] === $answer)) {
         $_SESSION['client'] = [
@@ -303,7 +298,7 @@ function reinitialize($mail, $secretQuestion, $answer, $error = null)
     }
 
     else {
-        $error = "Informations incorrectes";
+        $error = "bad-creditentials";
         return $error;
     }
 }

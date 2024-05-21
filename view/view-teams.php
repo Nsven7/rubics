@@ -16,7 +16,7 @@ $teams = activeTeams();
 <div class="container-items">
     <div class="container-content section-one">
         <div class="intro">
-            <div class="clr-white">
+            <div>
                 <h1>Faites connaissance de nos équipes et compétences de chacun.</h1>
             </div>
         </div>
@@ -26,7 +26,7 @@ $teams = activeTeams();
     </div>
 
     <div class="banner">
-        <div class="left clr-white">
+        <div class="left">
             <h2>Filtrez par domaine de<br> compétences et découvrez les<br> prestataires de votre futur projet.</h2>
         </div>
         <div class="right">
@@ -62,7 +62,7 @@ $teams = activeTeams();
                     //echo "<br><span class='badge badge-primary'>" . $employee['team_name'] . "</span>";
                     echo "<h3>" . $employee['last_name'] . " " . $employee['first_name'] . "</h3>";
                     echo "<p class='ft-weight-bold clr-third'>" . $employee['team_name'] . "</p>";
-                    echo "<p class='ft-weight-bold clr-white'>" . $employee['biography'] . "</p>";
+                    echo "<p class='ft-weight-bold'>" . $employee['biography'] . "</p>";
                     echo "</div>";
                 }
 
