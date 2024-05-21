@@ -147,7 +147,7 @@ p {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] select {
+input[type="password"], select {
     display: block;
     border: none;
     outline: none;
@@ -570,8 +570,13 @@ q {
     .cube {
         display: none;
     }
+    
+    .intro {
+        width: 100%;
+        flex-direction: column;
+        padding: 20% 10%;
+    }
 
-    .intro,
     .section-two .left,
     .section-two .right {
         width: 100%;
@@ -653,6 +658,7 @@ q {
     }
 
     .container-form {
+        padding: 10% 0;
         flex-direction: column;
         padding-top: 100px;
     }
@@ -663,6 +669,7 @@ q {
 
     .form-left, .form-right {
         width: 100%;
+        padding: 20% 10%;
     }
 
     .form-group {

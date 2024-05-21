@@ -13,7 +13,7 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
   exit;
 } else { ?>
 
-  <div class="container-form">
+  <div class="container-form section-one">
     <div class="form-left">
       <div>
         <h1>Pas de compte ?</h1>
