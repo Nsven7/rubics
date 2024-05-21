@@ -57,7 +57,7 @@ $teams = activeTeams();
                 $divisibleByFour = $employeeCount % 4;
 
                 foreach ($employees as $employee) {
-                    echo "<div class='card-item'>";
+                    echo "<div class='card-item rectangle'>";
                     echo "<img src=" . $employee['avatar'] . " " . "alt='designer icon'>";
                     //echo "<br><span class='badge badge-primary'>" . $employee['team_name'] . "</span>";
                     echo "<h3>" . $employee['last_name'] . " " . $employee['first_name'] . "</h3>";

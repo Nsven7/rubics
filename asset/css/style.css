@@ -32,6 +32,7 @@ body {
     min-height: 100vh;
     width: 100vw;
     font-family: Poppins, Helvetica, sans-serif;
+    background-color: #070F2B;
 }
 
 body {
@@ -250,6 +251,37 @@ a:hover {
 }
 
 /********* Components ********/
+.mySlides {
+    display: none;
+    width: 100%;
+    padding-inline: 25%;
+    text-align: left;
+  }
+  
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    color: var(--clr-white);
+    font-size: 100px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    position: absolute;
+    right: 10%;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* Add an italic font style to all quotes */
+  q {font-style: italic;}
+  
+  /* Add a blue color to the author */
+  .author {color: cornflowerblue;}
+
+
 .cta {
     display: flex;
     align-items: center;
@@ -389,7 +421,7 @@ a:hover {
     max-width: 20%;
 }
 
-.card-item {
+.rectangle {
     aspect-ratio: 2/3;
 }
 

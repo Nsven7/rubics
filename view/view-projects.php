@@ -58,7 +58,7 @@ $categories = activeCategories();
 
                 foreach ($projects as $project) {
 
-                    echo "<div class='card-item'>";
+                    echo "<div class='card-item rectangle'>";
                     echo "<a href='view-project-details.php?id=" . $project['id'] . "'>";
                     echo "<img src='../public/uploads/employees/AliceDoe/AliceDoe.jpg' alt='designer icon'>";
                     echo "<h3>" . $project['name'] . "</h3>";

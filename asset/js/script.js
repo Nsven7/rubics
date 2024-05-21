@@ -1,15 +1,26 @@
-const accordionTitles = document.querySelectorAll(".accordionTitle");
+var slideIndex = 1;
+showSlides(slideIndex);
 
-accordionTitles.forEach((accordionTitle) => {
-  accordionTitle.addEventListener("click", () => {
-    if (accordionTitle.classList.contains("is-open")) {
-      accordionTitle.classList.remove("is-open");
-    } else {
-      const accordionTitlesWithIsOpen = document.querySelectorAll(".is-open");
-      accordionTitlesWithIsOpen.forEach((accordionTitleWithIsOpen) => {
-        accordionTitleWithIsOpen.classList.remove("is-open");
-      });
-      accordionTitle.classList.add("is-open");
-    }
-  });
-});
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}

@@ -43,5 +43,6 @@
         </div>
     </div>
 </footer>
+<script src="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/asset/js/script.js"></script>
 </body>
 <?php ?>
