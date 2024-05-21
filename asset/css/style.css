@@ -147,8 +147,7 @@ p {
 
 input[type="text"],
 input[type="email"],
-input[type="password"]
-select {
+input[type="password"] select {
     display: block;
     border: none;
     outline: none;
@@ -246,35 +245,40 @@ a:hover {
 }
 
 /********* Components ********/
-.mySlides {
+.slide {
     display: none;
     width: 100%;
     padding-inline: 25%;
     text-align: left;
-  }
-  
-  /* Next & previous buttons */
-  .prev, .next {
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
     cursor: pointer;
     position: absolute;
     color: var(--clr-white);
     font-size: 100px;
     border-radius: 0 3px 3px 0;
     user-select: none;
-  }
-  
-  /* Position the "next button" to the right */
-  .next {
+}
+
+/* Position the "next button" to the right */
+.next {
     position: absolute;
     right: 10%;
     border-radius: 3px 0 0 3px;
-  }
-  
-  /* Add an italic font style to all quotes */
-  q {font-style: italic;}
-  
-  /* Add a blue color to the author */
-  .author {color: cornflowerblue;}
+}
+
+/* Add an italic font style to all quotes */
+q {
+    font-style: italic;
+}
+
+/* Add a blue color to the author */
+.author {
+    color: cornflowerblue;
+}
 
 
 .cta {
@@ -352,7 +356,7 @@ a:hover {
 }
 
 .container-form {
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
     padding-top: 100px;
     display: flex;
     align-items: center;
@@ -458,7 +462,7 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    min-height: 100%;
 }
 
 /********* Section 1 ********/
@@ -547,4 +551,121 @@ a:hover {
     border-radius: 50%;
     width: 50%;
 
+}
+
+@media screen and (max-width: 600px) {
+
+    body {
+        text-align: center;
+    }
+
+    .section-one,
+    .section-two,
+    .section-three {
+        flex-direction: column;
+        min-height: 100%;
+        width: 100%;
+    }
+
+    .cube {
+        display: none;
+    }
+
+    .intro,
+    .section-two .left,
+    .section-two .right {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .section-two .left div,
+    .section-two .right div {
+        width: 100%;
+        margin: 0;
+    }
+
+    .section-two .left h2 {
+        margin: 0;
+    }
+
+    .section-three {
+        width: 100%;
+        flex-direction: column-reverse;
+    }
+
+    .section-three .left,
+    .section-three .right {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    /********* Components ********/
+    .cards {
+        flex-direction: column;
+    }
+
+    .cards .card-item {
+        max-width: 100%;
+        aspect-ratio: 3/4;
+    }
+
+    .card-item {
+        width: 100%;
+    }
+
+    .slider,
+    .content-footer .link, .empty {
+        display: none;
+    }
+
+    .content-footer {
+        flex-direction: column;
+    }
+
+    .content-footer .logo {
+        width: 100%;
+    }
+
+    .cta {
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .banner .left {
+        display: none;
+    }
+
+    .banner .right {
+        width: 100%;
+    }
+
+    .banner .right form {
+        width: 100%;
+    }
+
+    .banner .right form select {
+        height: 50px;
+    }
+
+    .banner .right div {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .container-form {
+        flex-direction: column;
+        padding-top: 100px;
+    }
+
+    .container-form .blur {
+        padding-inline: 10%;
+    }
+
+    .form-left, .form-right {
+        width: 100%;
+    }
+
+    .form-group {
+        flex-direction: column;
+    }
 }

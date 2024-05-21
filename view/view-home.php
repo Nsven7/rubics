@@ -91,11 +91,11 @@ $projects = getAllProjects();
             </div>
         </div>
     </div>
-    <div class="banner">
+    <div class="slider">
 
         <?php
         foreach ($projects as $project) {
-            echo "<div class='mySlides'>";
+            echo "<div class='slide'>";
             echo "<h3>" . $project['name'] . "</h3><br>";
             echo "<p class='clr-white'>" . $project['comment'] . "</p>";
 

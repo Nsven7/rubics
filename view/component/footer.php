@@ -7,7 +7,7 @@
             </div>
             <div class="clr-white">
                 <p>
-                    Siège social<br>
+                    <strong>Siège social</strong><br>
                     59 rue de Caraman<br>
                     7300 Boussu - Belgique<br>
                     0032 (0)472 45 07 03
@@ -37,7 +37,7 @@
                     <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connextion<span class="arrow right"></span></a>
                 </div>
                 <div class="cta">
-                    <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-registration.php">S'enregistrer<span class="arrow right"></span></a>
+                    <a class="btn secondary" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-registration.php">S'enregistrer<span class="arrow right"></span></a>
                 </div>
             <?php } ?>
         </div>
