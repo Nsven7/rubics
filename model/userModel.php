@@ -1,5 +1,5 @@
 <?php
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
 /**
  * This function inserts user data into the database.
@@ -251,6 +251,61 @@ function login($mail, $pwd)
 function logout()
 {
     session_destroy();
+}
+
+function reinitialize($mail, $secretQuestion, $answer, $error = null)
+{
+    global $bdd;
+
+    // Retrieve client with identifiers
+    $sqlClient = "SELECT * FROM `client` join identifier where client.identifier_id = identifier.id AND mail = :mail";
+    $stmtClient = $bdd->prepare($sqlClient);
+    $stmtClient->bindParam(":mail", $mail);
+
+    // Execute SQL request
+    try {
+        $stmtClient->execute();
+    } catch (PDOException $e) {
+        //echo "Exception caught: " . $e->getMessage();
+        $error = "Adresse mail non valide";
+    }
+
+    if ($error != null) {
+        return $error;
+    }
+
+    // Retrieves client data from the database in an array
+    $client = $stmtClient->fetch(PDO::FETCH_ASSOC);
+
+
+    if ($client['secret_question'] === $secretQuestion && ($client['secret_answer'] === $answer)) {
+        $_SESSION['client'] = [
+            'general' => [
+                'id' => $client['id'],
+                'first_name' => $client['first_name'],
+                'last_name' => $client['last_name'],
+                'birthdate' => $client['birthdate'],
+                'created_at' => $client['created_at'],
+                'last_connection' => $client['last_connection'],
+                'actif' => $client['actif'],
+                'identifier_id' => $client['identifier_id'],
+
+            ],
+            'identifier' => [
+                'id' => $client['identifier_id'],
+                'username' => $client['username'],
+                'mail' => $client['mail'],
+                'pwd' => $client['pwd'],
+                'secret_question' => $client['secret_question'],
+                'secret_answer' => $client['secret_answer'],
+            ]
+        ];
+    }
+
+    else {
+        $error = "Informations incorrectes";
+        return $error;
+    }
 }
 
 function clients()

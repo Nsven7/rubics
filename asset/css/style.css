@@ -177,6 +177,7 @@ select {
     padding: 5px;
     color: var(--clr-white);
     width: 100%;
+    margin: 0;
     /* Additional styles to handle the default appearance */
     -webkit-appearance: none;
     -moz-appearance: none;

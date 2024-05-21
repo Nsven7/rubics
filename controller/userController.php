@@ -73,6 +73,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
             break;
 
+        case 'Réinitialiser':
+            $mail = htmlspecialchars(trim($_POST['email']));
+            $secretQuestion = htmlspecialchars($_POST['secret_question']);
+            $answer = htmlspecialchars(trim($_POST['answer']));
+            $error = null;
+
+            $client = reinitialize($mail, $secretQuestion, $answer, $error);
+
+
+            if ($error != null) {
+                die(var_dump($client));
+                //Redirection with error message
+                $message = "bad-creditential";
+                header("Location: ../view/view-user-password.php?message=" . $message);
+                exit;
+            } else {
+                $message = "reinitialize-password";
+                header("Location: ../view/view-user-admin-home.php?message=" . $message);
+                exit;
+            }
+
+
         default:
             // Default case if none of the above match
             echo "Unknown action!";

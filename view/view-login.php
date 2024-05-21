@@ -1,6 +1,6 @@
 <?php
 $title = "Connection";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
 
 if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
   header("Location: ../view/view-user-admin-home.php");
@@ -30,17 +30,16 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
         } elseif (isset($_GET['message']) && $_GET['message'] == 'success-register') {
           echo "<p class='alert alert-success'>Inscription finalisée, connectez-vous à l'aide de vos identifients</p>";
         } ?>
-        <div class="form-group">
+        <div class="'mrg-top-2 form-group">
           <input type="email" id="email" autofocus placeholder="Adresse mail" name="email" maxlength="100" required>
         </div>
 
-        <div class="form-group" required>
-          <input type="password" id="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="20" required
-required>
+        <div class="'mrg-top-2 form-group" required>
+          <input type="password" id="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="20" required required>
         </div>
 
         <div>
-            <label class="mrg-top-1 clr-white" for="terms">Mot de passe oublié</label>
+          <a class='mrg-top-2' href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-password.php">Mot de passe oublié</a>
         </div>
         <div>
           <div class="mrg-top-1 cta">
@@ -59,6 +58,6 @@ required>
     </div>
   </div>
 
-  <?php
-  include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+<?php
+  include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
 } ?>
