@@ -16,119 +16,51 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
     $clients = clients();
 ?>
 
-    <div class="container-items">
-        <div class="container-content">
-            <div class="sidenav">
-                <div class="accordionItem">
-                    <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
-                    <div class="accordionContent">
-                        <ul>
-                            <li>
-                                <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-home.php">
-                                    Modifier mes informations
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="main">
+        <h1>Clients</h1>
 
-                <div class="accordionItem">
-                    <h2 class="accordionTitle">Projets<span class="accordionIcon"></span></h2>
-                    <div class="accordionContent">
-                        <ul>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-project-index.php">Liste
-                                    projets</a></li>
-                                    <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-media-new.php">Nouveau média</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-new.php">Nouvelle
-                                    catégorie</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="accordionItem">
-                    <h2 class="accordionTitle">Équipes<span class="accordionIcon"></span></h2>
-                    <div class="accordionContent">
-                        <ul>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-team-new.php">Nouvelle
-                                    équipe</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-team-index.php">Liste
-                                    équipes</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-employee-new.php">Nouvel
-                                    employé</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-employee-index.php">Liste
-                                    employés</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-new.php">Nouvelle
-                                    compétence</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-skill-index.php">Liste
-                                    compétences</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="accordionItem">
-                    <h2 class="accordionTitle">Clients<span class="accordionIcon"></span></h2>
-                    <div class="accordionContent">
-                        <ul>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-request-index.php">Liste
-                                    demandes</a></li>
-                            <li class="actif-link">Liste clients</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="main">
-                <h1>Clients</h1>
-
-                <div class="main-conent">
-                    <div class="data-card">
-                        <h3>Liste</h3>
-                        <table id="read-data">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>Date de naissnce</th>
-                                    <th>Création</th>
-                                    <th>Dernière connection</th>
-                                    <th>Actif</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                if (isset($clients)) {
-                                    // Loop through the project data and display each row in the table
-                                    foreach ($clients as $client) {
-                                        echo "<tr>";
-                                        echo "<td>" . $client['id'] . "</td>";
-                                        echo "<td>" . $client['first_name'] . "</td>";
-                                        echo "<td>" . $client['last_name'] . "</td>";
-                                        echo "<td>" . $client['birthdate'] . "</td>";
-                                        echo "<td>" . $client['created_at'] . "</td>";
-                                        echo "<td>" . $client['last_connection'] . "</td>";
-                                        echo "<td style='text-align: center'>" .
-                                            ($client['actif']
-                                                ? "<img src='../public/icon/icon-check.svg' alt='Active'>"
-                                                : "<img src='../public/icon/icon-cross.svg' alt='Inactive'>")
-                                            . "</td>";
-                                ?>
-                                <?php
-                                        echo "</tr>";
-                                    }
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="main-conent">
+            <div class="data-card">
+                <h3>Liste</h3>
+                <table id="read-data">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Date de naissnce</th>
+                            <th>Création</th>
+                            <th>Dernière connection</th>
+                            <th>Actif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if (isset($clients)) {
+                            // Loop through the project data and display each row in the table
+                            foreach ($clients as $client) {
+                                echo "<tr>";
+                                echo "<td>" . $client['id'] . "</td>";
+                                echo "<td>" . $client['first_name'] . "</td>";
+                                echo "<td>" . $client['last_name'] . "</td>";
+                                echo "<td>" . $client['birthdate'] . "</td>";
+                                echo "<td>" . $client['created_at'] . "</td>";
+                                echo "<td>" . $client['last_connection'] . "</td>";
+                                echo "<td style='text-align: center'>" .
+                                    ($client['actif']
+                                        ? "<img src='../public/icon/icon-check.svg' alt='Active'>"
+                                        : "<img src='../public/icon/icon-cross.svg' alt='Inactive'>")
+                                    . "</td>";
+                        ?>
+                        <?php
+                                echo "</tr>";
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
-
-        <script src="index.js"></script>
-        </body>
-
-        </html>
-    <?php } ?>
+    <?php
+    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-footer.php");
+} ?>
