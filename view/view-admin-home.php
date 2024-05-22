@@ -23,7 +23,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
         } ?>
         <h1>Mes informations</h1>
 
-        <div class="main-conent">
+        <div class="main-content">
             <div class="data-card">
                 <h3>Général</h3>
                 <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php" method="POST" enctype="multipart/form-data">
