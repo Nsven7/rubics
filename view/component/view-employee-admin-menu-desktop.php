@@ -1,5 +1,4 @@
 <?php ?>
-
 <div class="sidenav">
     <div class="accordionItem">
         <h2 class="accordionTitle">Mes informations<span class="accordionIcon"></span></h2>
