@@ -21,7 +21,7 @@ $projects = getAllProjects();
     <div class="container-content section-two">
         <div class="left">
             <div>
-                <h2>Nos<br>compétences<br>à votre service.</h2>
+                <h2>Nos compétences à votre service.</h2>
                 <div class="cta">
                     <a class="btn"
                         href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Réalisations<span

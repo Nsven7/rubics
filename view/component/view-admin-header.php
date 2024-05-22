@@ -33,12 +33,12 @@
                 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-menu-mobile.php");
 
             } elseif (isset($_SESSION['employee'])) {
-                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-employee-menu-desktop.php");
-                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-employee-menu-mobile.php");
+                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-employee-admin-menu-desktop.php");
+                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-employee-admin-menu-mobile.php");
 
             } elseif (isset($_SESSION['client'])) {
-                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-user-menu-desktop.php");
-                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-user-menu-mobile.php");
+                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-admin-menu-desktop.php");
+                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-admin-menu-mobile.php");
             }
 
 

@@ -59,6 +59,17 @@
                             <input class="btn" type="submit" value="Déconnexion" name="submit">
                         </form>
                     </li>
+                <?php } else { ?>
+                    <li>
+                        <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-registration.php">Inscription</a>
+                    </li>
+                    <li>
+                        <div class="cta">
+                            <a class="btn"
+                                href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connextion<span
+                                    class="arrow right"></span></a>
+                        </div>
+                    </li>
                 <?php } ?>
             </ul>
         </nav>

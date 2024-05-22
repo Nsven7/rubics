@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $birthdate = htmlspecialchars($_POST['birthdate']);
             $mail = htmlspecialchars(trim($_POST['email']));
             $username = htmlspecialchars(trim(ucfirst($_POST['username'])));
-            $pwd = md5(htmlspecialchars(trim($_POST['password'])));
-            $confirmPassword = md5(htmlspecialchars(trim($_POST['confirm_password'])));
+            $pwd = htmlspecialchars(trim($_POST['password']));
+            $confirmPassword = htmlspecialchars(trim($_POST['confirm_password']));
             $secretQuestion = htmlspecialchars($_POST['secret_question']);
             $answer = htmlspecialchars(trim($_POST['answer']));
 

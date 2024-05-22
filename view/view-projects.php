@@ -29,7 +29,7 @@ $categories = activeCategories();
 
     <div class="banner">
         <div class="left">
-            <h2>Filtrez par type selon<br> votre projet ou découvrez<br> nos réalisations.</h2>
+            <h2>Filtrez par type selon votre projet ou découvrez nos réalisations.</h2>
         </div>
         <div class="right">
             <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/projectController.php" method="POST">

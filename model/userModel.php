@@ -11,6 +11,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username, $pwd, $confirmPassword, $secretQuestion, $answer, $terms)
 {
     // Check datas received
+    $pwd = (empty($pwd) ? "" : ($pwd == $confirmPassword ? md5($pwd) : ""));
     $errors = [];
     if (isset($_SESSION['client']['identifier'])) {
         if (empty($pwd) && empty($confirmPassword)) {
@@ -21,6 +22,9 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
         }
         if (empty($answer)) {
             $answer = $_SESSION['client']['identifier']['secret_answer'];
+        }
+        elseif($pwd && $pwd === $confirmPassword) {
+            md5($pwd);
         }
     } else {
         if (empty($lastName)) {

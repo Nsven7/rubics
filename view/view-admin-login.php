@@ -1,6 +1,6 @@
 <?php
 $title = "Connexion";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
 
 if (isset($_SESSION['admin'])) {
   header("Location: ../view/view-admin-home.php");

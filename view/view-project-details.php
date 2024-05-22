@@ -21,7 +21,7 @@ $employees = getEmployeesOnProject($id);
     <div class="container-content section-one">
         <div class="intro">
             <div>
-                <h1>Visionnez nos projets<br>et laissez-vous séduire.</h1>
+                <h1>Visionnez nos projets et laissez-vous séduire.</h1>
             </div>
         </div>
         <div class="cube">
