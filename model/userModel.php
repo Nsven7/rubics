@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
 /**
  * This function inserts user data into the database.
@@ -11,21 +11,20 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username, $pwd, $confirmPassword, $secretQuestion, $answer, $terms)
 {
     // Check datas received
-    $pwd = (empty($pwd) ? "" : ($pwd == $confirmPassword ? md5($pwd) : ""));
+    //$pwd = (empty($pwd) ? "" : ($pwd == $confirmPassword ? md5($pwd) : ""));
     $errors = [];
-    if (isset($_SESSION['client']['identifier'])) {
-        if (empty($pwd) && empty($confirmPassword)) {
-            $pwd = $_SESSION['client']['identifier']['pwd'];
-        }
-        if (empty($secretQuestion)) {
-            $secretQuestion = $_SESSION['client']['identifier']['secret_question'];
-        }
-        if (empty($answer)) {
-            $answer = $_SESSION['client']['identifier']['secret_answer'];
-        }
-        elseif($pwd && $pwd === $confirmPassword) {
-            md5($pwd);
-        }
+    if (empty($secretQuestion)) {
+        $secretQuestion = $_SESSION['client']['identifier']['secret_question'];
+    }
+    if (empty($answer)) {
+        $answer = $_SESSION['client']['identifier']['secret_answer'];
+    }
+    if (!empty($pwd) && $pwd == $confirmPassword) {
+        $pwd = md5($pwd);
+        $confirmPassword = $pwd;
+    } elseif (empty($pwd) && empty($confirmPassword)) {
+        $pwd = $_SESSION['client']['identifier']['pwd'];
+        $confirmPassword = $pwd;
     } else {
         if (empty($lastName)) {
             $errors[] = "Nom requis";
@@ -299,9 +298,7 @@ function reinitialize($mail, $secretQuestion, $answer)
                 'secret_answer' => $client['secret_answer'],
             ]
         ];
-    }
-
-    else {
+    } else {
         $error = "bad-creditentials";
         return $error;
     }

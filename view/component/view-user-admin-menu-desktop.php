@@ -32,11 +32,4 @@
             </ul>
         </div>
     </div>
-
-    <div class="accordionItem">
-        <h2 class="accordionTitle">Liens<span class="accordionIcon"></span></h2>
-        <div class="accordionContent">
-            <a href="index.php?action=updateUser">Home</a>
-        </div>
-    </div>
 </div>
