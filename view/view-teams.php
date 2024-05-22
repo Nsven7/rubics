@@ -1,12 +1,13 @@
 <?php
 $title = "Projets";
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/teamModel.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/teamModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/employeeModel.php");
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
-} else $id = null;
+} else
+    $id = null;
 
 $employees = getActiveEmployees($id);
 $teams = activeTeams();
@@ -31,12 +32,13 @@ $teams = activeTeams();
         </div>
         <div class="right">
             <div class="right">
-                <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php" method="POST">
+                <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php"
+                    method="POST">
                     <div class="field-container">
                         <select name="teamId" id="teamId">
-                            <?php foreach ($teams as $team) : ?>
+                            <?php foreach ($teams as $team): ?>
                                 <option value="<?php echo $team['id']; ?>" <?php if (isset($id) && $id == $team['id'])
-                                                                                echo 'selected'; ?>>
+                                       echo 'selected'; ?>>
                                     <?php echo $team['name']; ?>
                                 </option>
                             <?php endforeach; ?>
@@ -78,5 +80,5 @@ $teams = activeTeams();
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
     ?>

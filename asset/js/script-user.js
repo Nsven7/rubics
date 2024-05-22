@@ -1,3 +1,4 @@
+// Slider
 var slideIndex = 1;
 showSlides(slideIndex);
 
@@ -11,7 +12,7 @@ function currentSlide(n) {
 
 function showSlides(n) {
   var i;
-  var slides = document.getElementsByClassName("mySlides");
+  var slides = document.getElementsByClassName("slide");
   var dots = document.getElementsByClassName("dot");
   if (n > slides.length) {slideIndex = 1}    
   if (n < 1) {slideIndex = slides.length}
@@ -21,6 +22,14 @@ function showSlides(n) {
   for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
   }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
+  if (slides[slideIndex-1]) {slides[slideIndex-1].style.display = "block";}  
 }
+
+// Mobile menu
+document.getElementById('burger-menu').addEventListener('click', function() {
+  document.getElementById('menu-overlay').classList.add('open');
+});
+
+document.getElementById('close-menu').addEventListener('click', function() {
+  document.getElementById('menu-overlay').classList.remove('open');
+});

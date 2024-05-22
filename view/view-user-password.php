@@ -1,6 +1,6 @@
 <?php
 $title = "Connexion";
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 
 if (isset($_SESSION['admin'])) {
     header("Location: ../view/view-admin-home.php");
@@ -27,7 +27,8 @@ if (isset($_SESSION['admin'])) {
 
                     <div class="form-group mrg-top-3">
                         <div class="custom-select-wrapper">
-                            <select class="custom-select" id="secret_question" name="secret_question" placeholder="Question secrète">
+                            <select class="custom-select" id="secret_question" name="secret_question"
+                                placeholder="Question secrète">
                                 <option value="">Select...</option>
                                 <option value="pet">Quel est le nom de votre premier animal de compagnie ?</option>
                                 <option value="city">Dans quelle ville êtes-vous naî ?</option>
@@ -47,6 +48,6 @@ if (isset($_SESSION['admin'])) {
         </div>
 
 
-    <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+        <?php
+        include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
 } ?>

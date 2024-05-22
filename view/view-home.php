@@ -1,7 +1,7 @@
 <?php
 $title = "Accueil";
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
 
 $projects = getAllProjects();
 ?>
@@ -23,7 +23,9 @@ $projects = getAllProjects();
             <div>
                 <h2>Nos<br>compétences<br>à votre service.</h2>
                 <div class="cta">
-                    <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Réalisations<span class="arrow right"></span></a>
+                    <a class="btn"
+                        href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Réalisations<span
+                            class="arrow right"></span></a>
                 </div>
             </div>
         </div>
@@ -87,7 +89,8 @@ $projects = getAllProjects();
         <div class="right">
             <h2>Faîtes connaissance de notre grande famille.</h2>
             <div class="cta">
-                <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Découvrir<span class="arrow right"></span></a>
+                <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Découvrir<span
+                        class="arrow right"></span></a>
             </div>
         </div>
     </div>
@@ -107,12 +110,16 @@ $projects = getAllProjects();
 
         ?>
 
-        <a class="prev" onclick="plusSlides(-1)"><img src="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/public/icon/icon-arrow-left.svg" alt="left arrow icon"></a>
-        <a class="next" onclick="plusSlides(1)"><img src="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/public/icon/icon-arrow-right.svg" alt="right arrow icon"></a>
-        
+        <a class="prev" onclick="plusSlides(-1)"><img
+                src="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/public/icon/icon-arrow-left.svg"
+                alt="left arrow icon"></a>
+        <a class="next" onclick="plusSlides(1)"><img
+                src="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/public/icon/icon-arrow-right.svg"
+                alt="right arrow icon"></a>
+
 
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
     ?>

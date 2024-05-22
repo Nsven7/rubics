@@ -1,6 +1,6 @@
 <?php
 $title = "Projets";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/realizeModel.php");
 
@@ -63,5 +63,5 @@ $employees = getEmployeesOnProject($id);
     </div>
 
     <?php
-    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
     ?>

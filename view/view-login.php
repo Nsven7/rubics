@@ -1,6 +1,6 @@
 <?php
 $title = "Connection";
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 
 if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
   header("Location: ../view/view-user-admin-home.php");
@@ -35,11 +35,13 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
         </div>
 
         <div class="'mrg-top-2 form-group" required>
-          <input type="password" id="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="20" required required>
+          <input type="password" id="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="20"
+            required required>
         </div>
 
         <div>
-          <a class='mrg-top-2' href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-password.php">Mot de passe oublié</a>
+          <a class='mrg-top-2' href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-password.php">Mot de passe
+            oublié</a>
         </div>
         <div>
           <div class="mrg-top-1 cta">
@@ -51,13 +53,14 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
         <div>
           <h3 class="mrg-top-2">Pas de compte ?</h3>
           <div class="cta">
-            <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-registration.php">S'enregistrer</a>
+            <a class="btn"
+              href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-registration.php">S'enregistrer</a>
           </div>
         </div>
       </form>
     </div>
   </div>
 
-<?php
-  include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+  <?php
+  include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
 } ?>

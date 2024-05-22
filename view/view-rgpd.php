@@ -1,6 +1,6 @@
 <?php
 $title = "Connexion";
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 ?>
 
 <body>
@@ -20,18 +20,26 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
             </ul>
 
             <h2>Comment vos données sont-elles protégées ?</h2>
-            <p>Nous prenons la sécurité de vos données très au sérieux. Toutes les données collectées sont stockées de manière sécurisée et accessibles uniquement aux personnes autorisées dans le cadre de cette étude.</p>
+            <p>Nous prenons la sécurité de vos données très au sérieux. Toutes les données collectées sont stockées de
+                manière sécurisée et accessibles uniquement aux personnes autorisées dans le cadre de cette étude.</p>
 
             <h2>Vos droits</h2>
-            <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :</p>
+            <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants
+                :</p>
             <ul>
                 <li><strong>Droit d'accès :</strong> Vous pouvez demander à accéder aux données vous concernant.</li>
-                <li><strong>Droit de rectification :</strong> Vous pouvez demander à ce que les données inexactes ou incomplètes soient corrigées.</li>
-                <li><strong>Droit à l'effacement :</strong> Vous pouvez demander la suppression de vos données dans certaines conditions.</li>
-                <li><strong>Droit à la limitation du traitement :</strong> Vous pouvez demander à ce que l'utilisation de vos données soit limitée dans certaines circonstances.</li>
-                <li><strong>Droit d'opposition :</strong> Vous pouvez vous opposer au traitement de vos données pour des raisons légitimes.</li>
+                <li><strong>Droit de rectification :</strong> Vous pouvez demander à ce que les données inexactes ou
+                    incomplètes soient corrigées.</li>
+                <li><strong>Droit à l'effacement :</strong> Vous pouvez demander la suppression de vos données dans
+                    certaines conditions.</li>
+                <li><strong>Droit à la limitation du traitement :</strong> Vous pouvez demander à ce que l'utilisation
+                    de vos données soit limitée dans certaines circonstances.</li>
+                <li><strong>Droit d'opposition :</strong> Vous pouvez vous opposer au traitement de vos données pour des
+                    raisons légitimes.</li>
             </ul>
-            <p>Pour exercer ces droits ou pour toute question concernant notre politique de confidentialité, veuillez nous contacter à l'adresse suivante : <a href="mailto:nath_bourlier@outlook.be">votre adresse e-mail de contact</a>.</p>
+            <p>Pour exercer ces droits ou pour toute question concernant notre politique de confidentialité, veuillez
+                nous contacter à l'adresse suivante : <a href="mailto:nath_bourlier@outlook.be">votre adresse e-mail de
+                    contact</a>.</p>
 
             <h2>Contact</h2>
             <p>Pour toute question ou pour exercer vos droits, vous pouvez nous contacter à :</p>
@@ -39,7 +47,8 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
                 <li>Email : <a href="mailto:nath_bourlir@outlook.be">nath_bourlir@outlook.be</a></li>
                 <li>Adresse : 59 rue de Caraman, 7300 Boussu - BE</li>
             </ul>
-            <p>Nous nous engageons à répondre à vos demandes dans les meilleurs délais et à vous fournir toutes les informations nécessaires concernant le traitement de vos données personnelles.</p>
+            <p>Nous nous engageons à répondre à vos demandes dans les meilleurs délais et à vous fournir toutes les
+                informations nécessaires concernant le traitement de vos données personnelles.</p>
 
             <p>Merci de votre confiance et de votre compréhension.<br><strong>RUBICS</strong></p>
             <p>Cette politique de confidentialité a été mise à jour le 21 mai 2024.</p>
@@ -47,5 +56,5 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
     ?>

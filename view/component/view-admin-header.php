@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -14,7 +15,9 @@
 
     <header>
         <div class="logo">
-            <img class="logo" src="../public/logo_rubics.svg" alt="Logo" />
+            <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-home.php">
+                <img class="logo" src="../public/logo_rubics.svg" alt="Logo" />
+            </a>
         </div>
         <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
             <input class="btn" type="submit" value="Déconnexion" name="submit">
@@ -26,16 +29,16 @@
         <div class="container-content">
 
             <?php if (isset($_SESSION['admin'])) {
-                include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-menu-desktop.php");
-                include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-menu-mobile.php");
-            
+                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-menu-desktop.php");
+                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-menu-mobile.php");
+
             } elseif (isset($_SESSION['employee'])) {
-                include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-employee-menu-desktop.php");
-                include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-employee-menu-mobile.php");
-           
+                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-employee-menu-desktop.php");
+                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-employee-menu-mobile.php");
+
             } elseif (isset($_SESSION['client'])) {
-                include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-user-menu-desktop.php");
-                include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-user-menu-mobile.php");
+                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-user-menu-desktop.php");
+                include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-user-menu-mobile.php");
             }
 
 

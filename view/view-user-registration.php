@@ -1,6 +1,6 @@
 <?php
 $title = "S'enregistrer";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 
 if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
   header("Location: ../view/view-user-admin-home.php");
@@ -85,5 +85,5 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
   </div>
 
   <?php
-  include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/footer.php");
+  include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
 } ?>
