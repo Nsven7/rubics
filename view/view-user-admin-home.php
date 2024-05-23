@@ -63,21 +63,21 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     </div>
 
                     <div>
-                        <label for="secret_question">Secret Question:</label>
+                        <label for="secret_question">Question secrète:</label>
                         <select id="secret_question" name="secret_question">
                             <option value="pet" <?php if ($_SESSION['client']['identifier']['secret_question'] == "pet") {
                                                     echo "selected";
-                                                } ?>>What is your pet name?</option>
+                                                } ?>>Quel est le nom de votre animal de compagnie</option>
                             <option value="color" <?php if ($_SESSION['client']['identifier']['secret_question'] == "color") {
                                                         echo "selected";
-                                                    } ?>>What is your favorite color?</option>
+                                                    } ?>>Quelle est votre couleur favorite</option>
                             <option value="school" <?php if ($_SESSION['client']['identifier']['secret_question'] == "school") {
                                                         echo "selected";
-                                                    } ?>>What is your mother's maiden name?</option>
+                                                    } ?>>Nom de jeune fille de votre mère</option>
                         </select>
                     </div>
                     <div>
-                        <label for="answer">Answer:</label>
+                        <label for="answer">Réponse :</label>
                         <input type="text" id="answer" name="answer" minlength="5" maxlength="100" value="<?php echo $_SESSION['client']['identifier']['secret_answer']; ?>">
                     </div>
 

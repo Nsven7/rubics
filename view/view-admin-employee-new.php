@@ -97,14 +97,14 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     </div>
 
                     <div class="field-container">
-                        <label for="actif">Role actif</label>
+                        <label for="actif">Actif</label>
                         <input type="checkbox" id="actif" name="actif" value="1" <?php if (isset($employee) && $employee['actif'] == 1) {
                                                                                         echo 'checked';
                                                                                     } ?>>
                     </div>
 
                     <div class="field-container">
-                        <label for="actif">Role actif</label>
+                        <label for="actif">Rôle actif</label>
                         <input type="checkbox" id="actif" name="roleActif" value="1">
                     </div>
 

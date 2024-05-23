@@ -30,7 +30,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                             <th>Prénom</th>
                             <th>Date de naissnce</th>
                             <th>Création</th>
-                            <th>Dernière connection</th>
+                            <th>Dernière connexion</th>
                             <th>Actif</th>
                         </tr>
                     </thead>

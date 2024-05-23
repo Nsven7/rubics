@@ -21,7 +21,7 @@ $title = "Connexion";
 
             <h2>Comment vos données sont-elles protégées ?</h2>
             <p>Nous prenons la sécurité de vos données très au sérieux. Toutes les données collectées sont stockées de
-                manière sécurisée et accessibles uniquement aux personnes autorisées dans le cadre de cette étude.</p>
+                manière sécurisée et sont accessibles uniquement aux personnes autorisées dans le cadre de cette étude.</p>
 
             <h2>Vos droits</h2>
             <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants
@@ -44,7 +44,7 @@ $title = "Connexion";
             <h2>Contact</h2>
             <p>Pour toute question ou pour exercer vos droits, vous pouvez nous contacter à :</p>
             <ul>
-                <li>Email : <a href="mailto:nath_bourlir@outlook.be">nath_bourlir@outlook.be</a></li>
+                <li>Email : <a href="mailto:nath_bourlier@outlook.be">nath_bourlir@outlook.be</a></li>
                 <li>Adresse : 59 rue de Caraman, 7300 Boussu - BE</li>
             </ul>
             <p>Nous nous engageons à répondre à vos demandes dans les meilleurs délais et à vous fournir toutes les

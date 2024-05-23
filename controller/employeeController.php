@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $name = $_SESSION['employee']['general']['firstName'] . $_SESSION['employee']['general']['lastName'];
             $newName = str_replace(' ', '', ucwords($name));
             $path = $_SERVER['DOCUMENT_ROOT'] . "/Rubics/public/uploads/employees/" . $newName . "/";
-            $avatar = $path . $newName;
+            $avatar = $path . $newName . ".jpg";
 
             $fileToUpload = uploadFile($path, $newName);
 

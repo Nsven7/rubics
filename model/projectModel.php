@@ -16,6 +16,20 @@ function getAllProjects()
     return $projects;
 }
 
+function getAllProjectsActive()
+{
+    // Retrieve db connection
+    global $bdd;
+
+    $query = "SELECT * FROM project WHERE finalized = 1";
+    $stmt = $bdd->prepare($query);
+    $stmt->execute();
+
+    $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $projects;
+}
+
 // Retrieve all projects if id is not defined. Else return projects by specific category
 function finalizedProjects($id)
 {

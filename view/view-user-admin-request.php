@@ -38,7 +38,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     </div>
 
                     <div class="field-container">
-                        <label for="budget">Bugget</label>
+                        <label for="budget">Budget</label>
                         <input type="number" id="budget" name="budget" min="1" max="10000" required>
                     </div>
 

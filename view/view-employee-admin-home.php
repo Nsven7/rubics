@@ -53,7 +53,7 @@ if (!isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
                         <input type="date" id="birthdate" name="birthdate" min="1950-01-01" max="2006-12-31" value="<?php echo $_SESSION['employee']['general']['birthdate']; ?>">
                     </div>
                     <div class="field-container">
-                        <label for="biography">Descrption</label>
+                        <label for="biography">Description</label>
                         <input type="text" id="biography" name="biography" value="<?php echo $_SESSION['employee']['general']['biography']; ?>">
                     </div>
                     <div class="field-container">

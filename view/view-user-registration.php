@@ -55,7 +55,7 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
             <select class="custom-select" id="secret_question" name="secret_question" placeholder="Question secrète">
               <option value="">Select...</option>
               <option value="pet">Quel est le nom de votre premier animal de compagnie ?</option>
-              <option value="city">Dans quelle ville êtes-vous naî ?</option>
+              <option value="city">Dans quelle ville êtes-vous né(e) ?</option>
               <option value="school">Quel est le nom de votre première école ?</option>
             </select>
           </div>

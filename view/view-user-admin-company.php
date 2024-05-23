@@ -46,7 +46,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     </div>
 
                     <div class="field-container">
-                        <label for="country">Country</label>
+                        <label for="country">Pays</label>
                         <input type="text" id="country" name="country" minlength="3" maxlength="25" value="<?php if (isset($company)) {
                                                                                                                 echo $company['country'];
                                                                                                             } ?>">

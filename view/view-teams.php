@@ -31,7 +31,7 @@ $teams = activeTeams();
             <h2>Filtrez par domaine de compétences et découvrez les prestataires de votre futur projet.</h2>
         </div>
         <div class="right">
-            <div class="right">
+            <div class="right rigt-banner">
                 <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php"
                     method="POST">
                     <div class="field-container">

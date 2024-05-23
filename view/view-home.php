@@ -3,13 +3,13 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.ph
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
 
 $title = "Accueil";
-$projects = getAllProjects();
+$projects = getAllProjectsActive();
 ?>
 <div class="container-items">
     <div class="container-content section-one">
         <div class="intro">
             <div>
-                <h1>Rubics, l'agence multi-facettes aux servvices de votre projet.</h1>
+                <h1>Rubics, l'agence multi-facettes au service de votre projet.</h1>
                 <p>Charte graphique, développement web, print, vidéo... Nous vous accompagnons dans votre projet.</p>
             </div>
         </div>
@@ -39,7 +39,7 @@ $projects = getAllProjects();
 
             <div>
                 <img src="../public/icon/icon-camera.svg" alt="camera icon">
-                <h3>Photographie</h3>
+                <h3>Photographies</h3>
                 <p>Produit, images d’ambiance, shooting model… Nous avons le matériel et les idées pour sublimer votre
                     projet.</p>
             </div>
@@ -47,7 +47,7 @@ $projects = getAllProjects();
             <div>
                 <img src="../public/icon/icon-video.svg" alt="video icon">
                 <h3>Monteur vidéo</h3>
-                <p>Découper des scènes, incruster un arrière-plan, ajouter des effets visuels, du texte, des voix-off,
+                <p>Découper des scènes, ajouter un arrière-plan, ajouter des effets visuels, du texte, des voix-off,
                     nous mettons tout en oeuvre pour enrichir l'expérience audiovisuelle.</p>
             </div>
 
@@ -64,30 +64,30 @@ $projects = getAllProjects();
         <div class="left">
             <div class="card-item">
                 <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
+                <h3>Alice</h3>
+                <p class="ft-weight-bold clr-third">Graphic<br>design</p>
             </div>
 
             <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
+                <img src="../public/uploads/employees/BobSmith/BobSmith.jpg" alt="designer icon">
+                <h3>Bob</h3>
+                <p class="ft-weight-bold clr-third">Vidéo</p>
             </div>
 
             <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
-                <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
+                <img src="../public/uploads/employees/CharlieJohnson/CharlieJohnson.jpg" alt="designer icon">
+                <h3>Charlie</h3>
+                <p class="ft-weight-bold clr-third">Développeur web<br> back-end</p>
             </div>
 
             <div class="card-item">
-                <img src="../public/uploads/employees/AliceDoe/AliceDoe.jpg" alt="designer icon">
-                <h3>Henry</h3>
+                <img src="../public/uploads/admins/DianaBrown/DianaBrown.jpg" alt="designer icon">
+                <h3>Diana</h3>
                 <p class="ft-weight-bold clr-third">Développeur web<br> front-end</p>
             </div>
         </div>
         <div class="right">
-            <h2>Faîtes connaissance de notre grande famille.</h2>
+            <h2>Faites connaissance avec notre grande famille.</h2>
             <div class="cta">
                 <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Découvrir<span
                         class="arrow right"></span></a>

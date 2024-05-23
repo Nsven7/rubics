@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $name = $firstName . $lastName;
                 $newName = str_replace(' ', '', ucwords($name));
                 $path = $_SERVER['DOCUMENT_ROOT'] . "/Rubics/public/uploads/employees/" . $newName . "/";
-                $avatar = $path . $newName;
+                $avatar = $path . $newName . ".jpg";
 
                 $fileToUpload = uploadFile($path, $newName);
             } else {
