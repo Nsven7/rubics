@@ -30,3 +30,18 @@ function insertData($names, $uploadDir, $id)
 
     return $errors;
 }
+
+// Retrieve all project's medias
+function getMedias($id)
+{
+    // Retrieve db connection
+    global $bdd;
+
+    $sql = "SELECT * FROM media WHERE project_id = :id";
+    $stmt = $bdd->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $medias = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $medias;
+}

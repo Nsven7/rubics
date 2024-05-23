@@ -1,7 +1,8 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/realizeModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/realizeModel.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/mediaModel.php");
 $title = "Projets";
 
 
@@ -13,6 +14,7 @@ if (isset($_GET['id'])) {
 }
 
 $project = getProjectId($id);
+$medias = getMedias($id);
 $employees = getEmployeesOnProject($id);
 
 ?>
@@ -29,9 +31,30 @@ $employees = getEmployeesOnProject($id);
         </div>
     </div>
 
-    <div class="container-content">
+    <div class="container-content project-details-container">
         <div class="project-image">
-            <img src="../public/uploads/admins/DianaBrown/DianaBrown.jpg" alt="Image du projet">
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+
+                <?php
+                if (isset($medias)) {
+                    $totalSlides = count($medias);  // Get the total number of slides
+                    $currentSlide = 1;
+
+                    foreach ($medias as $media) {
+                        echo "<div class='slide-project'>";
+                        echo "<div class='slide-number'>{$currentSlide}/{$totalSlides}</div>";
+                        echo "<img src='" . $media['path'] . $media['name'] . $media['extension'] . "'" . "alt='Image de réalisation projet'>";
+                        echo "</div>";
+                    }
+                }
+
+                ?>
+
+                <!-- Next and previous buttons -->
+                <a class="prev-project" onclick="upSlides(-1)">&#10094;</a>
+                <a class="next-project" onclick="upSlides(1)">&#10095;</a>
+            </div>
         </div>
         <div class="project-details">
             <?php if (isset($project)) {
@@ -63,5 +86,5 @@ $employees = getEmployeesOnProject($id);
     </div>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
+    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
     ?>
