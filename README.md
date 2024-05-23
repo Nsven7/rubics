@@ -1,22 +1,69 @@
-Admin's password
-    X7s#L9aQ@4w2
-    fG8$3tN!Z0xY
-    d#5P2mV8*R7j
-    W!9aQ3*eY6zT
-    L2%jR4^uN9sB
-    H8&xG5#oP3kQ
-    p@6M4!qZ9r2V
-    Y#3tJ7%vD5wX
-    k@9V6^cP2n4L
-    z3$X5*eM8oT7
+# General Document
 
-User's password
-    B8k$7zVw*P9q
-    Xy4^pL8s@1tJ
-    R&3vN0w!Lm6Q
-    C5e*2Wz#T9hY
-    H$7qV9p@3zRt
-    J8y!4Kt*2nWm
-    Z3g^6Bj#8pRs
-    F2k$9xN*7vTq
-    D7r!1Hp@4zGy
+**Directory**: RUBICS/Document/
+
+
+
+## Web Design
+
+### LF
+
+- **Desktop**: [View Design](https://xd.adobe.com/view/81c4b734-4424-412f-aa1b-a7df0e5e90b0-d497/grid)
+- **Smartphone**: [View Design](https://xd.adobe.com/view/a5f0dcc9-9386-4b17-8c3c-d52f6d34a526-f0a3/grid)
+
+
+### MF
+
+- **Desktop**: [View Design](https://xd.adobe.com/view/8a684ba9-ac30-4f3a-8e5a-c01eb6f0bbf6-df3b/grid)
+- **Smartphone**: [View Design](https://xd.adobe.com/view/3dcd1af1-4a81-4745-bd9d-603585a84285-689e/grid)
+
+
+### HF
+
+- **Desktop**: [View Design](https://xd.adobe.com/view/bfdd1081-b11a-4d81-b0e6-c3bdebc37c11-ea8e/?fullscreen)
+- **Smartphone**: [View Design](https://xd.adobe.com/view/50a47e76-a7e8-41d0-9857-44e8d622ee1f-05f7/grid)
+
+
+### Admin Employee
+
+- Page “connection” click on “connection”
+
+
+### Admin User
+
+- Page “inscription” click on “s’enregistrer”
+
+
+
+## Database
+
+**Directory**: RUBICS/DB/
+
+
+
+## Trello
+
+[View Trello Board](https://trello.com/b/bJVqF0uF/developpement-site-web-rubics)
+
+
+
+## Website's Access
+
+### Admin
+
+- **First Name**: Doe
+- **Last Name**: Alice
+- **Password**: X7s#L9aQ@4w2
+
+
+### Employee
+
+- **First Name**: Smith
+- **Last Name**: Bob
+- **Password**: fG8$3tN!Z0xY
+
+
+### User
+
+- **Identifiant**: john.doe@example.com
+- **Password**: B8k$7zVw*P9q
