@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $id = htmlspecialchars($_POST['projectId']);
 
     // Directory where files will be uploaded
-    $uploadDir = $_SERVER['DOCUMENT_ROOT'] . "/Rubics/public/uploads/projects/" . $id . "/";
+    $uploadDir = "/Rubics/public/uploads/projects/" . $id . "/";
 
     // Create the directory if it doesn't exist
     if (!is_dir($uploadDir)) {

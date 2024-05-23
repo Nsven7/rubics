@@ -43,8 +43,8 @@ $employees = getEmployeesOnProject($id);
 
                     foreach ($medias as $media) {
                         echo "<div class='slide-project'>";
-                        echo "<div class='slide-number'>{$currentSlide}/{$totalSlides}</div>";
-                        echo "<img src='" . $media['path'] . $media['name'] . $media['extension'] . "'" . "alt='Image de réalisation projet'>";
+                        //echo "<div class='slide-number'>{$currentSlide}/{$totalSlides}</div>";
+                        echo "<img src='" . $media['path'] . $media['name'] . $media['extension'] . "' alt='Image de réalisation projet'>";
                         echo "</div>";
                     }
                 }

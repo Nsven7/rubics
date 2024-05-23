@@ -41,7 +41,7 @@ function getMedias($id)
     $stmt = $bdd->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
-    $medias = $stmt->fetch(PDO::FETCH_ASSOC);
+    $medias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     return $medias;
 }
