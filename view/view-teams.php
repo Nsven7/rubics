@@ -18,7 +18,7 @@ $teams = activeTeams();
     <div class="container-content section-one">
         <div class="intro">
             <div>
-                <h1>Faites connaissance de nos équipes et compétences de chacun.</h1>
+                <h1>Découvrez nos équipes et leurs atouts.</h1>
             </div>
         </div>
         <div class="cube">
@@ -28,7 +28,7 @@ $teams = activeTeams();
 
     <div class="banner">
         <div class="left">
-            <h2>Filtrez par domaine de<br> compétences et découvrez les<br> prestataires de votre futur projet.</h2>
+            <h2>Filtrez par domaine de compétences et découvrez les prestataires de votre futur projet.</h2>
         </div>
         <div class="right">
             <div class="right">

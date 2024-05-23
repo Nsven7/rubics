@@ -1,8 +1,8 @@
 <?php
-$title = "Accueil";
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
 
+$title = "Accueil";
 $projects = getAllProjects();
 ?>
 <div class="container-items">
@@ -23,7 +23,7 @@ $projects = getAllProjects();
             <div>
                 <h2>Nos compétences à votre service.</h2>
                 <div class="cta">
-                    <a class="btn"
+                    <a class="btn mrg-mobile-top-1 mrg-mobile-bottom-2"
                         href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Réalisations<span
                             class="arrow right"></span></a>
                 </div>

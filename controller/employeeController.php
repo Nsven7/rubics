@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $lastName = htmlspecialchars(trim(ucfirst($_POST['lastName'])));
             $birthdate = htmlspecialchars($_POST['birthdate']);
             $biography = htmlspecialchars(trim(ucfirst($_POST['biography'])));
-            $pwd = md5(htmlspecialchars(trim($_POST['pwd'])));
-            $confirmPassword = md5(htmlspecialchars(trim($_POST['confirm_password'])));
+            $pwd = htmlspecialchars(trim($_POST['pwd']));
+            $confirmPassword = htmlspecialchars(trim($_POST['confirm_password']));
 
             $name = $_SESSION['employee']['general']['firstName'] . $_SESSION['employee']['general']['lastName'];
             $newName = str_replace(' ', '', ucwords($name));

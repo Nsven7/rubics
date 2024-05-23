@@ -13,33 +13,46 @@ function updateData($firstName, $lastName, $birthdate, $biography, $pwd, $confir
 
     // Check datas received
     $errors = [];
-    if (empty($firstName)) {
-        $message = "Le prénom est obligatoire";
-        $errors[] = $message;
-    }
-    if (empty($lastName)) {
-        $message = "Le nom est obligatoire";
-        $errors[] = $message;
-    }
-    if (empty($birthdate)) {
-        $message = "La date de naissance est obligatoire";
-        $errors[] = $message;
-    }
-    if (empty($biography)) {
-        $message = "La biographie est obligatoire";
-        $errors[] = $message;
-    }
-    if (empty($pwd) && empty($confirmPassword)) {
-        $pwd = $_SESSION['employee']['role']['pwd'];
-    } elseif (strlen($pwd) < 8) {
-        $errors[] = "Mot de passe doit contenir au moins 8 caractères";
-    } elseif ($pwd !== $confirmPassword) {
-        $errors[] = "Les mots de passe ne correspondent pas";
-    } elseif (empty($confirmPassword)) {
-        $errors[] = "Veuillez confirmer votre mot de passe";
-    }
-    if (empty($avatar)) {
-        $avatar = $_SESSION['employee']['general']['avatar'];
+    if (!empty($pwd) && $pwd == $confirmPassword) {
+        $pwd = md5($pwd);
+        $confirmPassword = $pwd;
+    } elseif (empty($pwd) && empty($confirmPassword)) {
+        if(isset($_SESSION['employee'])) {
+            $pwd = $_SESSION['employee']['role']['pwd'];
+            $confirmPassword = $pwd;
+        } else {
+            $pwd = $_SESSION['admin']['role']['pwd'];
+            $confirmPassword = $pwd;
+        }
+    } else {
+        if (empty($firstName)) {
+            $message = "Le prénom est obligatoire";
+            $errors[] = $message;
+        }
+        if (empty($lastName)) {
+            $message = "Le nom est obligatoire";
+            $errors[] = $message;
+        }
+        if (empty($birthdate)) {
+            $message = "La date de naissance est obligatoire";
+            $errors[] = $message;
+        }
+        if (empty($biography)) {
+            $message = "La biographie est obligatoire";
+            $errors[] = $message;
+        }
+        if (empty($pwd)) {
+            $errors[] = "Mot de passe requis";
+        } elseif (strlen($pwd) < 8) {
+            $errors[] = "Mot de passe doit contenir au moins 8 caractères";
+        } elseif ($pwd !== $confirmPassword) {
+            $errors[] = "Les mots de passe ne correspondent pas";
+        } elseif (empty($confirmPassword)) {
+            $errors[] = "Veuillez confirmer votre mot de passe";
+        }
+        if (empty($avatar)) {
+            $avatar = $_SESSION['employee']['general']['avatar'];
+        }
     }
 
     // Retrieve db connection

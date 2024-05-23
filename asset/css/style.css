@@ -75,7 +75,8 @@ header nav a {
     text-decoration: none;
 }
 
-.menu, .menu-overlay {
+.menu,
+.menu-overlay {
     display: none;
 }
 
@@ -151,7 +152,8 @@ p {
 
 input[type="text"],
 input[type="email"],
-input[type="password"], select {
+input[type="password"],
+select {
     display: block;
     border: none;
     outline: none;
@@ -392,7 +394,8 @@ q {
     gap: 2rem;
 }
 
-.banner, .slider {
+.banner,
+.slider {
     min-height: 40vh;
     display: flex;
     justify-content: space-between;
@@ -559,6 +562,32 @@ q {
 /********* Mobile ********/
 @media screen and (max-width: 600px) {
 
+    /********* Root ********/
+    :root {
+        --mrg-mobile-top-1: 1rem;
+        --mrg-mobile-top-2: 2rem;
+        --mrg-mobile-top-3: 3rem;
+        --mrg-mobile-bottom-1: 1rem;
+        --mrg-mobile-bottom-2: 2rem;
+    }
+
+    .mrg-mobile-top-1 {
+        margin-top: var(--mrg-mobile-top-1)
+    }
+
+    .mrg-mobile-top-2 {
+        margin-top: var(--mrg-mobile-top-2)
+    }
+
+    .mrg-mobile-top-3 {
+        margin-top: var(--mrg-mobile-top-3)
+    }
+
+    .mrg-mobile-bottom-2 {
+        margin-bottom: var(--mrg-mobile-bottom-2)
+    }
+
+
     body {
         text-align: center;
     }
@@ -567,7 +596,8 @@ q {
         display: none;
     }
 
-    .menu, .menu-overlay {
+    .menu,
+    .menu-overlay {
         display: block;
     }
 
@@ -680,7 +710,7 @@ q {
     .cube {
         display: none;
     }
-    
+
     .intro {
         width: 100%;
         flex-direction: column;
@@ -729,7 +759,8 @@ q {
     }
 
     .slider,
-    .content-footer .link, .empty {
+    .content-footer .link,
+    .empty {
         display: none;
     }
 
@@ -776,12 +807,17 @@ q {
         padding-inline: 10%;
     }
 
-    .form-left, .form-right {
+    .form-left,
+    .form-right {
         width: 100%;
         padding: 20% 10%;
     }
 
     .form-group {
         flex-direction: column;
+    }
+
+    .form-group:last-child {
+        margin-bottom: var(--mrg-mobile-bottom-2);
     }
 }

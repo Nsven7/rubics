@@ -395,4 +395,16 @@ select option {
     .btn {
         margin: 0 auto;
     }
+
+    .form-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50%;
+    }
+    
+    .form-login input {
+        margin: 0;
+    }
 }

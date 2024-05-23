@@ -1,6 +1,6 @@
 <?php
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 $title = "S'enregistrer";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 
 if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
   header("Location: ../view/view-user-admin-home.php");
@@ -36,8 +36,7 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
         </div>
 
         <div class="form-group">
-          <input type="date" id="birthdate" name="birthdate" placeholder="Date de naissance" min="1950-01-01"
-            max="2006-12-31">
+          <input type="date" id="birthdate" name="birthdate" placeholder="Date de naissance" min="1950-01-01" max="2006-12-31">
           <input type="email" id="email" name="email" placeholder="Adresse mail" maxlength="100">
         </div>
 
@@ -48,8 +47,7 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
 
         <div class="form-group">
           <input type="password" id="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="20">
-          <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmer mot de passe"
-            minlength="8" maxlength="20">
+          <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmer mot de passe" minlength="8" maxlength="20">
         </div>
 
         <div class="form-group">
@@ -66,16 +64,16 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
 
         <div>
           <span class="terms"><input type="checkbox" id="terms" name="terms">
-            <label for="terms">J'accepte les termes et conditions</label>
+            <label for="terms">J'accepte les <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-rgpd.php">termes et conditions</a></label>
         </div>
         <div>
-          <div class="cta">
+          <div class="cta mrg-mobile-top-2">
             <input type="submit" name="submit" class="btn" value="Enregistrer">
             <span class="arrow right"></span>
           </div>
         </div>
         <div>
-          <h3 class="mrg-top-2">Déjà inscrit ?</h3>
+          <h3 class="mrg-top-2 mrg-mobile-top-3">Déjà inscrit ?</h3>
           <div class="cta">
             <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connection</a>
           </div>
@@ -84,6 +82,6 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
     </div>
   </div>
 
-  <?php
-  include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
+<?php
+  include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
 } ?>

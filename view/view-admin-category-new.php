@@ -1,7 +1,7 @@
 <?php
-$title = "Admin - Home";
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
 require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
+$title = "Admin - Home";
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);

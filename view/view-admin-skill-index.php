@@ -1,7 +1,7 @@
 <?php
-$title = "Admin - Home";
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/skillModel.php");
+$title = "Admin - Home";
 
 if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {
     header("Location: ../view/view-login.php");

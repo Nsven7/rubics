@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php "Rubics | " . $title ?></title>
+    <title><?php "Rubics | " . (!empty($title) ? $title : "Accueil"); ?></title>
     <link rel="stylesheet" type="text/css" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/asset/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/asset/css/style.css">
 </head>
@@ -30,16 +30,14 @@
                     <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-admin-home.php">Mon compte</a>
                     </li>
                     <li>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php"
-                            method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
                             <input class="btn" type="submit" value="Déconnexion" name="submit">
                         </form>
                     </li>
                 <?php } elseif (isset($_SESSION['admin'])) { ?>
                     <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-admin-home.php">Mon compte</a></li>
                     <li>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php"
-                            method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php" method="POST">
                             <input class="btn" type="submit" value="Déconnexion" name="submit">
                         </form>
                     </li>
@@ -47,15 +45,13 @@
                     <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-employee-admin-home.php">Mon
                             compte</a></li>
                     <li>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php"
-                            method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php" method="POST">
                             <input class="btn" type="submit" value="Déconnexion" name="submit">
                         </form>
                     </li>
                 <?php } elseif (isset($_SESSION['client'])) { ?>
                     <li>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php"
-                            method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
                             <input class="btn" type="submit" value="Déconnexion" name="submit">
                         </form>
                     </li>
@@ -65,9 +61,7 @@
                     </li>
                     <li>
                         <div class="cta">
-                            <a class="btn"
-                                href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connextion<span
-                                    class="arrow right"></span></a>
+                            <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connextion<span class="arrow right"></span></a>
                         </div>
                     </li>
                 <?php } ?>
@@ -97,14 +91,12 @@
             <ul>
                 <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Projets</a></li>
                 <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-teams.php">Équipes</a></li>
-                <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-projects.php">Projets</a></li>
                 <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-rgpd.php">R.G.P.D</a></li>
 
                 <?php if (isset($_SESSION['admin'])) { ?>
                     <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-admin-home.php">Mon compte</a></li>
                     <li>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php"
-                            method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php" method="POST">
                             <input class="btn" type="submit" value="Déconnexion" name="submit">
                         </form>
                     </li>
@@ -112,18 +104,24 @@
                     <li><a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-employee-admin-home.php">Mon
                             compte</a></li>
                     <li>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php"
-                            method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php" method="POST">
                             <input class="btn" type="submit" value="Déconnexion" name="submit">
                         </form>
                     </li>
                 <?php } elseif (isset($_SESSION['client'])) { ?>
                     <li>
-                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php"
-                            method="POST">
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
                             <input class="btn" type="submit" value="Déconnexion" name="submit">
                         </form>
                     </li>
+                <?php } else { ?>
+                    <li>
+                        <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-registration.php">Inscription</a>
+                    </li>
+                    <li>
+                        <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connexion</a>
+                    </li>
+
                 <?php } ?>
 
             </ul>

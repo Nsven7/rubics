@@ -1,6 +1,6 @@
 <?php
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 $title = "Connexion";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 ?>
 
 <body>
@@ -56,5 +56,5 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.ph
     </div>
 
     <?php
-    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
     ?>

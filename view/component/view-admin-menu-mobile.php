@@ -1,4 +1,3 @@
-<?php ?>
 <div class="menu">
     <div class="logo-mobile">
         <a href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-home.php">
@@ -38,8 +37,7 @@
                             média</a></li>
                     <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-new.php">Nouvelle
                             catégorie</a></li>
-                    <li><a
-                            href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
+                    <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-admin-category-index.php">Catégories</a>
                     </li>
                 </ul>
             </div>
@@ -74,5 +72,25 @@
                 </ul>
             </div>
         </div>
+        <?php if (isset($_SESSION['admin'])) { ?>
+            <li>
+                <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/adminController.php" method="POST">
+                    <input class="btn" type="submit" value="Déconnexion" name="submit">
+                </form>
+            </li>
+        <?php } elseif (isset($_SESSION['employee'])) { ?>
+            <li>
+                <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/employeeController.php" method="POST">
+                    <input class="btn" type="submit" value="Déconnexion" name="submit">
+                </form>
+            </li>
+        <?php } elseif (isset($_SESSION['client'])) { ?>
+            <li>
+                <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
+                    <input class="btn" type="submit" value="Déconnexion" name="submit">
+                </form>
+            </li>
+        <?php } ?>
     </div>
 </div>
+<?php ?>

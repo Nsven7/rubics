@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $birthdate = htmlspecialchars($_POST['birthdate']);
             $biography = htmlspecialchars(trim(ucfirst($_POST['biography'])));
 
-            $pwd = md5(htmlspecialchars(trim($_POST['pwd'])));
+            $pwd = htmlspecialchars(trim($_POST['pwd']));
             $confirmPassword = md5(htmlspecialchars(trim($_POST['confirm_password'])));
 
             $teamId = htmlspecialchars(($_POST['teamId']));

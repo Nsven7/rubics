@@ -1,7 +1,7 @@
 <?php
-$title = "Admin - Demande";
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-admin-header.php");
 require($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/realizeModel.php");
+$title = "Admin - Demande";
 
 
 if (!isset($_SESSION['employee']) && !isset($_SESSION['admin'])) {

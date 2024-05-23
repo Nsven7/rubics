@@ -1,45 +1,58 @@
 <?php
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
 function insertOrUpdateEmployee($id, $firstName, $lastName, $birthdate, $biography, $pwd, $confirmPassword, $avatar, $teamId, $priority, $skills, $actif, $roleActif)
 {
 
     // Check datas received
     $errors = [];
-    if (empty($firstName)) {
-        $message = "Le prénom est obligatoire";
-        $errors[] = $message;
-    }
-    if (empty($lastName)) {
-        $message = "Le nom est obligatoire";
-        $errors[] = $message;
-    }
-    if (empty($birthdate)) {
-        $message = "La date de naissance est obligatoire";
-        $errors[] = $message;
-    }
-    if (empty($biography)) {
-        $message = "La biographie est obligatoire";
-        $errors[] = $message;
-    }
-    if (empty($teamId)) {
-        $message = "Sélection d'une équipe obligatoire";
-        $errors[] = $message;
-    }
-    if (empty($priority)) {
-        $message = "Rôle obligatoire";
-        $errors[] = $message;
-    }
-    if (empty($skills)) {
-        $message = "Veuillez sélectionner des compétences";
-        $errors[] = $message;
-    }
-    if (strlen($pwd) < 8) {
-        $errors[] = "Mot de passe doit contenir au moins 8 caractères";
-    } elseif ($pwd !== $confirmPassword) {
-        $errors[] = "Les mots de passe ne correspondent pas";
-    } elseif (empty($confirmPassword)) {
-        $errors[] = "Veuillez confirmer votre mot de passe";
+    if (!empty($pwd) && $pwd == $confirmPassword) {
+        $pwd = md5($pwd);
+        $confirmPassword = $pwd;
+    } elseif (empty($pwd) && empty($confirmPassword)) {
+        $pwd = $_SESSION['admin']['role']['pwd'];
+        $confirmPassword = $pwd;
+    } else {
+        if (empty($firstName)) {
+            $message = "Le prénom est obligatoire";
+            $errors[] = $message;
+        }
+        if (empty($lastName)) {
+            $message = "Le nom est obligatoire";
+            $errors[] = $message;
+        }
+        if (empty($birthdate)) {
+            $message = "La date de naissance est obligatoire";
+            $errors[] = $message;
+        }
+        if (empty($biography)) {
+            $message = "La biographie est obligatoire";
+            $errors[] = $message;
+        }
+        if (empty($teamId)) {
+            $message = "Sélection d'une équipe obligatoire";
+            $errors[] = $message;
+        }
+        if (empty($priority)) {
+            $message = "Rôle obligatoire";
+            $errors[] = $message;
+        }
+        if (empty($skills)) {
+            $message = "Veuillez sélectionner des compétences";
+            $errors[] = $message;
+        }
+        if (empty($pwd)) {
+            $errors[] = "Mot de passe requis";
+        } elseif (strlen($pwd) < 8) {
+            $errors[] = "Mot de passe doit contenir au moins 8 caractères";
+        } elseif ($pwd !== $confirmPassword) {
+            $errors[] = "Les mots de passe ne correspondent pas";
+        } elseif (empty($confirmPassword)) {
+            $errors[] = "Veuillez confirmer votre mot de passe";
+        }
+        if (empty($avatar)) {
+            $avatar = $_SESSION['employee']['general']['avatar'];
+        }
     }
 
     // Retrieve db connection
@@ -130,7 +143,6 @@ function insertOrUpdateEmployee($id, $firstName, $lastName, $birthdate, $biograp
             $stmt->bindParam(':skill_id', $idToDelete, PDO::PARAM_INT);
             $stmt->execute();
         }
-
     } else {
         // Insert user's identifiers
         $querysql = "INSERT INTO role (priority, pwd, created_at, actif) VALUES (:priority, :pwd, :created_at, :actif)";
@@ -198,6 +210,5 @@ function insertOrUpdateEmployee($id, $firstName, $lastName, $birthdate, $biograp
             $stmt->bindParam(':skill_id', $skill);
             $stmt->execute();
         }
-
     }
 }

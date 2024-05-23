@@ -1,8 +1,8 @@
 <?php
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
 $title = "Projets";
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
-include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
@@ -35,9 +35,9 @@ $categories = activeCategories();
             <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/projectController.php" method="POST">
                 <div class="field-container">
                     <select name="categoryId" id="categoryId">
-                        <?php foreach ($categories as $category): ?>
+                        <?php foreach ($categories as $category) : ?>
                             <option value="<?php echo $category['id']; ?>" <?php if (isset($id) && $id == $category['id'])
-                                   echo 'selected'; ?>>
+                                                                                echo 'selected'; ?>>
                                 <?php echo $category['name']; ?>
                             </option>
                         <?php endforeach; ?>
@@ -80,5 +80,5 @@ $categories = activeCategories();
     </div>
 
     <?php
-    include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-footer.php");
     ?>
