@@ -1,6 +1,7 @@
 <?php
 include ($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
+// Retrieve all categories
 function categories()
 {
     // Retrieve db connection
@@ -15,6 +16,7 @@ function categories()
     return $categories;
 }
 
+// Retrieve all active categories
 function activeCategories()
 {
     // Retrieve db connection
@@ -29,6 +31,7 @@ function activeCategories()
     return $categories;
 }
 
+// Retrieve specific category by its id
 function category($id)
 {
     // Retrieve db connection
@@ -43,6 +46,7 @@ function category($id)
     return $category;
 }
 
+// Update or insert category if id is not defined
 function insertOrUpdate($name, $description, $actif, $id = null)
 {
     // Check datas received
@@ -80,7 +84,7 @@ function insertOrUpdate($name, $description, $actif, $id = null)
     try {
         $stmt->execute();
     } catch (PDOException $e) {
-        echo "Exception caught: " . $e->getMessage();
-        // $message = "Une erreur s'est produite";
+        //echo "Exception caught: " . $e->getMessage();
+        $message = "Une erreur s'est produite";
     }
 }

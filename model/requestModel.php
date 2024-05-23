@@ -4,7 +4,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 /**
  * This function inserts request data into the database.
  * It first checks if the required fields are not empty.
- * If there are any errors, it returns an array of error messages.
  * If there are no errors, it inserts the data into the `request` table.
  */
 function insertRequest($name, $description, $budget, $category)
@@ -72,7 +71,7 @@ function insertRequest($name, $description, $budget, $category)
     $_SESSION['client'] += $request;
 }
 
-
+// Retrieve requests where there aren't project in relation
 function getRequests()
 {
     global $bdd;

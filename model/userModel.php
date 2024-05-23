@@ -213,12 +213,6 @@ function login($mail, $pwd)
         return $message;
     }
 
-    // $sqlClientId = "SELECT id FROM client WHERE identifier_id = :identifier_id";
-    // $stmtClientId = $bdd->prepare($sqlClientId);
-    // $stmtClientId->bindParam(":identifier_id", $client['identifier_id']);
-    // $stmtClientId->execute();
-    // $clientId = $stmtClientId->fetchColumn();
-
     // Stocks datas in session 'client'
     $_SESSION['client'] = [
         'general' => [
@@ -303,6 +297,7 @@ function reinitialize($mail, $secretQuestion, $answer)
     }
 }
 
+// Retrieves all clients
 function clients()
 {
     global $bdd;

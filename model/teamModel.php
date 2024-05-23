@@ -1,6 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
+// Retrieve active teams
 function activeTeams()
 {
     global $bdd;
@@ -14,6 +15,7 @@ function activeTeams()
     return $teams;
 }
 
+// Retrieve all teams, active or not
 function teams()
 {
     global $bdd;
@@ -27,6 +29,7 @@ function teams()
     return $teams;
 }
 
+// Retrieve specific team by its id
 function team($id)
 {
     // Retrieve db connection
@@ -41,6 +44,7 @@ function team($id)
     return $team;
 }
 
+// Update team or insert if id doens't exist
 function insertOrUpdate($name, $actif, $id = null)
 {
     // Check datas received
@@ -74,7 +78,7 @@ function insertOrUpdate($name, $actif, $id = null)
     try {
         $stmt->execute();
     } catch (PDOException $e) {
-        echo "Exception caught: " . $e->getMessage();
-        // $message = "Une erreur s'est produite";
+        // echo "Exception caught: " . $e->getMessage();
+        $message = "Une erreur s'est produite";
     }
 }

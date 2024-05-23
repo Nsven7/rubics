@@ -1,6 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
+// Retrive client's company
 function getCompany($id)
 {
     // Retrieve db connection
@@ -18,7 +19,6 @@ function getCompany($id)
 /**
  * This function inserts company data into the database.
  * It first checks if the required fields are not empty.
- * If there are any errors, it returns an array of error messages.
  * If there are no errors, it inserts the user data into the `company` table.
  */
 

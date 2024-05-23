@@ -1,6 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
+// Retrieve all projects
 function getAllProjects()
 {
     // Retrieve db connection
@@ -15,6 +16,7 @@ function getAllProjects()
     return $projects;
 }
 
+// Retrieve all projects if id is not defined. Else return projects by specific category
 function finalizedProjects($id)
 {
     // Retrieve db connection
@@ -39,6 +41,7 @@ function finalizedProjects($id)
     return $projects;
 }
 
+// Get specific project by its id
 function getProjectId($id)
 {
     // Retrieve db connection
@@ -53,6 +56,7 @@ function getProjectId($id)
     return $project;
 }
 
+// Retrieve all employees in relation with specific project
 function getEmployees($projectId)
 {
     // Retrieve db connection
@@ -79,6 +83,7 @@ function getEmployees($projectId)
     return $employees;
 }
 
+// Insert or update project
 function insertOrUpdateProject($projectId, $requestId, $name, $description, $createdAt, $finishedAt, $finalized, $employees)
 {
 

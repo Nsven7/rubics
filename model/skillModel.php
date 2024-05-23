@@ -1,6 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
+// Retrieve all skills
 function skills()
 {
     global $bdd;
@@ -14,6 +15,7 @@ function skills()
     return $skills;
 }
 
+// Retrieve only active skills
 function activeSkills()
 {
     global $bdd;
@@ -27,6 +29,7 @@ function activeSkills()
     return $skills;
 }
 
+// Retrieve specific skill by its id
 function skill($id)
 {
     // Retrieve db connection
@@ -41,7 +44,7 @@ function skill($id)
     return $skill;
 }
 
-
+// Retrieve skills for a specific employee
 function getSkills($employeeId)
 {
     // Retrieve db connection
@@ -65,13 +68,10 @@ function getSkills($employeeId)
     // Fetch all records as associative arrays
     $skills = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-    // foreach ($arraySkills as $key => $value) {
-    //     // Extract the skill name from each sub-array and add it to the transformed array
-    //     $skills[$key] = $value["skill_name"];
-    // }
     return $skills;
 }
 
+// Retrieve skills for a specific employee
 function getSkillsEmployee($employeeId)
 {
     // Retrieve db connection
@@ -92,8 +92,7 @@ function getSkillsEmployee($employeeId)
     return $skills;
 }
 
-
-
+// Update or insert skill if id is not defined
 function insertOrUpdateSkill($name, $actif, $id = null)
 {
     // Check datas received
@@ -127,7 +126,7 @@ function insertOrUpdateSkill($name, $actif, $id = null)
     try {
         $stmt->execute();
     } catch (PDOException $e) {
-        echo "Exception caught: " . $e->getMessage();
-        // $message = "Une erreur s'est produite";
+        // echo "Exception caught: " . $e->getMessage();
+        $message = "Une erreur s'est produite";
     }
 }

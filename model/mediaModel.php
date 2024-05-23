@@ -1,6 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
+// Insert datas for media
 function insertData($names, $uploadDir, $id)
 {
     // Retrieve db connection

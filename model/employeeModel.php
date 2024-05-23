@@ -2,10 +2,9 @@
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
 /**
- * This function inserts user data into the database.
+ * This function inserts employee data into the database.
  * It first checks if the required fields are not empty and if the passwords match.
- * If there are any errors, it returns an array of error messages.
- * If there are no errors, it inserts the user data into the `identifier` and `client` tables.
+ * If there are no errors, it inserts the employee data into the `role` and `employee` tables.
  * It then retrieves the last inserted id and returns it.
  */
 function updateData($firstName, $lastName, $birthdate, $biography, $pwd, $confirmPassword, $avatar)
@@ -91,7 +90,6 @@ function updateData($firstName, $lastName, $birthdate, $biography, $pwd, $confir
     $stmtEmployee->execute();
 
     // Update employee's role
-    //$id = $_SESSION['employee']['role']['id'];
     $id = ($_SESSION['employee'] ? $_SESSION['employee']['role']['id'] : $_SESSION['admin']['role']['id']);
 
     $querysqlUpdateEmployee = "UPDATE role SET pwd = :pwd WHERE id = :id";
@@ -108,10 +106,9 @@ function updateData($firstName, $lastName, $birthdate, $biography, $pwd, $confir
 }
 
 /**
- * This function logs the client
- * It takes two parameters: the mail and the password.
- * It then retrieves the client with the identifiers.
- * If there are no errors, it returns the client data with its identifiers.
+ * This function logs the employee
+ * It takes two parameters: the first name and the last name.
+ * It then retrieves the employee with the identifiers.
  * It then stocks this array in session.
  */
 function login($firstName, $lastName, $pwd)
@@ -185,7 +182,7 @@ function login($firstName, $lastName, $pwd)
 
 /**
  * This function 
- * logout the client
+ * logout the employee
  * and destroy
  * the session
  */
@@ -194,6 +191,7 @@ function logout()
     session_destroy();
 }
 
+// Retrieve all employees except specific id
 function employees($id)
 {
     global $bdd;
@@ -208,6 +206,7 @@ function employees($id)
     return $employees;
 }
 
+// 
 function employee($id)
 {
     // Retrieve db connection
@@ -228,6 +227,7 @@ function employee($id)
     return $employee;
 }
 
+// Retrieve active employees by their team
 function getActiveEmployeesByTeam()
 {
 
@@ -253,6 +253,7 @@ function getActiveEmployeesByTeam()
     return $results;
 }
 
+// Retrievve all active employees if team is not specified. Else retrieve active employees by their team
 function getActiveEmployees($idTeam = null)
 {
     global $bdd;

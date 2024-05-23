@@ -34,6 +34,7 @@ function requests($id)
     return $requests;
 }
 
+// Upload file in specific folder and specific name
 function uploadFile($path, $name)
 {
     $originalFileName = basename($_FILES["fileToUpload"]["name"]); // Original file name
@@ -53,12 +54,12 @@ function uploadFile($path, $name)
     if (isset($_POST["submit"])) {
         $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-        // Check file size (You can adjust this according to your needs)
+        // Check file size
         if ($_FILES["fileToUpload"]["size"] > 500000) {
             return "Sorry, your file is too large.";
         }
 
-        // Allow only certain file formats (You can adjust this according to your needs)
+        // Allow only certain file formats
         if (
             $fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
         ) {

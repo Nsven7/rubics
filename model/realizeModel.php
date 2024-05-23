@@ -1,6 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/dbconnect.php");
 
+// Retrieve projects en relation with specific employee
 function getOnGoingProject($employeeId)
 {
     // Retrieve db connection
@@ -26,6 +27,7 @@ function getOnGoingProject($employeeId)
     return $projects;
 }
 
+// Retrieve all employees for a specific project
 function getEmployeesOnProject($id) {
     global $bdd;
 
