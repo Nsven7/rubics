@@ -34,7 +34,7 @@
 
             <?php } else { ?>
                 <div class="cta">
-                    <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connextion<span class="arrow right"></span></a>
+                    <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connexion<span class="arrow right"></span></a>
                 </div>
                 <div class="cta">
                     <a class="btn secondary" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-user-registration.php">S'enregistrer<span class="arrow right"></span></a>

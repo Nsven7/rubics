@@ -1,3 +1,3 @@
 <?php
-header("Location: view/view-user-registration.php");exit;
+header("Location: view/view-home.php");exit;
 ?>

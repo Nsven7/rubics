@@ -60,7 +60,7 @@ $categories = activeCategories();
 
                     echo "<div class='card-item rectangle'>";
                     echo "<a href='view-project-details.php?id=" . $project['id'] . "'>";
-                    echo "<img src='../public/uploads/employees/AliceDoe/AliceDoe.jpg' alt='designer icon'>";
+                    echo "<img src='../public/general.jpg' alt='designer icon'>";
                     echo "<h3>" . $project['name'] . "</h3>";
                     echo "<p class='ft-weight-bold clr-third'>" . $project['description'] . "</p>";
                     echo "</a>";

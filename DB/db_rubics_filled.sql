@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 08, 2024 at 01:47 PM
+-- Generation Time: May 23, 2024 at 09:18 PM
 -- Server version: 5.7.39
 -- PHP Version: 8.2.0
 
@@ -161,7 +161,8 @@ INSERT INTO `client` (`id`, `first_name`, `last_name`, `birthdate`, `created_at`
 (6, 'Sophia', 'Davis', '1993-04-25', '2024-03-15 10:00:00', '2024-05-08 09:20:00', 1, 6),
 (7, 'James', 'Wilson', '1988-08-08', '2024-04-01 12:45:00', '2024-05-10 17:30:00', 1, 7),
 (8, 'Mike', 'Shinoda', '1996-12-10', '2024-05-08 13:37:59', '2024-05-12 08:15:00', 0, 8),
-(9, 'Alexander', 'Martinez', '1980-06-20', '2024-05-05 07:15:00', '2024-05-15 12:40:00', 1, 9);
+(9, 'Alexander', 'Martinez', '1980-06-20', '2024-05-05 07:15:00', '2024-05-15 12:40:00', 1, 9),
+(10, 'Brock', 'Rivera', '1999-08-29', '2024-05-22 22:00:00', '2024-05-23 00:00:00', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -187,11 +188,11 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `name`, `vat`, `country`, `locality`, `zip_code`, `street`, `number`, `comment`, `client_id`) VALUES
-(1, 'Alpha Belgique', 'BE0123456789', 'Belgique', 'Bruxelles', '1000', 'Rue de la Liberté', '10', 'Siège social', 1),
-(2, 'Beta Entreprise', 'BE9876543210', 'Belgique', 'Liège', '4000', 'Avenue des Roses', '5', 'Bureau principal', 2),
-(3, 'Gamma SA', 'BE2468135790', 'Belgique', 'Gand', '9000', 'Place du Marché', '15', 'Centre de distribution', 3),
-(4, 'Delta France', 'FR12345678901', 'France', 'Paris', '75001', 'Rue de la Paix', '20', 'Siège social', 4),
-(5, 'Epsilon SARL', 'FR98765432109', 'France', 'Lyon', '69001', 'Avenue du Bonheur', '8', 'Bureau principal', 5);
+(1, 'Cocono', 'BE0123456789', 'Belgique', 'Bruxelles', '1000', 'Rue de la Liberté', '10', 'Siège social', 1),
+(2, 'Sharity', 'BE9876543210', 'Belgique', 'Liège', '4000', 'Avenue des Roses', '5', 'Bureau principal', 2),
+(3, 'Electo', 'BE2468135790', 'Belgique', 'Gand', '9000', 'Place du Marché', '15', 'Centre de distribution', 3),
+(4, 'Tuuli', 'FR12345678901', 'France', 'Paris', '75001', 'Rue de la Paix', '20', 'Siège social', 4),
+(5, 'AllDay', 'FR98765432109', 'France', 'Lyon', '69001', 'Avenue du Bonheur', '8', 'Bureau principal', 5);
 
 -- --------------------------------------------------------
 
@@ -217,16 +218,16 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `avatar`, `first_name`, `last_name`, `birthdate`, `biography`, `created_at`, `actif`, `team_id`, `role_id`) VALUES
-(1, '/Rubics/public/uploads/employees/AliceDoe/AliceDoe.jpg', 'Alice', 'Doe', '1990-05-15', 'Passionnée de design visuel, j\'apporte créativité et innovation à chaque projet.', '2024-05-07 22:00:00', 1, 1, 1),
+(1, '/Rubics/public/uploads/employees/AliceDoe/AliceDoe.jpg', 'Alice', 'Doe', '1990-05-15', 'Passionnée de design visuel, j&#039;apporte créativité et innovation à chaque projet.', '2024-05-23 19:53:51', 1, 1, 1),
 (2, '/Rubics/public/uploads/employees/BobSmith/BobSmith.jpg', 'Bob', 'Smith', '1985-09-20', 'Vidéaste talentueux, j\'excelle à capturer des moments mémorables et à créer des récits captivants.', '2024-05-07 22:00:00', 1, 2, 2),
 (3, '/Rubics/public/uploads/employees/CharlieJohnson/CharlieJohnson.jpg', 'Charlie', 'Johnson', '1988-03-10', 'Développeur backend talentueux, j\'aime construire des applications web robustes et efficaces.', '2024-05-07 22:00:00', 1, 3, 3),
-(4, '/Rubics/public/uploads/employees/DianaBrown/DianaBrown.jpg', 'Diana', 'Brown', '1992-11-25', 'Développeuse frontend passionnée, je transforme les concepts de design en interfaces web interactives.', '2024-05-07 22:00:00', 1, 4, 4),
+(4, '/Rubics/public/uploads/admins/DianaBrown/DianaBrown.jpg', 'Diana', 'Brown', '1992-11-25', 'Développeuse frontend passionnée, je transforme les concepts de design en interfaces web interactives.', '2024-05-23 20:06:02', 1, 4, 4),
 (5, '/Rubics/public/uploads/employees/EmilyWilliams/EmilyWilliams.jpg', 'Emily', 'Williams', '1987-07-08', 'Créatrice de sites web conviviaux, j\'aime expérimenter avec les nouvelles tendances de design.', '2024-05-07 22:00:00', 1, 5, 5),
 (6, '/Rubics/public/uploads/employees/FrankAnderson/FrankAnderson.jpg', 'Frank', 'Anderson', '1984-12-18', 'Artiste 3D passionné, j\'aime créer des environnements immersifs et des effets visuels époustouflants.', '2024-05-07 22:00:00', 1, 6, 6),
-(7, '/Rubics/public/uploads/employees/GraceThomas/GraceThomas.jpg', 'Grace', 'Thomas', '1991-02-28', 'Experte audiovisuelle polyvalente, j\'excelle dans la création d\'expériences multimédias captivantes.', '2024-05-07 22:00:00', 1, 7, 7),
+(7, '/Rubics/public/uploads/employees/GraceThomas/GraceThomas.jpg', 'Grace', 'Thomas', '1991-02-28', 'Experte audiovisuelle polyvalente, j\'excelle dans la création d\'expériences multimédias captivantes.', '2024-05-23 20:10:10', 1, 7, 7),
 (8, '/Rubics/public/uploads/employees/HenryJackson/HenryJackson.jpg', 'Henry', 'Jackson', '1986-06-12', 'Expert en marketing digital, j\'explore constamment de nouvelles stratégies pour toucher les audiences.', '2024-05-07 22:00:00', 1, 8, 8),
-(9, '/Rubics/public/uploads/employees/IvyMiller/IvyMiller.jpg', 'Ivy', 'Miller', '1993-04-05', 'Passionnée de création de contenu, j\'excelle dans la création de récits captivants sur différentes plateformes.', '2024-05-07 22:00:00', 1, 9, 9),
-(10,'/Rubics/public/uploads/employees/JackMoore/JackMoore.jpg',  'Jack', 'Moore', '1989-08-30', 'Expert en branding, j\'aime créer des expériences de marque cohérentes qui résonnent avec les audiences.', '2024-05-07 22:00:00', 1, 10, 10);
+(9, '/Rubics/public/uploads/employees/IvyMiller/IvyMiller.jpg', 'Ivy', 'Miller', '1993-04-05', 'Passionné de création de contenu, j\'excelle dans la création de récits captivants sur différentes plateformes.', '2024-05-23 20:10:36', 1, 9, 9),
+(10, '/Rubics/public/uploads/employees/JackMoore/JackMoore.jpg', 'Jack', 'Moore', '1989-08-30', 'Expert en branding, j\'aime créer des expériences de marque cohérentes qui résonnent avec les audiences.', '2024-05-07 22:00:00', 1, 10, 10);
 
 -- --------------------------------------------------------
 
@@ -248,16 +249,16 @@ CREATE TABLE `identifier` (
 --
 
 INSERT INTO `identifier` (`id`, `username`, `mail`, `pwd`, `secret_question`, `secret_answer`) VALUES
-(1, 'john_doe', 'john.doe@example.com', 'b0c56a50389f2a0f172f83c3fd30aad6', 'pet', 'Smith'),
-(2, 'alice_smith', 'alice.smith@example.com', 'd625fcd01cbb600c60a7ee0d5bf15c2a', 'school', 'New York'),
-(3, 'michaelj', 'michael.j@example.com', '931fa1373e8c04fec709ae558964eadc', 'pet', 'Trex'),
-(4, 'emilyb', 'emily.b@example.com', '965682a92f51858255d17f8de0df573c', 'pet', 'Fluffy'),
-(5, 'will_jones', 'will.jones@example.com', 'b54aaa412a8e8390165e1186c5313390', 'color', 'Red'),
-(6, 'sophia_d', 'sophia.d@example.com', '66b7b5ab57a0c5da8c576dfc2d9122ce', 'color', 'Blue'),
-(7, 'james_w', 'james.w@example.com', '358e601116b541129b1996be05045e75', 'school', 'Tournai'),
-(8, 'mike_s', 'mike.s@example.com', 'faa668b1de61c5e3f28cae4c3f559e26', 'pet', 'Heyden'),
-(9, 'alex_m', 'alex.m@example.com', '30c12d6bdadc049d75e9c17004a684c7', 'school', 'Mouscron');
-
+(1, 'john_doe', 'john.doe@example.com', '8ebbdb2675472586cb1be761dd9252c5', 'pet', 'Smith'),
+(2, 'alice_smith', 'alice.smith@example.com', '8f13c53caa1417ba00ee9cc2dee71728', 'school', 'New York'),
+(3, 'michaelj', 'michael.j@example.com', '935f97fe9e2f2446473594126a9a9386', 'pet', 'Trex'),
+(4, 'emilyb', 'emily.b@example.com', '3b6674740c2b505c17ac2783b2525fe5', 'pet', 'Fluffy'),
+(5, 'will_jones', 'will.jones@example.com', '3ed460e6d7a45426859eab9e0208341d', 'color', 'Red'),
+(6, 'sophia_d', 'sophia.d@example.com', '186d00c4ada4d29c356f61b3b4532143', 'color', 'Blue'),
+(7, 'james_w', 'james.w@example.com', '1bc4831b9d50083098424f34d9b822ff', 'school', 'Tournai'),
+(8, 'mike_s', 'mike.s@example.com', '46acb54cc5ca835faf8ac0dd76bbd1e9', 'pet', 'Heyden'),
+(9, 'alex_m', 'alex.m@example.com', '73c97646e9fdf94ced17871a4f89f19a', 'school', 'Mouscron'),
+(10, 'Togazoru', 'tepamyci@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'pet', 'Maxime culpa dolore expedita cupiditate suscipit');
 
 -- --------------------------------------------------------
 
@@ -273,6 +274,34 @@ CREATE TABLE `media` (
   `project_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `media`
+--
+
+INSERT INTO `media` (`id`, `name`, `extension`, `path`, `project_id`) VALUES
+(1, '664f866c3af68', '.jpg', '/Rubics/public/uploads/projects/1/', 1),
+(2, '664f866c3b208', '.jpg', '/Rubics/public/uploads/projects/1/', 1),
+(3, '664f866c3b384', '.jpg', '/Rubics/public/uploads/projects/1/', 1),
+(4, '664f8a23c9cf1', '.jpg', '/Rubics/public/uploads/projects/2/', 2),
+(5, '664f8a23ca19b', '.jpg', '/Rubics/public/uploads/projects/2/', 2),
+(6, '664f8acbcebe7', '.jpg', '/Rubics/public/uploads/projects/3/', 3),
+(7, '664f8acbced09', '.jpg', '/Rubics/public/uploads/projects/3/', 3),
+(8, '664f8bea0ab15', '.jpg', '/Rubics/public/uploads/projects/4/', 4),
+(9, '664f8bea0b059', '.jpg', '/Rubics/public/uploads/projects/4/', 4),
+(10, '664f8bea0b62a', '.jpg', '/Rubics/public/uploads/projects/4/', 4),
+(11, '664f8bea0b7ff', '.jpg', '/Rubics/public/uploads/projects/4/', 4),
+(12, '664f8bfc75636', '.jpg', '/Rubics/public/uploads/projects/5/', 5),
+(13, '664f8bfc75723', '.jpg', '/Rubics/public/uploads/projects/5/', 5),
+(14, '664f8bfc757ca', '.jpg', '/Rubics/public/uploads/projects/5/', 5),
+(15, '664f8c1035aa9', '.jpg', '/Rubics/public/uploads/projects/6/', 6),
+(16, '664f8c1035b95', '.jpg', '/Rubics/public/uploads/projects/6/', 6),
+(17, '664f8c1035c59', '.jpg', '/Rubics/public/uploads/projects/6/', 6),
+(18, '664f8c1c61d4c', '.jpg', '/Rubics/public/uploads/projects/7/', 7),
+(19, '664f8c1c61ef1', '.jpg', '/Rubics/public/uploads/projects/7/', 7),
+(20, '664f8c284b1c6', '.jpg', '/Rubics/public/uploads/projects/8/', 8),
+(21, '664f8c284b35d', '.jpg', '/Rubics/public/uploads/projects/8/', 8),
+(22, '664f8c284b48c', '.jpg', '/Rubics/public/uploads/projects/8/', 8);
+
 -- --------------------------------------------------------
 
 --
@@ -287,7 +316,7 @@ CREATE TABLE `project` (
   `finished_at` timestamp NULL DEFAULT NULL,
   `finalized` tinyint(4) NOT NULL,
   `request_id` int(11) NOT NULL,
-  `comment` text NULL
+  `comment` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -295,15 +324,15 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id`, `name`, `description`, `created_at`, `finished_at`, `finalized`, `request_id`, `comment`) VALUES
-(1, 'Entreprise de design d\'intérieur', 'Création d\'un logo et d\'une charte graphique', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 1, 'Nous sommes extrêmement satisfaits du logo et de la charte graphique créés par l\'équipe. Ils ont capturé parfaitement l\'essence de notre marque et ont su transmettre notre message de manière visuellement saisissante.'),
-(2, 'Événement caritatif', 'Réalisation d\'une vidéo promotionnelle.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 2, 'La vidéo promotionnelle réalisée a dépassé toutes nos attentes. Elle a été un élément clé dans notre stratégie de marketing et a suscité un fort engagement de la part de notre audience. Bravo pour le travail exceptionnel!'),
-(3, 'Entreprise de commerce électronique', 'Développement d\'une application web de gestion des stocks.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 3, 'L\'application web développée par l\'équipe a grandement facilité nos processus internes. Son interface intuitive et ses fonctionnalités robustes ont considérablement amélioré notre efficacité opérationnelle. Merci pour cette solution sur mesure!'),
-(4, 'Agence de voyage', 'Conception et développement d\'un site web vitrine.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 4, 'Le site web vitrine conçu et développé correspond parfaitement à notre image de marque. Son design épuré et ses performances exceptionnelles ont contribué à renforcer notre présence en ligne et à attirer de nouveaux clients.'),
-(5, 'Entreprise en cosmétique', 'Modélisation 3D d\'un prototype de produit.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 5, 'La modélisation 3D du prototype de notre produit a été réalisée avec une précision remarquable. Les détails et la qualité du rendu ont permis à notre équipe de mieux visualiser le produit final et d\'apporter des améliorations significatives. Un travail impeccable!'),
-(6, 'Marque de vêtements', 'Montage vidéo d\'une publicité.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 6, 'La publicité montée par l\'équipe a été un véritable succès. Son dynamisme, sa créativité et sa capacité à captiver l\'attention ont généré un retour positif de la part de notre audience. Merci pour cette collaboration fructueuse!'),
-(7, 'Nouvelle application mobile', 'Stratégie de marketing numérique.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 7, 'La stratégie de marketing numérique mise en place a été extrêmement efficace pour accroître notre visibilité en ligne et générer des leads qualifiés. Les résultats obtenus ont dépassé nos attentes et ont contribué à la croissance de notre entreprise.'),
-(8, 'Entreprise de restauration', 'Création de contenu pour les réseaux sociaux.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 8, 'Le contenu créé pour nos réseaux sociaux a été très bien reçu par notre communauté. Il a réussi à susciter de l\'engagement et à renforcer notre présence en ligne. Nous sommes ravis de la qualité et de la pertinence du contenu produit.'),
-(9, 'Entreprise en technologie', 'Refonte de l\'identité visuelle.', '2024-05-07 22:00:00', '2024-06-07 22:00:00', 0, 9, 'La refonte de notre identité visuelle a été un véritable coup de maître. L\'équipe a su moderniser notre image de marque tout en préservant nos valeurs fondamentales. Cette nouvelle identité visuelle reflète parfaitement qui nous sommes et où nous allons.');
+(1, 'Cocono', 'Création d\'un logo et d\'une charte graphique', '2024-05-23 18:24:26', '2024-06-07 22:00:00', 1, 1, 'Nous sommes extrêmement satisfaits du logo et de la charte graphique créés par l\'équipe. Ils ont capturé parfaitement l\'essence de notre marque et ont su transmettre notre message de manière visuellement saisissante.'),
+(2, 'Sharity', 'Réalisation d\'une vidéo promotionnelle.', '2024-05-23 18:26:39', '2024-06-07 22:00:00', 1, 2, 'La vidéo promotionnelle réalisée a dépassé toutes nos attentes. Elle a été un élément clé dans notre stratégie de marketing et a suscité un fort engagement de la part de notre audience. Bravo pour le travail exceptionnel!'),
+(3, 'Electo', 'Développement d\'une application web de gestion des stocks.', '2024-05-23 18:31:53', '2024-06-07 22:00:00', 1, 3, 'L\'application web développée par l\'équipe a grandement facilité nos processus internes. Son interface intuitive et ses fonctionnalités robustes ont considérablement amélioré notre efficacité opérationnelle. Merci pour cette solution sur mesure!'),
+(4, 'Tuuli', 'Conception et développement d\'un site web vitrine.', '2024-05-23 18:31:58', '2024-06-07 22:00:00', 1, 4, 'Le site web vitrine conçu et développé correspond parfaitement à notre image de marque. Son design épuré et ses performances exceptionnelles ont contribué à renforcer notre présence en ligne et à attirer de nouveaux clients.'),
+(5, 'AllDay', 'Modélisation 3D d\'un prototype de produit.', '2024-05-23 18:32:03', '2024-06-07 22:00:00', 1, 5, 'La modélisation 3D du prototype de notre produit a été réalisée avec une précision remarquable. Les détails et la qualité du rendu ont permis à notre équipe de mieux visualiser le produit final et d\'apporter des améliorations significatives. Un travail impeccable!'),
+(6, 'Sven', 'Montage vidéo d\'une publicité.', '2024-05-23 18:32:05', '2024-06-07 22:00:00', 1, 6, 'La publicité montée par l\'équipe a été un véritable succès. Son dynamisme, sa créativité et sa capacité à captiver l\'attention ont généré un retour positif de la part de notre audience. Merci pour cette collaboration fructueuse!'),
+(7, 'Datandyou', 'Stratégie de marketing numérique.', '2024-05-23 18:32:08', '2024-06-07 22:00:00', 1, 7, 'La stratégie de marketing numérique mise en place a été extrêmement efficace pour accroître notre visibilité en ligne et générer des leads qualifiés. Les résultats obtenus ont dépassé nos attentes et ont contribué à la croissance de notre entreprise.'),
+(8, 'A@W', 'Création de contenu pour les réseaux sociaux.', '2024-05-23 18:32:11', '2024-06-07 22:00:00', 1, 8, 'Le contenu créé pour nos réseaux sociaux a été très bien reçu par notre communauté. Il a réussi à susciter de l\'engagement et à renforcer notre présence en ligne. Nous sommes ravis de la qualité et de la pertinence du contenu produit.'),
+(9, 'Ruglines', 'Refonte de l\'identité visuelle.', '2024-05-23 18:31:49', '2024-06-07 22:00:00', 0, 9, 'La refonte de notre identité visuelle a été un véritable coup de maître. L\'équipe a su moderniser notre image de marque tout en préservant nos valeurs fondamentales. Cette nouvelle identité visuelle reflète parfaitement qui nous sommes et où nous allons.');
 
 -- --------------------------------------------------------
 
@@ -377,7 +406,8 @@ INSERT INTO `request` (`id`, `name`, `description`, `budget`, `category_id`, `cl
 (6, 'Montage', 'Montage vidéo d\'une publicité pour une marque de vêtements.', 4000, 7, 6),
 (7, 'Stratégie', 'Stratégie de marketing numérique pour le lancement d\'une nouvelle application mobile.', 12000, 8, 7),
 (8, 'Création', 'Création de contenu pour les réseaux sociaux pour une entreprise de restauration.', 3000, 9, 8),
-(9, 'Refonte', 'Refonte de l\'identité visuelle d\'une entreprise de technologie.', 9000, 10, 9);
+(9, 'Refonte', 'Refonte de l\'identité visuelle d\'une entreprise de technologie.', 9000, 10, 9),
+(10, 'Cara Shaw', 'Beatae voluptate voluptas consequatur culpa natus voluptate et et maiores nihil ut occaecat nemo iure lorem', 1663, 7, 10);
 
 -- --------------------------------------------------------
 
@@ -398,16 +428,16 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `priority`, `pwd`, `created_at`, `actif`) VALUES
-(1, 2, 'b0c56a50389f2a0f172f83c3fd30aad6', '2024-05-08 08:00:00', 1),
-(2, 2, 'd625fcd01cbb600c60a7ee0d5bf15c2a', '2024-05-08 08:30:00', 1),
-(3, 2, '931fa1373e8c04fec709ae558964eadc', '2024-05-08 09:00:00', 1),
-(4, 2, '965682a92f51858255d17f8de0df573c', '2024-05-08 09:30:00', 1),
-(5, 2, 'b54aaa412a8e8390165e1186c5313390', '2024-05-08 10:00:00', 1),
-(6, 2, '66b7b5ab57a0c5da8c576dfc2d9122ce', '2024-05-08 11:00:00', 1),
-(7, 2, '358e601116b541129b1996be05045e75', '2024-05-08 11:30:00', 1),
-(8, 2, 'faa668b1de61c5e3f28cae4c3f559e26', '2024-05-08 12:00:00', 1),
-(9, 2, '30c12d6bdadc049d75e9c17004a684c7', '2024-05-08 12:30:00', 1),
-(10, 2, '0cb1664d30ed979b3c8a01b703bbcf84', '2024-05-08 13:00:00', 1);
+(1, 1, '4b1d2b2348b33a72386ba4805d05ea4d', '2024-05-23 18:06:34', 1),
+(2, 2, '5a3ff7e80549d0fff9008c0893eaeb99', '2024-05-23 17:58:43', 1),
+(3, 2, '8f52eed8bbec2c047c9d0c69d0257137', '2024-05-23 17:59:01', 1),
+(4, 2, 'c84b234f79f026bf08f0ab9e775c7325', '2024-05-23 17:59:17', 1),
+(5, 2, 'ad115c508f5852540fce270524774c5a', '2024-05-23 17:59:33', 1),
+(6, 2, 'a069bca043b6a28b7840d9a57ee6e1e6', '2024-05-23 17:59:52', 1),
+(7, 2, 'b02753e0f1b6670244eca2cefe52a788', '2024-05-23 18:00:08', 1),
+(8, 2, '1813615fbfcf4de2fc913afad2085693', '2024-05-23 18:00:27', 1),
+(9, 2, '6684a558354f7c3c8f57c92d7ec20469', '2024-05-23 18:00:48', 1),
+(10, 2, 'c4e34c98d4e8f3c70f23952958581ada', '2024-05-23 18:01:04', 1);
 
 -- --------------------------------------------------------
 
@@ -621,7 +651,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -639,13 +669,13 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `identifier`
 --
 ALTER TABLE `identifier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -657,7 +687,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `role`

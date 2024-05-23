@@ -61,7 +61,7 @@
                     </li>
                     <li>
                         <div class="cta">
-                            <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connextion<span class="arrow right"></span></a>
+                            <a class="btn" href="<?php $_SERVER['DOCUMENT_ROOT']; ?>/Rubics/view/view-login.php">Connexion<span class="arrow right"></span></a>
                         </div>
                     </li>
                 <?php } ?>
