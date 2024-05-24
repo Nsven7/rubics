@@ -104,8 +104,8 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                     </div>
 
                     <div class="field-container">
-                        <label for="actif">Rôle actif</label>
-                        <input type="checkbox" id="actif" name="roleActif" value="1">
+                        <label for="roleActif">Rôle actif</label>
+                        <input type="checkbox" id="roleActif" name="roleActif" value="1">
                     </div>
 
                     <h3>Compétences</h3>

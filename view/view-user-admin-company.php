@@ -33,56 +33,56 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
                 <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/companyController.php" method="POST">
                     <div class="field-container">
                         <label for="name">Nom</label>
-                        <input type="text" id="name" name="name" minlength="3" maxlength="25" autofocus value="<?php if (isset($company)) {
+                        <input type="text" id="name" name="name" minlength="3" maxlength="25" autofocus value="<?php if (isset($company) && $company != null) {
                                                                                                                     echo $company['name'];
                                                                                                                 } ?>">
                     </div>
 
                     <div class="field-container">
                         <label for="vat">TVA</label>
-                        <input type="text" id="vat" name="vat" minlength="3" maxlength="25" value="<?php if (isset($company)) {
+                        <input type="text" id="vat" name="vat" minlength="3" maxlength="25" value="<?php if (isset($company) && $company != null) {
                                                                                                         echo $company['vat'];
                                                                                                     } ?>">
                     </div>
 
                     <div class="field-container">
                         <label for="country">Pays</label>
-                        <input type="text" id="country" name="country" minlength="3" maxlength="25" value="<?php if (isset($company)) {
+                        <input type="text" id="country" name="country" minlength="3" maxlength="25" value="<?php if (isset($company) && $company != null) {
                                                                                                                 echo $company['country'];
                                                                                                             } ?>">
                     </div>
 
                     <div class="field-container">
                         <label for="locality">Localité</label>
-                        <input type="text" id="locality" name="locality" value="<?php if (isset($company)) {
+                        <input type="text" id="locality" name="locality" value="<?php if (isset($company) && $company != null) {
                                                                                     echo $company['locality'];
                                                                                 } ?>">
                     </div>
 
                     <div class="field-container">
                         <label for="zipCode">Code Postal</label>
-                        <input type="text" id="zipCode" name="zipCode" minlength="5" maxlength="20" value="<?php if (isset($company)) {
+                        <input type="text" id="zipCode" name="zipCode" minlength="5" maxlength="20" value="<?php if (isset($company) && $company != null) {
                                                                                                                 echo $company['zip_code'];
                                                                                                             } ?>">
                     </div>
 
                     <div class="field-container">
                         <label for="street">Rue</label>
-                        <input type="text" id="street" name="street" minlength="8" maxlength="20" value="<?php if (isset($company)) {
+                        <input type="text" id="street" name="street" minlength="8" maxlength="20" value="<?php if (isset($company) && $company != null) {
                                                                                                                 echo $company['street'];
                                                                                                             } ?>">
                     </div>
 
                     <div class="field-container">
                         <label for="number">Numéro</label>
-                        <input type="number" id="number" name="number" minlength="8" value="<?php if (isset($company)) {
+                        <input type="number" id="number" name="number" minlength="8" value="<?php if (isset($company) && $company != null) {
                                                                                                 echo $company['number'];
                                                                                             } ?>">
                     </div>
 
                     <div class="field-container">
                         <label for="comment">Commmentaire</label>
-                        <input type="text" id="comment" name="comment" minlength="8" maxlength="20" value="<?php if (isset($company)) {
+                        <input type="text" id="comment" name="comment" minlength="8" maxlength="20" value="<?php if (isset($company) && $company != null) {
                                                                                                                 echo $company['comment'];
                                                                                                             } ?>">
                     </div>

@@ -24,7 +24,13 @@
             <div class="dropdown-content">
                 <ul>
                     <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-home.php">Modifier
-                            mes informations</a></li>
+                            mes informations</a>
+                    </li>
+                    <li>
+                        <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
+                            <input class="btn" type="submit" value="Supprimer" name="submit">
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -32,10 +38,10 @@
             <div class="dropdown-btn">Projets</div>
             <div class="dropdown-content">
                 <ul>
-                <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-request.php">Nouveau
-                        projet</a></li>
-                <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-project.php">Projet(s)
-                        en cours</a></li>
+                    <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-request.php">Nouveau
+                            projet</a></li>
+                    <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-project.php">Projet(s)
+                            en cours</a></li>
                 </ul>
             </div>
         </div>
@@ -43,8 +49,8 @@
             <div class="dropdown-btn">Entreprise</div>
             <div class="dropdown-content">
                 <ul>
-                <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-company.php">Informations
-                        liées à mon entreprise</a></li>
+                    <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-company.php">Informations
+                            liées à mon entreprise</a></li>
                 </ul>
             </div>
         </div>

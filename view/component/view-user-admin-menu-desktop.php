@@ -7,6 +7,11 @@
             <ul>
                 <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/view/view-user-admin-home.php">Modifier
                         mes informations</a></li>
+                <li>
+                    <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
+                        <input class="btn" type="submit" value="Supprimer" name="submit">
+                    </form>
+                </li>
             </ul>
         </div>
     </div>

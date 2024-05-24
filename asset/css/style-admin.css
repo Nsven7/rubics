@@ -130,6 +130,20 @@ select {
     border-radius: 0.25rem;
 }
 
+.form-login {
+    width: 100%;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 25% 0;
+}
+
+.form-login .form-group input {
+    margin-left: 0;
+}
+
 input[type="text"],
 input[type="date"],
 input[type="password"],
@@ -207,7 +221,7 @@ select option {
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
 
     .menu {
         display: flex;
@@ -403,7 +417,7 @@ select option {
         align-items: center;
         margin-top: 50%;
     }
-    
+
     .form-login input {
         margin: 0;
     }

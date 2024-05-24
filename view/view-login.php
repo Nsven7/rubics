@@ -26,9 +26,12 @@ if (isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SESS
       <form action="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Rubics/controller/userController.php" method="POST">
         <?php if (isset($_GET['message']) && $_GET['message'] == 'bad-creditential') {
           echo "<p class='alert alert-danger'>Adresse mail ou mot de passe incorrect</p>";
+        } elseif (isset($_GET['message']) && $_GET['message'] == 'account-desactivate') {
+          echo "<p class='alert alert-danger'>Votre compte est désactivé</p>";
         } elseif (isset($_GET['message']) && $_GET['message'] == 'success-register') {
           echo "<p class='alert alert-success'>Inscription finalisée, connectez-vous à l'aide de vos identifients</p>";
         } ?>
+
         <div class="'mrg-top-2 form-group">
           <input type="email" id="email" autofocus placeholder="Adresse mail" name="email" maxlength="100" required>
         </div>

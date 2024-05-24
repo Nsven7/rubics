@@ -187,6 +187,8 @@ function insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username,
  */
 function login($mail, $pwd)
 {
+    $errors = [];
+
     // Retrieve db connection
     global $bdd;
 
@@ -202,14 +204,18 @@ function login($mail, $pwd)
         $stmtClient->execute();
     } catch (PDOException $e) {
         //echo "Exception caught: " . $e->getMessage();
-        $message = "Adresse mail ou mot de passe incorect";
+        $errors[] = "Adresse mail ou mot de passe incorect";
     }
 
     // Retrieves client data from the database in an array
     $client = $stmtClient->fetch(PDO::FETCH_ASSOC);
 
-    if ($client === false) {
-        $message = "Adresse mail ou mot de passe incorect";
+
+    if ($client['actif'] == 0) {
+        $message = "account-desactivate";
+        return $message;
+    } elseif ($client === false) {
+        $message = "bad-creditential";
         return $message;
     }
 
@@ -309,4 +315,26 @@ function clients()
     $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     return $clients;
+}
+
+// Delete logicaly
+function delete($id)
+{
+    global $bdd;
+
+    // Update user's data
+    $querysqlUpdateClient = "UPDATE client SET actif = :actif WHERE identifier_id = :identifier_id";
+    $stmtUpdateClient = $bdd->prepare($querysqlUpdateClient);
+    $stmtUpdateClient->bindValue(":actif", 0);
+    $stmtUpdateClient->bindParam(":identifier_id", $id, PDO::PARAM_INT);
+
+    try {
+        $stmtUpdateClient->execute();
+    } catch (PDOException $e) {
+        $message = "Une erreur s'est produite lors de la suppression";
+        $errors[] = $message;
+    }
+    if (!empty($errors)) {
+        return $errors;
+    }
 }

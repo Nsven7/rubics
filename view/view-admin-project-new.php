@@ -30,7 +30,7 @@ if (!isset($_SESSION['client']) && !isset($_SESSION['employee']) && !isset($_SES
 
 
     <div class="main">
-        <h1>Mes informations</h1>
+        <h1>Projet</h1>
 
         <div class="main-conent">
             <div class="data-card">

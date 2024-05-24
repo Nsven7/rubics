@@ -38,7 +38,8 @@ function requests($id)
 function uploadFile($path, $name)
 {
     $originalFileName = basename($_FILES["fileToUpload"]["name"]); // Original file name
-    $targetFile = $path . $name . "." . pathinfo($originalFileName, PATHINFO_EXTENSION); // Path to store the uploaded file with a custom name
+    $extension = "." . pathinfo($originalFileName, PATHINFO_EXTENSION);
+    $targetFile = $path . $name . $extension; // Path to store the uploaded file with a custom name
 
     // Initialize $uploadOk
     $uploadOk = 1;

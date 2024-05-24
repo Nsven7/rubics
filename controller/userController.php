@@ -28,8 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $secretQuestion = htmlspecialchars($_POST['secret_question']);
             $answer = htmlspecialchars(trim($_POST['answer']));
 
-
-
             $error = insertOrUpdateData($firstName, $lastName, $birthdate, $mail, $username, $pwd, $confirmPassword, $secretQuestion, $answer, $terms);
 
             if (isset($error)) {
@@ -58,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (isset($error)) {
                 //Redirection with error message
-                $message = "bad-creditential";
+                $message = $error;
                 header("Location: ../view/view-login.php?message=" . $message);
                 exit;
             } else {
@@ -67,12 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit;
             }
 
+            // Logout the user 
         case 'Déconnexion':
             logout();
             header("Location: ../index.php");
             exit;
             break;
 
+            // Reinitialize the password
         case 'Réinitialiser':
             $mail = htmlspecialchars(trim($_POST['email']));
             $secretQuestion = htmlspecialchars($_POST['secret_question']);
@@ -91,6 +91,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../view/view-user-admin-home.php?message=" . $message);
                 exit;
             }
+
+        case 'Supprimer':
+            $id = $_SESSION['client']['identifier']['id'];
+
+            delete($id);
+            logout();
+            header("Location: ../index.php");
+            exit;
+            break;
 
 
         default:

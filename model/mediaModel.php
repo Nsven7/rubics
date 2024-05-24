@@ -45,3 +45,25 @@ function getMedias($id)
 
     return $medias;
 }
+
+// Retrieve all project's medias
+function mediasProject()
+{
+    global $bdd;
+
+    $sql = "SELECT * FROM media";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute();
+    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $tempArray = [];
+    $medias = [];
+    foreach ($array as $item) {
+        if (!in_array($item['project_id'], $tempArray)) {
+            $tempArray[] = $item['project_id'];
+            $medias[] = $item;
+        }
+    }
+
+    return $medias;
+}

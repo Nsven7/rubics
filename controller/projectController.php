@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $description = htmlspecialchars(trim(ucfirst($_POST['description'])));
             $createdAt = htmlspecialchars($_POST['createdAt']);
             $finishedAt = htmlspecialchars($_POST['finishedAt']);
-            $finalized = (isset($_POST['finalized']) == 1 ? 1 : 0);
+            $finalized = intval(isset($_POST['finalized']) == 1 ? 1 : 0);
             $employees = $_POST['employees'];
 
             if (isset($_GET['id-project'])) {

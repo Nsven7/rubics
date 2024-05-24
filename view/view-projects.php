@@ -2,6 +2,7 @@
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/view/component/view-user-header.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/projectModel.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/categoryModel.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/Rubics/model/mediaModel.php");
 $title = "Projets";
 
 if (isset($_GET['id'])) {
@@ -12,6 +13,7 @@ if (isset($_GET['id'])) {
 //$projects = getAllProjects();
 $projects = finalizedProjects($id);
 $categories = activeCategories();
+$medias = mediasProject();
 
 ?>
 
@@ -52,6 +54,7 @@ $categories = activeCategories();
     <div class="container-content">
         <div class="cards">
             <?php
+
             if (isset($projects)) {
                 $projectCount = count($projects);
                 $divisibleByFour = $projectCount % 4;
@@ -60,7 +63,11 @@ $categories = activeCategories();
 
                     echo "<div class='card-item rectangle'>";
                     echo "<a href='view-project-details.php?id=" . $project['id'] . "'>";
-                    echo "<img src='../public/general.jpg' alt='designer icon'>";
+                    foreach ($medias as $media) {
+                        if ($media['project_id'] == $project['id']) {
+                            echo "<img src='" . $media['path'] . $media['name'] . $media['extension'] . "' alt='Image de projet'>";
+                        }
+                    }
                     echo "<h3>" . $project['name'] . "</h3>";
                     echo "<p class='ft-weight-bold clr-third'>" . $project['description'] . "</p>";
                     echo "</a>";
