@@ -1,10 +1,10 @@
 # General Document
 
 **Directory**: RUBICS/Document/
-
-
-
-## Web Design
+<br>
+<br>
+<br>
+# Web Design
 
 ### LF
 
@@ -32,22 +32,22 @@
 ### Admin User
 
 - Page “inscription” click on “s’enregistrer”
+<br>
+<br>
+<br>
 
-
-
-## Database
-
+# Database
 **Directory**: RUBICS/DB/
-
-
-
-## Trello
+<br>
+<br>
+<br>
+# Trello
 
 [View Trello Board](https://trello.com/b/bJVqF0uF/developpement-site-web-rubics)
-
-
-
-## Website's Access
+<br>
+<br>
+<br>
+# Website's Access
 
 ### Admin
 
